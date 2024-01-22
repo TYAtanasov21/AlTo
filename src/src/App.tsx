@@ -1,9 +1,11 @@
 import React from 'react';
+import Head from "./Heading";
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   return (
     <div>
-      <h1>Upload react</h1>
+      <Head heading = "Hello"></Head>
     </div>
   );
 }
