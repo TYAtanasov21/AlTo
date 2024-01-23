@@ -1,11 +1,10 @@
 import React from 'react';
-import Head from "./Heading";
-import 'bootstrap/dist/css/bootstrap.css';
+import MainMenu from "./MainMenu";
 
 function App() {
   return (
     <div>
-      <Head heading = "Hello"></Head>
+      <MainMenu/>
     </div>
   );
 }

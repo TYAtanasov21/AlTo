@@ -1,0 +1,33 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    background-color: #424874;
+}
+
+.btn-colour {
+    --bs-btn-color: #424874;
+    --bs-btn-bg: #DCD6F7;
+    --bs-btn-border-color: #424874;
+    --bs-btn-hover-border-color: #A6B1E1;
+    --bs-btn-hover-color: #424874;
+    --bs-btn-hover-bg: #A6B1E1;
+    --bs-btn-active-bg: #A6B1E1;
+    --bs-btn-hover-border: #A6B1E1;
+    --bs-btn-active-border-color: #A6B1E1;
+}
+
+.log-side {
+    padding-top: 25rem;
+    background-color: #2B3035;
+    height: 100vh;
+}
+
+.sign-up{
+    --bs-btn-color: #DCD6F7;
+    --bs-btn-hover-color: #424874;
+    --bs-btn-active-color: #DCD6F7;
+}
+#logo{
+    width: 30rem;
+    margin-top: 30vh;
+}
