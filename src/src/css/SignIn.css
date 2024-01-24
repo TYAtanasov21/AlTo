@@ -1,0 +1,30 @@
+.my-form {
+    background-color: #dcd6f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .my-form label {
+    color: #424874;
+  }
+  
+  .my-form input,
+  .my-form button {
+    background-color: #a6b1e1;
+    color: #ffffff;
+    border: none;
+  }
+  
+  .my-form input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(166, 177, 225, 0.7);
+  }
+  
+  .my-form button:hover {
+    background-color: #424874;
+  }
+  
+  .my-form .form-check-input:checked {
+    background-color: #424874;
+  }

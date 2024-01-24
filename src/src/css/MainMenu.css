@@ -22,12 +22,25 @@ body, html {
     height: 100vh;
 }
 
+@media screen and (max-width: 768px) {
+    .log-side {
+        padding-top: 10rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #logo {
+        margin-top: 1%;
+    }
+}
+
 .sign-up{
     --bs-btn-color: #DCD6F7;
     --bs-btn-hover-color: #424874;
     --bs-btn-active-color: #DCD6F7;
 }
 #logo{
-    width: 30rem;
-    margin-top: 30vh;
+    width: 19rem;
+    margin-top: 32vh;
+    position: relative;
 }

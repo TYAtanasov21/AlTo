@@ -1,44 +1,47 @@
 import React from "react";
-import Heading from "./Heading"
+import { useNavigate } from "react-router-dom";
+
 import 'bootstrap/dist/css/bootstrap.css';
-import '../src/css/MainMenu.css'
+import "./css/MainMenu.css"
 
-const date = new Date();
-let partOfDay:string = "";
-console.log(date.getHours());
-if(date.getHours() >= 19)
-{
+// import SignIn from "./SignIn";
+// import Register from "./register";
+
+function GetPartOfTheDay() {
+  const date = new Date();
+  let partOfDay = "";
+  if (date.getHours() >= 19) {
     partOfDay = "Good Evening";
-}
-else if(date.getHours() >= 13)
-{
+  } else if (date.getHours() >= 13) {
     partOfDay = "Good Afternoon";
-}
-else if(date.getHours() >= 5 || date.getHours() <=5)
-{
-    partOfDay = "Good Morning"; 
+  } else if (date.getHours() >= 5 || date.getHours() <= 5) {
+    partOfDay = "Good Morning";
+  }
+  return partOfDay;
 }
 
-function MainMenu(){
-    return(
-        <div>
-            <div className="container-fluid text-center">
-                <div className="row">
-                    <div className="col" id = "animation-side">
-                    <img src = {require("../src/assets/logo_black_border.png")} alt = "logo" id = "logo"></img>
-          </div>
-          <div className="col log-side">
-            <Heading heading = {partOfDay} ></Heading>
-            <a href="html/signIn.html">
-            <button type="button" className="btn btn-outline-info btn-colour">Sign in</button></a>
-            <a href="html/register.html">
-            <button type="button" className="btn btn-link sign-up">Sign up</button></a>
+function MainMenu() {
+    const navigate = useNavigate();
+    return (
+      <div>
+        <div className="container-fluid text-center">
+          <div className="row">
+            <div className="col" id="animation-side">
+              <img
+                src={require("../src/assets/logo_black_border.png")}
+                alt="logo"
+                id="logo"
+              />
+            </div>
+            <div className="col log-side">
+              <h1>{GetPartOfTheDay()}</h1>
+              <button type = "button" className = "btn btn-outline-info btn-colour"onClick={()=> navigate('SignIn')}>Sign In</button>
+              <button type = "button" className = "btn btn-link sign-up" onClick={()=> navigate('register')}>Register</button>
+            </div>
           </div>
         </div>
       </div>
-            
-        </div>
-    )
-}
+    );
+  }
 
 export default MainMenu;
