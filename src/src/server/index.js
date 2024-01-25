@@ -1,25 +1,20 @@
-import { dirname } from "path";
 import { fileURLToPath } from "url";
 import express from 'express';
+import path from 'path';
+import { dirname } from "path";
+const app = express();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
-const app = express();
-
-const PORT = 3000;
-
-const filePath = __dirname + "/../../public/index.html";
-
-app.get("/", (req, res) => {
-  
-  res.sendFile(filePath, (err) => {
-    if (err) {
-      console.error("Error sending file:", err);
-      res.status(err.status || 500).end();
-    }
-  });
-  // res.sendFile(filePath);
+// Send the 'index.html' file
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'));
 });
 
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
