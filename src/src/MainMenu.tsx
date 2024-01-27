@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import 'bootstrap/dist/css/bootstrap.css';
 import "./css/MainMenu.css"
@@ -20,6 +21,29 @@ function GetPartOfTheDay() {
   return partOfDay;
 }
 
+function GenerateText() {
+  const [text, setText] = useState('');
+  console.log("clicked!")
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('https://baconator-bacon-ipsum.p.rapidapi.com/');
+      console.log(response);
+      setText(response.data);
+    } catch (error) {
+      console.log("Error: " + error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      {text ? <p>{text}</p> : null}
+    </div>
+  );
+}
+
 function MainMenu() {
     const navigate = useNavigate();
     return (
@@ -36,7 +60,8 @@ function MainMenu() {
             <div className="col log-side">
               <h1>{GetPartOfTheDay()}</h1>
               <button type = "button" className = "btn btn-outline-info btn-colour"onClick={()=> navigate('SignIn')}>Sign In</button>
-              <button type = "button" className = "btn btn-link sign-up" onClick={()=> navigate('register')}>Register</button>
+              <button type = "button" className = "btn btn-link sign-up" onClick={()=> navigate('register')}>Register</button><br/>
+              <button type="button" className="btn btn-link sign-up" onClick={GenerateText}>Generate</button>
             </div>
           </div>
         </div>
