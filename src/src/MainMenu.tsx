@@ -22,28 +22,28 @@ function GetPartOfTheDay() {
 }
 
 
-function GenerateText() {
-  const [text, setText] = useState('');
+// function GenerateText() {
+//   const [text, setText] = useState("");
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('https://api.quotable.io/random');
-      console.log(response);
-      setText(response.data.content);
-    } catch (error) {
-      console.log("Samo CSKA");
-    }
-  };
+//   const fetchData = async () => {
+//     try {
+//       const response = await axios.get('http://localhost:5000/randomNum');
+//       console.log(response);
+//       setText(response.data.data);
+//     } catch (error) {
+//       console.log(text);
+//     }
+//   };
 
-  return (
-    <div>
-      <button type="button" className="btn btn-link sign-up" onClick={fetchData}>
-        Generate
-      </button>
-      {text ? <p>{text}</p> : null}
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       <button type="button" className="btn btn-link sign-up" onClick={fetchData}>
+//         Generate
+//       </button>
+//       {text ? <p>{text}</p> : null}
+//     </div>
+//   );
+// }
 
 function MainMenu() {
     const navigate = useNavigate();
@@ -62,7 +62,7 @@ function MainMenu() {
               <h1>{GetPartOfTheDay()}</h1>
               <button type = "button" className = "btn btn-outline-info btn-colour"onClick={()=> navigate('SignIn')}>Sign In</button>
               <button type = "button" className = "btn btn-link sign-up" onClick={()=> navigate('register')}>Register</button><br/>
-              <GenerateText />
+              {/* <GenerateText /> */}
             </div>
           </div>
         </div>

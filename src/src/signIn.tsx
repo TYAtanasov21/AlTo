@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import "./css/SignIn.css"
+import axios from "axios";
 
-function signIn() {
+const SignIn = () => {
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+  };
+
+  const sendData = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/check", user);
+      if(response.data.signedIn) {
+        console.log("Signed in");
+      }
+      else console.log("Wrong credentials");
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+    }
+  };
+
   return (
     <div className="d-flex flex-column align-items-center justify-content-center vh-100">
       <h2 className="text-light mb-3">Sign In</h2>
@@ -15,6 +41,9 @@ function signIn() {
             className="form-control"
             id="exampleInputEmail1"
             aria-describedby="emailHelp"
+            name="email"
+            value={user.email}
+            onChange={handleInputChange}
           />
           <div id="emailHelp" className="form-text">
             We'll never share your email with anyone else.
@@ -28,6 +57,9 @@ function signIn() {
             type="password"
             className="form-control"
             id="exampleInputPassword1"
+            name="password"
+            value={user.password}
+            onChange={handleInputChange}
           />
         </div>
         <div className="mb-3 form-check">
@@ -40,12 +72,12 @@ function signIn() {
             Check me out
           </label>
         </div>
-        <button type="submit" className="btn btn-light">
+        <button onClick={sendData} type="button" className="btn btn-light">
           Submit
         </button>
       </form>
     </div>
   );
-}
+};
 
-export default signIn;
+export default SignIn;
