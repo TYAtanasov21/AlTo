@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./css/SignIn.css"
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const SignIn = () => {
@@ -15,12 +16,12 @@ const SignIn = () => {
       [name]: value,
     }));
   };
-
+  const navigate = useNavigate();
   const sendData = async () => {
     try {
       const response = await axios.post("http://localhost:5000/check", user);
       if(response.data.signedIn) {
-        console.log("Signed in");
+        navigate('/UI Files/mainApp');
       }
       else console.log("Wrong credentials");
     } catch (error) {

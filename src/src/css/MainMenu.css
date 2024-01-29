@@ -2,7 +2,14 @@ body, html {
     padding: 0;
     margin: 0;
     background-color: #424874;
+    height: 100%;
 }
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }  
 
 .btn-colour {
     --bs-btn-color: #424874;
@@ -43,4 +50,11 @@ body, html {
     width: 19rem;
     margin-top: 32vh;
     position: relative;
+}
+
+.getStarted{
+color: #DCD6F7;
+}
+.footerMenu{
+    padding-top: 39vh;
 }
