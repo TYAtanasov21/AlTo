@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -10,7 +10,7 @@ import "./css/MainMenu.css"
 
 function GetPartOfTheDay() {
   const date = new Date();
-  let partOfDay = "";
+  let partOfDay:string = '';
   if (date.getHours() >= 19) {
     partOfDay = "Good Evening";
   } else if (date.getHours() >= 13) {
@@ -21,24 +21,25 @@ function GetPartOfTheDay() {
   return partOfDay;
 }
 
+
 function GenerateText() {
   const [text, setText] = useState('');
-  console.log("clicked!")
+
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://baconator-bacon-ipsum.p.rapidapi.com/');
+      const response = await axios.get('https://api.quotable.io/random');
       console.log(response);
-      setText(response.data);
+      setText(response.data.content);
     } catch (error) {
-      console.log("Error: " + error);
+      console.log("Samo CSKA");
     }
   };
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   return (
     <div>
+      <button type="button" className="btn btn-link sign-up" onClick={fetchData}>
+        Generate
+      </button>
       {text ? <p>{text}</p> : null}
     </div>
   );
@@ -61,7 +62,7 @@ function MainMenu() {
               <h1>{GetPartOfTheDay()}</h1>
               <button type = "button" className = "btn btn-outline-info btn-colour"onClick={()=> navigate('SignIn')}>Sign In</button>
               <button type = "button" className = "btn btn-link sign-up" onClick={()=> navigate('register')}>Register</button><br/>
-              <button type="button" className="btn btn-link sign-up" onClick={GenerateText}>Generate</button>
+              <GenerateText />
             </div>
           </div>
         </div>
