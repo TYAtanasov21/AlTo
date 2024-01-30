@@ -5,11 +5,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '../css/footerControl.css';
 
 const audioFile = require("../assets/sound.mp3");
+const sound = new Audio(audioFile);
 
 const Footer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
-
-  const sound = new Audio(audioFile);
   const handlePlayPause = () => {
     if (isPlaying) {
       sound.pause();
