@@ -21,12 +21,17 @@ function MainMenu() {
               />
             </div>
             <div className="col log-side">
-              <div className="getStarted">
-              <Head heading = "Get started"/></div>
-              <button type = "button" className = "btn btn-outline-info btn-colour"onClick={()=> navigate('SignIn')}>Sign In</button>
-              <button type = "button" className = "btn btn-link sign-up" onClick={()=> navigate('register')}>Register</button><br/>
-              <div className = "footerMenu">
-              <Footer/>
+              <div className="container-fill">
+                <div className="getStarted">
+                  <Head heading="Get started" />
+                </div>
+                  <button type="button" className="btn btn-outline-info btn-colour" onClick={() => navigate('SignIn')}>Sign In</button>
+                  <button type="button" className="btn btn-link sign-up" onClick={() => navigate('register')}>Register</button>
+              </div>
+              <div className="col">
+                <div className="footerMenuContainer">
+                  <Footer />
+                </div>
               </div>
             </div>
           </div>
