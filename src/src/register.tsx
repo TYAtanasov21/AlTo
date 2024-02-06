@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [step, setStep] = useState(1);
 
-  const handleEmailSubmit = (e) => {
-    e.preventDefault();
-    // Validate email if needed
-    // Proceed to the next step
+  const handleEmailSubmit = (event) => {
+    const textInput = useRef!<HTMLInputElement>(null);
+    event.preventDefault();
+
     setStep(2);
   };
 
-  const handlePasswordSubmit = (e) => {
-    e.preventDefault();
+  const handlePasswordSubmit = (event) => {
+    event.preventDefault();
     // Handle registration logic with email and password
     console.log('Registration successful:', { email, password });
   };
@@ -33,7 +33,7 @@ function Register() {
               id="exampleInputEmail"
               placeholder="your_email@gmail.com"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </div>
           <div className="d-grid gap-2">
@@ -54,7 +54,7 @@ function Register() {
               id="exampleInputPassword"
               placeholder="Your password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
             />
           </div>
           <div className="d-grid gap-2">
