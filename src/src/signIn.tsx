@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./css/SignIn.css"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Footer from "./footer";
 
 const SignIn = () => {
   const [user, setUser] = useState({
@@ -77,7 +78,10 @@ const SignIn = () => {
           Submit
         </button>
       </form>
+        <div className="footerMenuContainer">
+          <Footer />
     </div>
+  </div>
   );
 };
 

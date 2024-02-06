@@ -7,7 +7,7 @@ import "./css/MainMenu.css"
 import Head from "./Heading";
 import Footer from "./footer";
 
-function MainMenu() {
+const MainMenu: React.FC = () => {
     const navigate = useNavigate();
     return (
       <div>

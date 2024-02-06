@@ -1,11 +1,10 @@
 import React from 'react'
-import Heading from '../Heading'
+// import Heading from '../Heading'
 import Footer from './footerControl'
 
-let Home = () => {
+let Home: React.FC = () => {
     return (
         <div>
-            <Heading heading = 'Hello, user!'/>
             <Footer/>
         </div>
     )

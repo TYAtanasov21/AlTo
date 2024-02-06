@@ -28,3 +28,13 @@
   .my-form .form-check-input:checked {
     background-color: #424874;
   }
+
+  .footerMenuContainer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
