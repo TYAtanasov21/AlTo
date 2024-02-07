@@ -15,7 +15,7 @@ const MainMenu: React.FC = () => {
           <div className="row">
             <div className="col" id="animation-side">
               <img
-                src={require("../src/assets/logo-black.png")}
+                src={require("./assets/logo-black.png")}
                 alt="logo"
                 id="logo"
               />
