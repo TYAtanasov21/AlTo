@@ -1,4 +1,4 @@
-import express from 'express';
+   import express from 'express';
 import cors from "cors";
 import bodyParser from "body-parser";
 
@@ -65,7 +65,6 @@ app.post("/check", (req, res)=>{
     }
     // Disconnect from the PostgreSQL server
 
-    client.end(); 
   })
   .then(() => {
     console.log('Disconnected from the PostgreSQL database');
