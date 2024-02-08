@@ -17,13 +17,13 @@ const SignIn = () => {
       [name]: value,
     }));
   };
-  const navigate = useNavigate();
+  const navigate = useNavigate();                                                                                                                                      
   const sendData = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/check", user);
+      const response = await axios.post("http://localhost:5000/auth/signIn", user);
       if(response.data.signedIn) {
         navigate('/UI Files/mainApp');
-      }
+      } 
       else console.log("Wrong credentials");
     } catch (error) {
       console.error("Error during sign-in:", error);
