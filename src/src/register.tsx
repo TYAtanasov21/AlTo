@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState} from 'react';
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -6,7 +6,7 @@ function Register() {
   const [step, setStep] = useState(1);
 
   const handleEmailSubmit = (event) => {
-    const textInput = useRef!<HTMLInputElement>(null);
+    // const textInput = useRef!<HTMLInputElement>(null);
     event.preventDefault();
 
     setStep(2);
