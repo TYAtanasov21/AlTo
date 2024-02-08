@@ -1,20 +1,33 @@
-import { fileURLToPath } from "url";
 import express from 'express';
 import cors from "cors";
 import bodyParser from "body-parser";
 
+import pkg from 'pg';
+const { Client } = pkg;
+
+const client = new Client({
+  host: "alto.postgres.database.azure.com",
+  user: "alto",
+  password: "NOIT_2024",
+  database: "alto",
+  port: 5432,
+  ssl: true, 
+});
+
+
+client.connect()
+  .then(() => {
+    console.log('Connected to the PostgreSQL database');
+
+    client.end()
+      .then(() => console.log('Disconnected from the PostgreSQL database'))
+      .catch(error => console.error('Error discon  necting from the database:', error));
+  })
+  .catch(error => console.error('Error connecting to the database:', error));
+
 const app = express();
 
 
-const user = {
-
-  email: "azk@gmail.com",
-  password: "123"
-
-}
-
-
-// Serve static files from the 'public' directory
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
