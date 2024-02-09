@@ -9,6 +9,7 @@ export default function AppLayout({children}: {children:React.ReactNode}) {
     return (
         <div>
             <Sidebar>{children}</Sidebar>
+            <h1>Hello</h1>
         </div>
     )
 };
