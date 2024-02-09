@@ -20,7 +20,7 @@ const SignIn = () => {
   const navigate = useNavigate();                                                                                                                                      
   const sendData = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/auth/signIn", user);
+      const response = await axios.post("https://alto-server.azurewebsites.net/auth/signIn", user);
       if(response.data.signedIn) {
         navigate('/UI Files/mainApp');
       } 
