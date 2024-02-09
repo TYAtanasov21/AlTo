@@ -3,14 +3,12 @@ import {HiHome} from "react-icons/hi"
 import {BiSearch} from "react-icons/bi"
 import Box from "./Box";
 
-import "../../css/tailwind.css"
-
 interface TopBarProps{
     children: React.ReactNode;
 }
 
 const TopBar: React.FC<TopBarProps> = ({children}) =>{
-    const routes = useMemo(()=> [
+    const choice = useMemo(()=> [
         {
             label: "AlTO Music",
             icon: HiHome,

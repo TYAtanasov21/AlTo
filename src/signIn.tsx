@@ -20,9 +20,9 @@ const SignIn = () => {
   const navigate = useNavigate();                                                                                                                                      
   const sendData = async () => {
     try {
-      const response = await axios.post("https://alto-server.azurewebsites.net/auth/signIn", user);
+      const response = await axios.post("http://localhost:5000/auth/SignIn", user);
       if(response.data.signedIn) {
-        navigate('/UI Files/mainApp');
+        navigate('./UI Files/mainApp');
       } 
       else console.log("Wrong credentials");
     } catch (error) {
