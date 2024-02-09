@@ -5,38 +5,41 @@ import axios from "axios";
 import Footer from "./footer";
 
 
-function Register() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
-  const [step, setStep] = useState(1);
-  const [user, setUser] = useState({ name: '', mail: '', pass: '' });
+function Register() { const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+const [username, setUsername] = useState('');
+const [loading, setLoading] = useState(false);
 
-  const emailInput = useRef();
+const emailInput = useRef();
+const navigate = useNavigate();
 
-  const handleClick = () => {
-    if (step === 1 && emailInput.current) {
-      setStep(2);
-    } else if (step === 2) {
-      console.log('Registration successful:', { email, password, username });
-      setUser({ name: username, mail: email, pass: password });
-      console.log(user);
-      // Add your logic for final registration or API call here
-    }
-  };
+const sendData = async () => {
+  try {
+    setLoading(true);
 
-  const navigate = useNavigate();                                                                                                                                      
-  const sendData = async () => {
-    try {
-      const response = await axios.post("http://localhost:5000/auth/register", user);
-      if(response.data.successful) {
+    const user = { name: username, mail: email, pass: password };
+    const response = await axios.post("http://localhost:5000/auth/register", user);
+
+    switch(response.data.code) {
+      case 1: 
+        console.log("Registration successful");
         navigate('/UI Files/mainApp');
-      } 
-      else console.log("Wrong credentials");
-    } catch (error) {
-      console.error("Error during sign-in:", error);
+        break;
+      case 2: 
+        console.log("This username already exists");
+        break;
+      case 3: 
+        console.log("This email is already taken");
+        break;
+      default:
+        console.log("Unhandled response code");
     }
-  };
+  } catch (error) {
+    console.error("Error during registration:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
 
   return (
@@ -87,7 +90,7 @@ function Register() {
           />
         </div>
         <div className="d-grid gap-2">
-          <button onClick={sendData} type="button" className="btn btn-light btn-lg" onClick={handleClick}>
+          <button onClick={sendData} type="button" className="btn btn-light btn-lg">
             Register
           </button>
         </div>
