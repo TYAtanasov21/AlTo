@@ -55,4 +55,4 @@ jobs:
           app-name: 'alto'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CE6082F946DD4AC0B191680376A17ECB }}
-          package: build # Specify the directory containing your build artifacts, which is the 'build' directory for React apps
+          package: .
