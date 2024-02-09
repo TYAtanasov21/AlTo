@@ -1,9 +1,8 @@
 .music-player-footer {
-    background-color: black;
     position: fixed;
     bottom: 0;
+    height: 7vh;
     width: 100%;
-    padding: 7px 0;
   }
   
   .music-player-footer p {
@@ -16,7 +15,7 @@
     border: none;
     font-size: 1.5rem;
     color: white;
-    margin: 0 10px;
+    margin: 0 1px;
     cursor: pointer;
   }
   
