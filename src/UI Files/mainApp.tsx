@@ -1,6 +1,6 @@
 import React from 'react'
 // import Heading from '../Heading'
-import Footer from './footerControl'
+// import Footer from './footerControl'
 import "../css/applicationStyle.css"
 import Sidebar from './components/Sidebar';
 

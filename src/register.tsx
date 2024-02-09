@@ -8,15 +8,12 @@ import Footer from "./footer";
 function Register() { const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [username, setUsername] = useState('');
-const [loading, setLoading] = useState(false);
 
 const emailInput = useRef();
 const navigate = useNavigate();
 
 const sendData = async () => {
   try {
-    setLoading(true);
-
     const user = { name: username, mail: email, pass: password };
     const response = await axios.post("http://localhost:5000/auth/register", user);
 
@@ -36,8 +33,6 @@ const sendData = async () => {
     }
   } catch (error) {
     console.error("Error during registration:", error);
-  } finally {
-    setLoading(false);
   }
 };
 
