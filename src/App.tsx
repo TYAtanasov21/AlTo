@@ -7,9 +7,9 @@ import AppLayout from './UI Files/mainApp';
 
 const router = createBrowserRouter([
   {path: '/', element : <MainMenu/>},
-  {path: "./signIn", element: <SignIn /> },
-  {path: "./register", element: <Register />},
-  {path: "./UI Files/mainApp", element : <AppLayout children/>}
+  {path: "/signIn", element: <SignIn /> },
+  {path: "/register", element: <Register />},
+  {path: "/UI Files/mainApp", element : <AppLayout children/>}
 ])
 
 function App() {
