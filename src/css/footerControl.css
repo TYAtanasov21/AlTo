@@ -1,0 +1,25 @@
+.music-player-footer {
+    background-color: black;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 7px 0;
+  }
+  
+  .music-player-footer p {
+    color: white;
+    margin: 0;
+  }
+  
+  .music-player-footer button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: white;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  
+  .music-player-footer button:hover {
+    color: #A6B1E1;
+  }
