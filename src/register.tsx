@@ -1,99 +1,103 @@
 import React, { useState, useRef } from "react";
-import "./css/SignIn.css"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "./footer";
 
+function Register() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
 
-function Register() { const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-const [username, setUsername] = useState('');
+  const emailInput = useRef();
+  const navigate = useNavigate();
 
-const emailInput = useRef();
-const navigate = useNavigate();
+  const sendData = async () => {
+    try {
+      const user = { name: username, mail: email, pass: password };
+      const response = await axios.post("https://localhost:5000/auth/register", user);
 
-const sendData = async () => {
-  try {
-    const user = { name: username, mail: email, pass: password };
-    const response = await axios.post("https://localhost:5000/auth/register", user);
-
-    switch(response.data.code) {
-      case 1: 
-        console.log("Registration successful");
-        navigate('/UI Files/mainApp');
-        break;
-      case 2: 
-        console.log("This username already exists");
-        break;
-      case 3: 
-        console.log("This email is already taken");
-        break;
-      default:
-        console.log("Unhandled response code");
+      switch(response.data.code) {
+        case 1: 
+          console.log("Registration successful");
+          navigate('/UI Files/mainApp');
+          break;
+        case 2: 
+          console.log("This username already exists");
+          break;
+        case 3: 
+          console.log("This email is already taken");
+          break;
+        default:
+          console.log("Unhandled response code");
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
     }
-  } catch (error) {
-    console.error("Error during registration:", error);
-  }
-};
-
+  };
 
   return (
-    <div className="d-flex flex-column align-items-center justify-content-center vh-100">
-      <h2 className="text-light mb-3">Register</h2>
-      <form className="my-form p-4 rounded text-light">
-        <div className="mb-3">
-          <label htmlFor="exampleInputUsername" className="form-label visually-hidden">
+    <div className="flex flex-col items-center justify-between min-h-screen bg-gradient-to-r from-neutral-800 to-neutral-900 text-white">
+      <div className="flex flex-col items-center justify-center h-screen">
+        <h2 className="text-3xl font-semibold mb-6">Register</h2>
+        <form className="bg-neutral-700 p-8 rounded-lg shadow-md w-96">
+        <div className="mb-4">
+          <label htmlFor="exampleInputUsername" className="text-gray-300 block mb-2">
             Username
           </label>
           <input
             type="username"
             name="username"
-            className="form-control"
-            ref={emailInput} // You can use the same ref for username and email
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white"
+            ref={emailInput}
             id="exampleInputUsername"
-            placeholder="your_username"
+            placeholder="Your Username"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputEmail" className="form-label visually-hidden">
+        <div className="mb-4">
+          <label htmlFor="exampleInputEmail" className="text-gray-300 block mb-2">
             Email address
           </label>
           <input
             type="email"
             name="email"
-            className="form-control"
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white"
             ref={emailInput}
             id="exampleInputEmail"
-            placeholder="your_email@gmail.com"
+            placeholder="Your Email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="exampleInputPassword" className="form-label visually-hidden">
+        <div className="mb-4">
+          <label htmlFor="exampleInputPassword" className="text-gray-300 block mb-2">
             Password
           </label>
           <input
             type="password"
-            className="form-control"
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white"
             id="exampleInputPassword"
-            placeholder="Your password"
+            placeholder="Your Password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
         <div className="d-grid gap-2">
-          <button onClick={sendData} type="button" className="btn btn-light btn-lg">
+          <button
+            onClick={sendData}
+            type="button"
+            className="bg-neutral-600 text-white py-2 px-4 rounded-md hover:bg-neutral-700 focus:outline-none"
+          >
             Register
           </button>
         </div>
       </form>
-      <div className="footerMenuContainer">
-          <Footer />
+      <div className="footerMenuContainer mt-8">
+        <Footer />
+      </div>
     </div>
-    </div>
+  </div>
   );
 }
 
