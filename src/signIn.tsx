@@ -1,3 +1,4 @@
+import "./css/signIn.css"
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -31,9 +32,10 @@ const SignIn = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-neutral-800 to-neutral-900 text-white">
-      <h2 className="text-3xl font-semibold mb-6">Sign In</h2>
-      <form className="bg-neutral-700 p-8 rounded-lg shadow-md w-96">
+  <div className = "wrapper">
+    <div className="content flex flex-col items-center justify-center h-screen bg-gradient-to-r from-neutral-800 to-neutral-900 text-white">
+      <h2 className="text-3xl font-semibold mb-5">Sign In</h2>
+        <form className="bg-neutral-700 p-8 rounded-lg shadow-md w-96">
         <div className="mb-4">
           <label htmlFor="email" className="text-gray-300 block mb-2">
             Email address
@@ -78,9 +80,10 @@ const SignIn = () => {
           Sign In
         </button>
       </form>
-      <div className="footerMenuContainer mt-8">
-        <Footer />
       </div>
+      <footer className = "footer">
+        <Footer/>
+      </footer>
     </div>
   );
 };
