@@ -6,28 +6,26 @@ import '../css/footerControl.css';
 
 interface FooterProps {
   className?: React.ReactNode;
+  sound: HTMLAudioElement
 }
 
-const audioFileUrl = "https://altosongstorage.blob.core.windows.net/songs/MBT%20-%20SUJALQVAM%20(OFFICIAL%20AUDIO).mp3?sp=r&st=2024-02-12T07:01:16Z&se=2024-02-12T15:01:16Z&spr=https&sv=2022-11-02&sr=b&sig=UmHjOL6ElYzLALq07xROCoWvknI9mINM62TetrhzSk8%3D"; // Replace with your Azure Blob Storage URL
 
 interface PlaybackResponse {
   success: boolean;
 }
 
-const Footer: React.FC<FooterProps> = () => {
+const Footer: React.FC<FooterProps> = ({sound}) => {
   const [isPlaying, setIsPlaying] = useState(false);
+
 
   const handlePlayPause = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/api/playback', {
-        action: isPlaying ? 'pause' : 'play',
-        audioFileUrl,
-      });
-
-      if (response.data.success) {
-        setIsPlaying(!isPlaying);
+      if (!sound.paused) {
+        sound.pause();
+        setIsPlaying(false);
       } else {
-        console.error('Failed to control playback.');
+        await sound.play();
+        setIsPlaying(true);
       }
     } catch (error) {
       console.error('Error sending playback request:', error);
