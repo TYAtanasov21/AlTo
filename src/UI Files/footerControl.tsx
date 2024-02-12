@@ -13,6 +13,7 @@ const Footer: React.FC<FooterProps> = ({ sound }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [hoveredTime, setHoveredTime] = useState<number | null>(null);
 
   const handlePlayPause = async () => {
     try {
@@ -36,6 +37,28 @@ const Footer: React.FC<FooterProps> = ({ sound }) => {
     // Implement your logic for skipping forward
   };
 
+  const handleProgressBarClick = (event: React.MouseEvent<HTMLProgressElement, MouseEvent>) => {
+    const progressBar = event.currentTarget;
+    const clickPosition = event.clientX - progressBar.getBoundingClientRect().left;
+    const percentageClicked = (clickPosition / progressBar.clientWidth) * 100;
+    const timeClicked = (percentageClicked / 100) * duration;
+
+    sound.currentTime = timeClicked;
+  };
+
+  const handleProgressBarHover = (event: React.MouseEvent<HTMLProgressElement, MouseEvent>) => {
+    const progressBar = event.currentTarget;
+    const hoverPosition = event.clientX - progressBar.getBoundingClientRect().left;
+    const percentageHovered = (hoverPosition / progressBar.clientWidth) * 100;
+    const timeHovered = (percentageHovered / 100) * duration;
+
+    setHoveredTime(timeHovered);
+  };
+
+  const handleProgressBarLeave = () => {
+    setHoveredTime(null);
+  };
+
   useEffect(() => {
     const handleTimeUpdate = () => {
       setCurrentTime(sound.currentTime);
@@ -54,11 +77,21 @@ const Footer: React.FC<FooterProps> = ({ sound }) => {
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-lg font-bold">MBT - SUJALQVAM</p>
+            <p className="text-lg font-bold">MBT - SUJELAVAM</p>
           </div>
           <div className="progress-container">
             <span className="time">{formatTime(currentTime)}</span>
-            <progress className="progress-bar" value={currentTime} max={duration}></progress>
+            <progress
+              className="progress-bar"
+              value={currentTime}
+              max={duration}
+              onClick={handleProgressBarClick}
+              onMouseMove={handleProgressBarHover}
+              onMouseLeave={handleProgressBarLeave}
+            ></progress>
+            {hoveredTime !== null && (
+              <div className="tooltip">{formatTime(hoveredTime)}</div>
+            )}
             <span className="time">{formatTime(duration)}</span>
           </div>
           <div className="flex items-center space-x-4">
@@ -85,3 +118,4 @@ const formatTime = (time: number) => {
 };
 
 export default Footer;
+
