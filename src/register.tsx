@@ -14,7 +14,7 @@ function Register() {
   const sendData = async () => {
     try {
       const user = { name: username, mail: email, pass: password };
-      const response = await axios.post("https://localhost:5000/auth/register", user);
+      const response = await axios.post("http://localhost:5000/auth/register", user);
 
       switch(response.data.code) {
         case 1: 

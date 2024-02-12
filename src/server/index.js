@@ -88,6 +88,29 @@ app.post("/auth/register", async (req, res) => {
   }
 });
 
+
+app.post("/api/playback", (req, res) => {
+  const { action, audioFileUrl } = req.body;
+
+  try {
+    if (action === 'play') {
+      // Implement logic to play the audio file from the provided URL
+      // For example, you can use the 'sound' object you defined earlier
+      const sound = new Audio();
+      sound.src = audioFileUrl;
+      sound.play();
+    } else if (action === 'pause') {
+      // Implement logic to pause the audio playback
+      sound.pause();
+    }
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error('Error processing playback request:', error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

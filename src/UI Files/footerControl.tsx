@@ -1,32 +1,44 @@
 import React, { useState } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { IoPlayBack, IoPlayForward } from "react-icons/io5";
-import '../css/footerControl.css'; // Keep your custom styles
-
-const audioFile = require("../assets/sound.mp3");
-const sound = new Audio(audioFile);
+import axios from "axios";
+import '../css/footerControl.css';
 
 interface FooterProps {
   className?: React.ReactNode;
 }
 
+const audioFileUrl = "https://altosongstorage.blob.core.windows.net/songs/MBT%20-%20SUJALQVAM%20(OFFICIAL%20AUDIO).mp3?sp=r&st=2024-02-12T07:01:16Z&se=2024-02-12T15:01:16Z&spr=https&sv=2022-11-02&sr=b&sig=UmHjOL6ElYzLALq07xROCoWvknI9mINM62TetrhzSk8%3D"; // Replace with your Azure Blob Storage URL
+
+interface PlaybackResponse {
+  success: boolean;
+}
+
 const Footer: React.FC<FooterProps> = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const handlePlayPause = () => {
-    if (isPlaying) {
-      sound.pause();
-    } else {
-      sound.play();
+  const handlePlayPause = async () => {
+    try {
+      const response = await axios.post('http://localhost:5000/api/playback', {
+        action: isPlaying ? 'pause' : 'play',
+        audioFileUrl,
+      });
+
+      if (response.data.success) {
+        setIsPlaying(!isPlaying);
+      } else {
+        console.error('Failed to control playback.');
+      }
+    } catch (error) {
+      console.error('Error sending playback request:', error);
     }
-    setIsPlaying(!isPlaying);
   };
 
-  const handleSkipBackward = () => {
+  const handleSkipBackward = async () => {
     // Implement your logic for skipping backward
   };
 
-  const handleSkipForward = () => {
+  const handleSkipForward = async () => {
     // Implement your logic for skipping forward
   };
 
