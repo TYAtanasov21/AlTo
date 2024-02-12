@@ -63,6 +63,9 @@ const Footer: React.FC<FooterProps> = ({ sound }) => {
     const handleTimeUpdate = () => {
       setCurrentTime(sound.currentTime);
       setDuration(sound.duration);
+      if(sound.currentTime === sound.duration) {
+        setIsPlaying(false);
+      };
     };
 
     sound.addEventListener('timeupdate', handleTimeUpdate);
@@ -70,6 +73,7 @@ const Footer: React.FC<FooterProps> = ({ sound }) => {
     return () => {
       sound.removeEventListener('timeupdate', handleTimeUpdate);
     };
+
   }, [sound]);
 
   return (
