@@ -37,7 +37,7 @@ const SignIn = () => {
     <div className="content flex flex-col items-center justify-center h-screen bg-gradient-to-r from-neutral-800 to-neutral-900 text-white">
       <h2 className="text-3xl font-semibold mb-5">Sign In</h2>
         <form className="bg-neutral-700 p-8 rounded-lg shadow-md w-96">
-          <h2 className = "text-rose-700 font-semibold text-center">{'*'+ errorMessage}</h2>
+          {errorMessage && <h2 className = "text-rose-700 font-semibold text-center">{'*'+ errorMessage}</h2>}
         <div className="mb-4">
           <label htmlFor="email" className="text-gray-300 block mb-2">
             Email address

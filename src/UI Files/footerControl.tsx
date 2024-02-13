@@ -108,7 +108,7 @@ const Footer: React.FC<FooterProps> = ({ sound }) => {
         setIsPlaying(false);
       };
     };
-    const handleKeyDownEvent = () => {}
+
 
     window.addEventListener('keydown', handleKeyDownEvent);
     sound.addEventListener('timeupdate', handleTimeUpdate);

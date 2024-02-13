@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Register() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
-
+  const [username, setUsername] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [greeting, setGreeting] = useState<string>('');
   const emailInput = useRef();
   const navigate = useNavigate();
 
@@ -17,20 +18,24 @@ function Register() {
 
       switch(response.data.code) {
         case 1: 
-          console.log("Registration successful");
+          setGreeting("Registration successful!");
           navigate('/UI Files/mainApp');
           break;
         case 2: 
-          console.log("This username already exists");
+          setErrorMessage("This username already exists");
+          console.log(1);
           break;
         case 3: 
-          console.log("This email is already taken");
+          setErrorMessage("This email is already taken");
+          console.log(2);
           break;
         default:
-          console.log("Unhandled response code");
+          setErrorMessage("Unhandled response code");
+          console.log(3);
       }
     } catch (error) {
       console.error("Error during registration:", error);
+      setErrorMessage("Error during registration:");
     }
   };
 
@@ -39,6 +44,7 @@ function Register() {
       <div className="flex flex-col items-center justify-center h-screen">
         <h2 className="text-3xl font-semibold mb-6">Register</h2>
         <form className="bg-neutral-700 p-8 rounded-lg shadow-md w-96">
+        {errorMessage && <h2 className = "text-rose-700 font-semibold text-center">{'*'+ errorMessage}</h2>}
         <div className="mb-4">
           <label htmlFor="exampleInputUsername" className="text-gray-300 block mb-2">
             Username
@@ -93,6 +99,7 @@ function Register() {
         </div>
       </form>
     </div>
+    {greeting && <h1 className = "text-green-500">{greeting}</h1>}
   </div>
   );
 }
