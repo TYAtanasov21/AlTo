@@ -3,6 +3,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 
 import pkg from 'pg';
+import { error } from 'console';
 const { Pool } = pkg;
 
 const pool = new Pool({
@@ -111,8 +112,47 @@ app.post("/api/playback", (req, res) => {
   }
 });
 
+app.get('/', (req, res) =>{
+  res.sendFile("C:/Users/alexk/Documents/AlTo/src/server/index.html");
+});
+
+app.post('/insertSong', async (req, res) => {
+  const client = await pool.connect();
+  console.log("Connected to the pg database");
+
+  try {
+    const query = "INSERT INTO songs (title, author, duration, song_url, photo_url) VALUES ($1, $2, $3, $4, $5)";
+    const request = req.body;
+
+
+    await client.query(query, [request.title, request.author, request.duration, request.song_url, request.photo_url]);
+    console.log("Added to database");
+
+    res.status(200).send("Song added successfully");
+  } catch (error) {
+    console.error("Error adding song to database:", error);
+    res.status(500).send("Internal Server Error");
+  } finally {
+    client.release();
+  }
+});
+
+async function getAudioDuration(audioUrl) {
+  return new Promise((resolve, reject) => {
+    mp3Duration(audioUrl, (err, duration) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(Math.round(duration));
+      }
+    });
+  });
+}
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
- 
+
+
+
+
