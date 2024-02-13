@@ -1,6 +1,6 @@
 <h1 align="center">AlTo Music</h1>
 <p align = "center">
-<img src = "assets/logo_black_border.png" alt = "logo" align = "center" width = 300px">
+<img src = "./src/assets/logo-white.png" alt = "logo" align = "center" width = 300px">
 </p>
 <hr>
 <h2>📰About</h2>
@@ -14,6 +14,12 @@
 <h2>📷Screenshots</h2>
 <p align = "center">
 </p>
+<hr>
+<h2>📃Documents</h2>
+<p align= "left">
+<a href = "https://codingburgas-my.sharepoint.com/:w:/r/personal/tyatanasov21_codingburgas_bg/Documents/%D0%B4%D0%BE%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F.docx?d=w229cb6b4a0384a6abad8a3e20492d03c&csf=1&web=1&e=66deB8">Documentation</a>
+</p>
+
 <hr>
 <h2>🧑‍💻Technologies</h2>
 <h3> Code editors and collaborative services used:</h3>

@@ -12,11 +12,15 @@
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
     "@types/react-router-dom": "^5.3.3",
+    "audio": "^1.2.0",
     "axios": "^1.6.7",
+    "body-parser": "^1.20.2",
     "bootstrap": "^5.3.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "mp3-duration": "^1.1.0",
     "nodemon": "^3.0.3",
+    "npm": "^10.4.0",
     "path": "^0.12.7",
     "pg": "^8.11.3",
     "react": "^18.2.0",
@@ -61,7 +65,6 @@
   "description": "",
   "devDependencies": {
     "autoprefixer": "^10.4.17",
-    "body-parser": "^1.20.2",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "tailwindcss-gradients": "^3.0.0"
