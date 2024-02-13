@@ -103,16 +103,21 @@ const Footer: React.FC<FooterProps> = ({ sound }) => {
 
   useEffect(() => {
     const handleTimeUpdate = () => {
-      // ... (your existing time update logic)
+      setCurrentTime(sound.currentTime);
+      setDuration(sound.duration);
+      if(sound.currentTime === sound.duration) {
+        setIsPlaying(false);
+      };
     };
-  
-    sound.addEventListener('timeupdate', handleTimeUpdate);
+
     window.addEventListener('keydown', handleKeyDownEvent);
-  
+    sound.addEventListener('timeupdate', handleTimeUpdate);
+
     return () => {
       sound.removeEventListener('timeupdate', handleTimeUpdate);
       window.removeEventListener('keydown', handleKeyDownEvent);
     };
+
   }, [sound]);
 
   const formatTime = (time: number) => {
