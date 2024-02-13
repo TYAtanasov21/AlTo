@@ -80,10 +80,18 @@ const Footer: React.FC<FooterProps> = ({ sound }) => {
     setDragging(false);
   };
 
+  const handleKeyDownEvent = (event: KeyboardEvent) => {
+    if (event.key === ' ') {
+      // Toggle isPlaying when space bar is pressed
+      handlePlayPause();
+    }
+  };
+  
   const handleMouseMove = (event: React.MouseEvent) => {
     if (dragging) {
       const progressBar = progressBarRef.current;
       if (!progressBar) return;
+
 
       const clickPosition = event.clientX - progressBar.getBoundingClientRect().left;
       const percentageClicked = (clickPosition / progressBar.clientWidth);
@@ -95,14 +103,15 @@ const Footer: React.FC<FooterProps> = ({ sound }) => {
 
   useEffect(() => {
     const handleTimeUpdate = () => {
-      setCurrentTime(sound.currentTime);
-      setDuration(sound.duration);
+      // ... (your existing time update logic)
     };
-
+  
     sound.addEventListener('timeupdate', handleTimeUpdate);
-
+    window.addEventListener('keydown', handleKeyDownEvent);
+  
     return () => {
       sound.removeEventListener('timeupdate', handleTimeUpdate);
+      window.removeEventListener('keydown', handleKeyDownEvent);
     };
   }, [sound]);
 
