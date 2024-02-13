@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { IoPlayBack, IoPlayForward } from "react-icons/io5";
-import axios from "axios";
 import '../css/footerControl.css';
 
 interface FooterProps {

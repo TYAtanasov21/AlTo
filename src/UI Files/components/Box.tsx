@@ -1,18 +1,22 @@
 import React from "react";
-import { twMerge } from "tailwind-merge";
 
 interface BoxProps {
   children: React.ReactNode;
   className?: string;
+  isTopBar?: boolean;
+  isSongContainer?: boolean;
 }
 
-const Box: React.FC<BoxProps> = ({ children, className }) => {
+const Box: React.FC<BoxProps> = ({ children, className, isTopBar, isSongContainer }) => {
   return (
     <div
-      className={twMerge(
-        "bg-neutral-900 rounded-lg h-fit w-full",
-        className
-      )}
+      className={`
+        rounded-lg
+        ${isTopBar && !isSongContainer ? "bg-neutral-900" : ""}
+        ${isTopBar ? "bg-neutral-900 p-5 w-full" : ""}
+        ${isSongContainer ? "bg-neutral-900 p-4" : ""}
+        ${className || ""}
+      `}
     >
       {children}
     </div>

@@ -1,80 +1,77 @@
 .music-player-footer {
-    position: fixed;
-    bottom: 0;
-    height: 7vh;
-    width: 100%;
-  }
-  
-  .music-player-footer p {
-    color: white;
-    margin: 0;
-  }
-  
-  .music-player-footer button {
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem;
-    color: white;
-    margin: 0 1px;
-    cursor: pointer;
-  }
-  
-  .music-player-footer button:hover {
-    color: #A6B1E1;
-  }
-  .progress-container {
-    display: flex;
-    align-items: center;
-  }
-  .progress-bar:hover{
-      &::-webkit-progress-value {
-        background: #A6B1E1;
-      }
-  }
+  position: fixed;
+  bottom: 0;
+  height: 7vh;
+  width: 100%;
+}
 
-  .progress-bar {
-    position: relative;
-    width: 300px;
-    height: 10px;
-    margin: 0 10px; 
-    overflow: hidden;
+.music-player-footer p {
+  color: white;
+  margin: 0;
+}
 
-    border-radius: 5px;
-  
+.music-player-footer button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  margin: 0 1px;
+  cursor: pointer;
+}
+
+.music-player-footer button:hover {
+  color: #A6B1E1;
+}
+.progress-container {
+  display: flex;
+  align-items: center;
+}
+.progress-bar:hover{
     &::-webkit-progress-value {
-      background: white; 
-      border-radius: 5px;
+      background: #A6B1E1;
     }
-  
-    &::-moz-progress-bar {
-      background: white;
-    }
+}
 
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      height: 100%;
-      width: 50%;
-      background: grey; 
-      border-radius: 5px; 
-    }
+.progress-bar {
+  position: relative;
+  width: 300px;
+  height: 10px;
+  margin: 0 10px; 
+  overflow: hidden;
 
-  }
+  border-radius: 5px;
 
-  .time {
-    white-space: nowrap;
-    margin: 0 5px; 
-  }
-  .tooltip {
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    color: white;
-    padding: 5px;
+  &::-webkit-progress-value {
+    background: white; 
     border-radius: 5px;
-    white-space: nowrap;
   }
+
+  &::-moz-progress-bar {
+    background: white;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    background: white; 
+    border-radius: 5px; 
+  }
+
+}
+
+.time {
+  white-space: nowrap;
+  margin: 0 5px; 
+}
+.tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  pointer-events: none; 
+}
