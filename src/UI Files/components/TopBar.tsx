@@ -29,7 +29,7 @@ const TopBar: React.FC<TopBarProps> = ({children}) =>{
             gap-y-4
             bg-black
             h-full
-            w-9/12
+            w-3/4
             p-2
             rounded-md
             ">

@@ -57,7 +57,7 @@
       top: 0;
       height: 100%;
       width: 50%;
-      background: white; 
+      background: grey; 
       border-radius: 5px; 
     }
 
@@ -73,7 +73,7 @@
     left: 50%;
     transform: translateX(-50%);
 
-    color: white;
+    color: grey;
     padding: 5px;
     border-radius: 5px;
     white-space: nowrap;
