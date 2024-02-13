@@ -6,7 +6,7 @@ import SongContainer from "./components/songContainer";
 import "../css/app.css";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const audioFileUrl = "https://altosongstorage.blob.core.windows.net/songs/MBT%20-%20SUJALQVAM%20(OFFICIAL%20AUDIO).mp3?sp=r&st=2024-02-12T19:03:27Z&se=2024-02-13T03:03:27Z&spr=https&sv=2022-11-02&sr=b&sig=Fj%2Bsb2STuPUOljsYEzLhFXpujwYBexdVbyBs%2FpOtjK0%3D";
+  const audioFileUrl = "https://altosongstorage.blob.core.windows.net/songs/MBT%20-%20SUJALQVAM%20(OFFICIAL%20AUDIO).mp3?sp=r&st=2024-02-13T15:44:26Z&se=2024-02-13T23:44:26Z&spr=https&sv=2022-11-02&sr=b&sig=D2m8gJpPVqPR%2Fna1R0La%2BAzqt%2BPggEpmdR1KKZFCfD8%3D";
 
   const sound = new Audio();
   sound.src = audioFileUrl;
@@ -22,7 +22,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               artist="Artist 1"
               label="Label 1"
               duration="03:45"
-              image="https://picsum.photos/200"
+              image="https://altosongstorage.blob.core.windows.net/song-photos/%D0%A1%D0%B2%D0%B5%D1%82%D0%BE%D1%84%D0%B0%D1%80.jpg?sp=r&st=2024-02-13T15:40:13Z&se=2024-02-29T23:40:13Z&spr=https&sv=2022-11-02&sr=b&sig=smyGZU5ONPxTVtOOi65DVjJLoRJvdyAysRcu2ALEKvQ%3D"
               sourceLink="https://example.com/song1"
             />
             <SongContainer
@@ -33,7 +33,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               image="https://picsum.photos/200"
               sourceLink="https://example.com/song2"
             />
-            {/* Add more SongContainers as needed */}
           </div>
         </div>
       </div>

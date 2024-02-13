@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Footer from "./footer";
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -93,9 +92,6 @@ function Register() {
           </button>
         </div>
       </form>
-      <div className="footerMenuContainer mt-8">
-        <Footer />
-      </div>
     </div>
   </div>
   );

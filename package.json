@@ -61,6 +61,7 @@
   "description": "",
   "devDependencies": {
     "autoprefixer": "^10.4.17",
+    "body-parser": "^1.20.2",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "tailwindcss-gradients": "^3.0.0"

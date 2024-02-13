@@ -29,6 +29,7 @@
 .progress-bar:hover{
     &::-webkit-progress-value {
       background: #A6B1E1;
+      transition: 0.2s;
     }
 }
 

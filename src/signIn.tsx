@@ -1,8 +1,6 @@
-import "./css/signIn.css"
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Footer from "./footer";
 
 const SignIn = () => {
   const [user, setUser] = useState({
@@ -17,25 +15,29 @@ const SignIn = () => {
       [name]: value,
     }));
   };
-
+  let [errorMessage, setErrorMessage] = useState<string>('');
   const navigate = useNavigate();
-
   const sendData = async () => {
     try {
       const response = await axios.post("http://localhost:5000/auth/signIn", user);
       if (response.data.signedIn) {
         navigate('/UI Files/mainApp');
-      } else console.log("Wrong credentials");
+      }
+      else
+      {
+        setErrorMessage("Wrong email or password")
+      }
     } catch (error) {
       console.error("Error during sign-in:", error);
+      setErrorMessage("Error during sign-in");
     }
   };
 
   return (
-  <div className = "wrapper">
     <div className="content flex flex-col items-center justify-center h-screen bg-gradient-to-r from-neutral-800 to-neutral-900 text-white">
       <h2 className="text-3xl font-semibold mb-5">Sign In</h2>
         <form className="bg-neutral-700 p-8 rounded-lg shadow-md w-96">
+          <h2 className = "text-rose-700 font-semibold text-center">{'*'+ errorMessage}</h2>
         <div className="mb-4">
           <label htmlFor="email" className="text-gray-300 block mb-2">
             Email address
@@ -81,10 +83,6 @@ const SignIn = () => {
         </button>
       </form>
       </div>
-      <footer className = "footer">
-        <Footer/>
-      </footer>
-    </div>
   );
 };
 
