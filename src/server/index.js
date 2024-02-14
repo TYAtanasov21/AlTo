@@ -148,7 +148,14 @@ async function getAudioDuration(audioUrl) {
     });
   });
 }
-const PORT = process.env.PORT || 5000;
+
+app.get("/api/getSongs", async (req, res) =>{
+  const client = await pool.connect();
+  console.log("Connected to the pg database");
+  const response = await client.query("SELECT * FROM songs");
+  res.status(200).json(response);
+});
+const PORT = process.env.PORT || 5000;0
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

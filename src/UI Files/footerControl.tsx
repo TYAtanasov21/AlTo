@@ -3,12 +3,23 @@ import { FaPlay, FaPause } from "react-icons/fa";
 import { IoPlayBack, IoPlayForward } from "react-icons/io5";
 import '../css/footerControl.css';
 
+export interface Song {
+  title: string,
+  author: string, 
+  duration: number,
+  song_url: string,
+  photo_url: string
+};
+
 interface FooterProps {
   className?: React.ReactNode;
-  sound: HTMLAudioElement;
+  songs: {
+    rows: Song[];
+  };
 }
 
-const Footer: React.FC<FooterProps> = ({ sound }) => {
+
+const Footer: React.FC<FooterProps> = ({songs}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -16,6 +27,21 @@ const Footer: React.FC<FooterProps> = ({ sound }) => {
   const [dragging, setDragging] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const progressBarRef = useRef<HTMLProgressElement | null>(null);
+  const [sound, setSound] = useState(new Audio()); // Add this line
+
+  
+  useEffect(() => {
+    console.log('Songs in Footer:', songs); 
+    console.log('First song:', songs.rows[0]); 
+    console.log('First song URL:', songs.rows[0]?.song_url); 
+  }, [songs]);
+
+  useEffect(() => {
+    setSoundUrl(songs.rows[0]?.song_url || '');
+  }, [songs.rows]);
+
+  const [soundUrl, setSoundUrl] = useState(songs.rows[0]?.song_url || '');
+
 
   const handlePlayPause = async () => {
     try {
