@@ -4,42 +4,58 @@ import Footer, {Song} from "./footerControl";
 import TopBar from "./components/TopBar";
 import SongContainer from "./components/songContainer";
 import "../css/app.css";
+import { useSearchState, SearchState } from "./components/searchState";
 
-const getSongs = async () => {
-  try {
-    const response = await axios.get("http://localhost:5000/api/getSongs");
-    return {
-       rows: response.data.rows
-       }; // Assuming response.data is an array of songs
-  } catch (error)
-   {
-    console.error("Error fetching songs:", error);
-    return { rows: [] };
-  }
-};
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [songs, setSongs] = useState<{ rows: Song[] }>({ rows: [] });
+  const { search, setSearch }: SearchState = useSearchState(); // Corrected destructuring
 
   useEffect(() => {
     const fetchSongs = async () => {
       try {
         const songsData = await getSongs();
         setSongs(songsData);
-        console.log("songs.rows:", songs.rows);
-
       } catch (error) {
         console.error("Error setting songs:", error);
-        // Handle the error as needed
       }
     };
 
     fetchSongs();
-  }, []);
+  }, [search]);
+
+  const getSongs = async () => {
+    console.log(search);
+    try {
+      if(search === ''){
+        const response = await axios.get("http://localhost:5000/api/getSongs");
+        console.log("get");
+        return {
+          rows: response.data.rows
+          }; // Assuming response.data is an array of songs
+      } 
+      else {
+        const response = await axios.post("http://localhost:5000/api/getSongsSearch",  { searchValue: search });
+        console.log("post");
+        console.log(search);
+        return {
+          rows: response.data.rows
+          }; // Assuming response.data is an array of songs
+      }
+  }catch (error)
+     {
+      console.error("Error fetching songs:", error);
+      return { rows: [] };
+    }
+  };
+
+  const handleSearchSubmit = (newSearchTerm: string) => {
+    setSearch(newSearchTerm);
+  };
 
   return (
     <div id = "root" className="flex flex-col">
-      <TopBar children />
+      <TopBar children onSearchSubmit={handleSearchSubmit}/>
       <div className = "scrollable-content">
       <div className="flex-1 bg-black">
         <h1 className="text-xl text-white font-bold pt-2">Recommended songs</h1>

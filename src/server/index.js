@@ -154,7 +154,18 @@ app.get("/api/getSongs", async (req, res) =>{
   console.log("Connected to the pg database");
   const response = await client.query("SELECT * FROM songs");
   res.status(200).json(response);
+  client.release();
 });
+
+app.post("/api/getSongsSearch", async (req, res) =>{
+  const client = await pool.connect();
+  console.log("Connected to the pg database");
+
+  const response = await client.query("SELECT * FROM songs WHERE title LIKE $1;", [`%${req.body.searchValue}%`]);
+    res.status(200).json(response.ri);
+  client.release();
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
