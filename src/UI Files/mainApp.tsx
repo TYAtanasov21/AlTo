@@ -40,7 +40,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div id = "root" className="flex flex-col">
       <TopBar children />
-      <div className="flex-1 bg-black overflow-y-auto">
+      <div className="flex-1 bg-black">
         <h1 className="text-xl text-white font-bold pt-2">Recommended songs</h1>
         <div className="container mx-auto p-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -77,7 +77,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <div className="flex-1 bg-black overflow-y-auto">
         <h1 className="text-xl text-white font-bold pt-2">Recommended songs</h1>
         <div className="container mx-auto p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-10">
             {songs.rows.map((song, index) => (
               <SongContainer
                 key={index}
@@ -94,6 +94,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <div className="fixed bottom-0 w-full">
         <Footer songs={songs} />
       </div>
-        </div>
+    </div>
   );
 }

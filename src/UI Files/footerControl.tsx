@@ -27,7 +27,7 @@ const Footer: React.FC<FooterProps> = ({songs}) => {
   const [dragging, setDragging] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const progressBarRef = useRef<HTMLProgressElement | null>(null);
-  const [sound, setSound] = useState(new Audio()); // Add this line
+  const [sound, setSound] = useState(new Audio());
 
   
   useEffect(() => {
