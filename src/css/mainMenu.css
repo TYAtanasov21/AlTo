@@ -22,3 +22,18 @@ html {
   justify-content: center;
   align-items: center;
 }
+
+/* Styling for the scrollbar in .flex-1 containers */
+.scrollable-content::-webkit-scrollbar {
+  width: 2px;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb {
+  background-color: #4f4f4f; /* Adjust the color as needed */
+  border-radius: 6px;
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+  background-color: #1a1a1a; /* Adjust the color as needed */
+  border-radius: 6px;
+}

@@ -40,6 +40,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div id = "root" className="flex flex-col">
       <TopBar children />
+      <div className = "scrollable-content">
       <div className="flex-1 bg-black">
         <h1 className="text-xl text-white font-bold pt-2">Recommended songs</h1>
         <div className="container mx-auto p-4">
@@ -89,6 +90,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               />
             ))}
           </div>
+        </div>
         </div>
         </div>
         <div className="fixed bottom-0 w-full">
