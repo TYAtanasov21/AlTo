@@ -155,7 +155,7 @@ app.get("/api/getSongs", async (req, res) =>{
   const response = await client.query("SELECT * FROM songs");
   res.status(200).json(response);
 });
-const PORT = process.env.PORT || 5000;0
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
