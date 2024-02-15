@@ -61,14 +61,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div id = "root" className="flex flex-col">
       <TopBar children onSearchSubmit={handleSearchSubmit}/>
-      <div className = "scrollable-content">
-      <div className="flex-1 bg-black">
+      <div className="flex-1 bg-black scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2">Recommended songs</h1>
-        <div className="container mx-auto p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="container p-4 w-100vh">
+          <div className="song-container-wrapper">
             {songs.rows.map((song, index) => (
+              <div className = "song-container" key = {index}>
               <SongContainer
-                key={index}
                 title={song.title}
                 author={song.author}
                 duration={song.duration}
@@ -76,9 +75,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 song_url={song.song_url}
                 onPlayButtonClick={handlePlayButtonClick}
               />
+              </div>
             ))}
           </div>
-        </div>
         </div>
         </div>
         <div className="fixed bottom-0 w-full">

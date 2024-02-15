@@ -151,11 +151,12 @@ const Footer: React.FC<FooterProps> = ({song}) => {
   };
 
   return (
-    <div className="music-player-footer text-white p-4 bg-neutral-900">
+    <div className="music-player-footer text-white pt-2 bg-neutral-900">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
-          <div>
-            <p className="text-lg font-bold">Ne e lyubov</p>
+          <div className="flex items-center"> {/* Wrap image and h2 in a flex container */}
+            <img src={song.photo_url} alt="song pic" width="40px" height="40px" />
+            <h2 className="font-bold text-white ml-2">{song.title}</h2>
           </div>
           <div
             className="progress-container"
