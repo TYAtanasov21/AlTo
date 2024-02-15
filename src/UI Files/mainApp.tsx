@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Footer, {Song} from "./footerControl";
+import Footer from "./footerControl";
 import TopBar from "./components/TopBar";
 import SongContainer from "./components/songContainer";
 import "../css/app.css";
 import { useSearchState, SearchState } from "./components/searchState";
-
+import { Song } from "./components/songState";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [songs, setSongs] = useState<{ rows: Song[] }>({ rows: [] });
   const { search, setSearch }: SearchState = useSearchState(); // Corrected destructuring
-
+  const [song, setSong] = useState<Song>();
   useEffect(() => {
     const fetchSongs = async () => {
       try {
@@ -53,6 +53,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     setSearch(newSearchTerm);
   };
 
+  const handlePlayButtonClick = (song: Song) => {
+    setSong(song);
+    console.log("Play button clicked for:", song);
+  };
+
   return (
     <div id = "root" className="flex flex-col">
       <TopBar children onSearchSubmit={handleSearchSubmit}/>
@@ -66,43 +71,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 key={index}
                 title={song.title}
                 author={song.author}
-                duration={`${song.duration}`}
-                image={song.photo_url}
-                sourceLink={song.song_url}
-              />
-            ))}
-          </div>
-        </div>
-        </div>
-        <div className="flex-1 bg-black overflow-y-auto">
-        <h1 className="text-xl text-white font-bold pt-2">Recommended songs</h1>
-        <div className="container mx-auto p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {songs.rows.map((song, index) => (
-              <SongContainer
-                key={index}
-                title={song.title}
-                author={song.author}
-                duration={`${song.duration}`}
-                image={song.photo_url}
-                sourceLink={song.song_url}
-              />
-            ))}
-          </div>
-        </div>
-        </div>
-        <div className="flex-1 bg-black overflow-y-auto">
-        <h1 className="text-xl text-white font-bold pt-2">Recommended songs</h1>
-        <div className="container mx-auto p-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mb-10">
-            {songs.rows.map((song, index) => (
-              <SongContainer
-                key={index}
-                title={song.title}
-                author={song.author}
-                duration={`${song.duration}`}
-                image={song.photo_url}
-                sourceLink={song.song_url}
+                duration={song.duration}
+                photo_url={song.photo_url}
+                song_url={song.song_url}
+                onPlayButtonClick={handlePlayButtonClick}
               />
             ))}
           </div>
@@ -110,7 +82,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
         </div>
         <div className="fixed bottom-0 w-full">
-        <Footer songs={songs} />
+        <Footer song={song} />
       </div>
     </div>
   );

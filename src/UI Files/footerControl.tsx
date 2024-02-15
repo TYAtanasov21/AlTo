@@ -2,24 +2,15 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { IoPlayBack, IoPlayForward } from "react-icons/io5";
 import '../css/footerControl.css';
-
-export interface Song {
-  title: string,
-  author: string, 
-  duration: number,
-  song_url: string,
-  photo_url: string
-};
+import { Song } from "./components/songState";
 
 interface FooterProps {
   className?: React.ReactNode;
-  songs: {
-    rows: Song[];
-  };
+  song: Song;
 }
 
 
-const Footer: React.FC<FooterProps> = ({songs}) => {
+const Footer: React.FC<FooterProps> = ({song}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -29,19 +20,19 @@ const Footer: React.FC<FooterProps> = ({songs}) => {
   const progressBarRef = useRef<HTMLProgressElement | null>(null);
   const [sound, setSound] = useState(new Audio());
 
-  
-  useEffect(() => {
-    console.log('Songs in Footer:', songs); 
-    console.log('First song:', songs.rows[0]); 
-    console.log('First song URL:', songs.rows[0]?.song_url); 
-  }, [songs]);
 
   useEffect(() => {
-    setSoundUrl(songs.rows[0]?.song_url || '');
-  }, [songs.rows]);
+    if (song && song.song_url) {
+      setSoundUrl(song.song_url);
+    }
+  }, [song]);
 
-  const [soundUrl, setSoundUrl] = useState(songs.rows[0]?.song_url || '');
+  const [soundUrl, setSoundUrl] = useState(song && song.song_url ? song.song_url : '');
 
+  useEffect(() => {
+    sound.src = soundUrl;
+    handlePlayPause();
+  }, [soundUrl]);
 
   const handlePlayPause = async () => {
     try {
@@ -128,12 +119,19 @@ const Footer: React.FC<FooterProps> = ({songs}) => {
 
   useEffect(() => {
     const handleTimeUpdate = () => {
+      const newDuration = sound.duration;
+    
+      if (!isNaN(newDuration) && isFinite(newDuration)) {
+        setDuration(newDuration);
+      }
+    
       setCurrentTime(sound.currentTime);
-      setDuration(sound.duration);
-      if(sound.currentTime === sound.duration) {
+    
+      if (sound.currentTime === newDuration) {
         setIsPlaying(false);
-      };
+      }
     };
+  
 
 
     window.addEventListener('keydown', handleKeyDownEvent);
