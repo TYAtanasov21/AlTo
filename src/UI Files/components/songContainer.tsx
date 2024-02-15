@@ -30,6 +30,11 @@ const SongContainer: React.FC<SongContainerProps> = ({
     onPlayButtonClick(song);
   };
 
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${String(minutes).padStart(2, '0')} : ${String(seconds).padStart(2, '0')}`;
+  };
   
   return (
     <Box isSongContainer>
@@ -38,7 +43,7 @@ const SongContainer: React.FC<SongContainerProps> = ({
         <div className="text-white">
           <h3 className="text-lg font-semibold">{title}</h3>
           <p className="text-gray-400">{author}</p>
-          <p className="text-gray-400">{duration}</p>
+          <p className="text-gray-400">{formatTime(duration)}</p>
           <button onClick={handlePlayButtonClick}>
             Play
           </button>

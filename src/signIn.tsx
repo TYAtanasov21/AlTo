@@ -51,7 +51,7 @@ const SignIn = () => {
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-8">
           <label htmlFor="password" className="text-gray-300 block mb-2">
             Password
           </label>
@@ -63,16 +63,6 @@ const SignIn = () => {
             onChange={handleInputChange}
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white"
           />
-        </div>
-        <div className="mb-4">
-          <input
-            type="checkbox"
-            id="rememberMe"
-            className="mr-2"
-          />
-          <label htmlFor="rememberMe" className="text-gray-300">
-            Remember me
-          </label>
         </div>
         <button
           type="button"

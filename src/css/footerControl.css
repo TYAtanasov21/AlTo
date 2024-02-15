@@ -76,3 +76,30 @@
   border-radius: 4px;
   pointer-events: none; 
 }
+
+
+.volume-bar {
+  width: 80px; /* Set the width of the volume bar */
+  height: 8px; /* Set the height of the volume bar */
+  border-radius: 4px; /* Set border-radius for rounded corners */
+  background-color: #333; /* Set the background color of the volume bar */
+  outline: none; /* Remove default outline */
+  appearance: none; /* Remove default appearance */
+  cursor: pointer; /* Set cursor to pointer for better user interaction */
+}
+
+.volume-bar::-webkit-progress-value {
+  background-color: white; /* Set the color of the filled part of the volume bar in WebKit browsers */
+}
+
+.volume-bar::-webkit-progress-bar {
+  background-color: #888; /* Set the color of the unfilled part of the volume bar in WebKit browsers */
+}
+
+.volume-bar::-moz-progress-bar {
+  background-color: #4CAF50; /* Set the color of the filled part of the volume bar in Firefox */
+}
+
+.volume-bar::-moz-progress-bar {
+  background-color: #888; /* Set the color of the unfilled part of the volume bar in Firefox */
+}

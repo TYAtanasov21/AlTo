@@ -3,6 +3,7 @@ import { FaPlay, FaPause } from "react-icons/fa";
 import { IoPlayBack, IoPlayForward } from "react-icons/io5";
 import '../css/footerControl.css';
 import { Song } from "./components/songState";
+import MuteButton from "./components/volumeMute";
 
 interface FooterProps {
   className?: React.ReactNode;
@@ -19,6 +20,27 @@ const Footer: React.FC<FooterProps> = ({song}) => {
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const progressBarRef = useRef<HTMLProgressElement | null>(null);
   const [sound, setSound] = useState(new Audio());
+
+  const [volume, setVolume] = useState(100); // Initial volume set to 100
+  const volumeBarRef = useRef<HTMLProgressElement | null>(null);
+
+  useEffect(() => {
+    if (volumeBarRef.current) {
+      volumeBarRef.current.value = volume;
+    }
+  }, [volume]);
+
+  const handleVolumeBarClick = (event: React.MouseEvent<HTMLProgressElement, MouseEvent>) => {
+    const volumeBar = volumeBarRef.current;
+    if (!volumeBar) return;
+
+    const clickPosition = event.clientX - volumeBar.getBoundingClientRect().left;
+    const percentageClicked = clickPosition / volumeBar.clientWidth;
+    const newVolume = Math.round(percentageClicked * 100);
+
+    setVolume(newVolume);
+    sound.volume = newVolume / 100;
+  };
 
 
   useEffect(() => {
@@ -71,7 +93,6 @@ const Footer: React.FC<FooterProps> = ({song}) => {
     if (dragging) {
       const progressBar = progressBarRef.current;
       if (!progressBar) return;
-
       const hoverPosition = event.clientX - progressBar.getBoundingClientRect().left;
       const percentageHovered = (hoverPosition / progressBar.clientWidth);
       const timeHovered = percentageHovered * duration;
@@ -155,8 +176,13 @@ const Footer: React.FC<FooterProps> = ({song}) => {
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center"> {/* Wrap image and h2 in a flex container */}
-            <img src={song.photo_url} alt="song pic" width="40px" height="40px" />
-            <h2 className="font-bold text-white ml-2">{song.title}</h2>
+          <img
+              src={song?.photo_url ? song.photo_url : "Not selected"}
+              alt="song pic"
+              width="40px"
+              height="40px"
+            />
+            <h2 className="font-bold text-white ml-2"> {song?.title ? song.title : "Not selected"}</h2>
           </div>
           <div
             className="progress-container"
@@ -194,6 +220,14 @@ const Footer: React.FC<FooterProps> = ({song}) => {
             <button className="btn btn-light" onClick={handleSkipForward}>
               <IoPlayForward size={20} />
             </button>
+            <progress
+              ref={volumeBarRef}
+              className="volume-bar"
+              value={volume}
+              max={100}
+              onClick={handleVolumeBarClick}
+            ></progress>
+            <MuteButton sound = {sound}></MuteButton>
           </div>
         </div>
       </div>
