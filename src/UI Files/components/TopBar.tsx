@@ -31,7 +31,7 @@ const TopBar: React.FC<TopBarProps> = ({ children, onSearchSubmit }) => {
     <Box isTopBar>
       <div className="container mx-auto flex items-center justify-between">
         <div className="flex gap-4">
-          {choices.map((item) => (
+          {choices.map((item) => ( 
             <TopBarItem key={item.label} {...item} />
           ))}
           <form onSubmit={handleSearchSubmit}>
