@@ -19,7 +19,7 @@ const Footer: React.FC<FooterProps> = ({song}) => {
   const [dragging, setDragging] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const progressBarRef = useRef<HTMLProgressElement | null>(null);
-  const [sound, setSound] = useState(new Audio());
+  const sound = new Audio();
 
   const [volume, setVolume] = useState(100); // Initial volume set to 100
   const volumeBarRef = useRef<HTMLProgressElement | null>(null);
@@ -54,7 +54,7 @@ const Footer: React.FC<FooterProps> = ({song}) => {
   useEffect(() => {
     sound.src = soundUrl;
     handlePlayPause();
-  }, [soundUrl]);
+  });
 
   const handlePlayPause = async () => {
     try {
@@ -163,7 +163,7 @@ const Footer: React.FC<FooterProps> = ({song}) => {
       window.removeEventListener('keydown', handleKeyDownEvent);
     };
 
-  }, [sound]);
+  });
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
