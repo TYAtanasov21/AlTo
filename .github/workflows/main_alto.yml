@@ -19,31 +19,19 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install React app dependencies
+      - name: Install Server app dependencies
         run: |
-          cd src
           npm install
-
-      - name: Build React app
+      
+      - name: Copy dependencies to server dir
         run: |
-          cd src
-          npm run build
+          cp node_modules ./src/server/node_modules
 
-      - name: Upload React app artifact
+      - name: Upload Server app artifact
         uses: actions/upload-artifact@v2
         with:
-          name: react-app
-          path: src/build
-
-      - name: Set up Node.js for Express server
-        uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-
-      - name: Install Express server dependencies
-        run: |
-          cd src/server
-          npm install
+          name: server-app
+          path: src/server
 
   deploy:
     runs-on: ubuntu-latest
@@ -53,14 +41,8 @@ jobs:
       - name: Download React app artifact
         uses: actions/download-artifact@v2
         with:
-          name: react-app
-          path: ./react-app
-
-      - name: Download Express server code
-        uses: actions/download-artifact@v2
-        with:
-          name: express-server
-          path: ./express-server
+          name: server-app
+          path: ./server-app
 
       - name: Login to Azure
         uses: azure/login@v1
@@ -69,15 +51,9 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A76123D197A842B580B2EB7BAA37ED60 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_061785E8F9984E4A951BB71A0F836DD8 }}
 
-      - name: Deploy React app to Azure Static Web Apps
-        uses: azure/static-web-apps-deploy@v0.0.1-preview
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          folder_location: ./react-app
-
       - name: Deploy Express server to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'alto-server'
           slot-name: 'Production'
-          package: ./express-server
+          package: ./server-app
