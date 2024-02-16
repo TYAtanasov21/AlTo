@@ -25,7 +25,7 @@ jobs:
       
       - name: Copy dependencies to server dir
         run: |
-          cp node_modules ./src/server/node_modules
+          cp -r node_modules ./src/server/node_modules
 
       - name: Upload Server app artifact
         uses: actions/upload-artifact@v2
