@@ -95,11 +95,3 @@
 .volume-bar::-webkit-progress-bar {
   background-color: #888; /* Set the color of the unfilled part of the volume bar in WebKit browsers */
 }
-
-.volume-bar::-moz-progress-bar {
-  background-color: #4CAF50; /* Set the color of the filled part of the volume bar in Firefox */
-}
-
-.volume-bar::-moz-progress-bar {
-  background-color: #888; /* Set the color of the unfilled part of the volume bar in Firefox */
-}
