@@ -164,7 +164,7 @@ app.post("/api/getSongsSearch", async (req, res) =>{
   const client = await pool.connect();
   console.log("Connected to the pg database");
 
-  const response = await client.query("SELECT * FROM songs WHERE title LIKE $1;", [`%${req.body.searchValue}%`]);
+  const response = await client.query("SELECT * FROM songs WHERE LOWER(title) LIKE LOWER($1);", [`%${req.body.searchValue}%`]);
     res.status(200).json(response);
   client.release();
 });
