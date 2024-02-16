@@ -184,18 +184,28 @@ const Footer: React.FC<FooterProps> = ({song}) => {
     const seconds = Math.floor(time % 60);
     return `${String(minutes).padStart(2, '0')} : ${String(seconds).padStart(2, '0')}`;
   };
+  
+  const getFooterImg = () => {
+    if(song?.song_url){
+      return (
+        <img
+        src={song?.photo_url ? song.photo_url : "Not selected"}
+        alt="song pic"
+        width="40px"
+        height = "40px"
+      />
+      );
+    }
+  }
 
   return (
     <div className="music-player-footer text-white pt-2 bg-neutral-900">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center"> {/* Wrap image and h2 in a flex container */}
-          <img
-              src={song?.photo_url ? song.photo_url : "Not selected"}
-              alt="song pic"
-              width="40px"
-              height="40px"
-            />
+          
+          {getFooterImg()}
+
             <h2 className="font-bold text-white ml-2"> {song?.title ? song.title : "Not selected"}</h2>
           </div>
           <div
@@ -234,7 +244,7 @@ const Footer: React.FC<FooterProps> = ({song}) => {
             <button className="btn btn-light" onClick={handleSkipForward}>
               <IoPlayForward size={20} />
             </button>
-            <progress
+          <progress
             ref={volumeBarRef}
             className="volume-bar"
             value={volume}
