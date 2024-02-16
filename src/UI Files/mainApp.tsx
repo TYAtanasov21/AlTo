@@ -65,18 +65,23 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <h1 className="text-xl text-white font-bold pt-2">Recommended songs</h1>
         <div className="container p-4 w-100vh">
           <div className="song-container-wrapper">
-            {songs.rows.map((song, index) => (
-              <div className = "song-container" key = {index}>
-              <SongContainer
-                title={song.title}
-                author={song.author}
-                duration={song.duration}
-                photo_url={song.photo_url}
-                song_url={song.song_url}
-                onPlayButtonClick={handlePlayButtonClick}
-              />
-              </div>
-            ))}
+          {songs.rows.map((song, index) => {
+            if (index < 4) {
+              return (
+                <div className="song-container" key={index}>
+                  <SongContainer
+                    title={song.title}
+                    author={song.author}
+                    duration={song.duration}
+                    photo_url={song.photo_url}
+                    song_url={song.song_url}
+                    onPlayButtonClick={handlePlayButtonClick}
+                  />
+                </div>
+              );
+            }
+            return null; // or any other fallback you want to provide for the case when index is greater than or equal to 5
+          })}
           </div>
         </div>
         </div>
