@@ -17,7 +17,11 @@
 <hr>
 <h2>📃Documents</h2>
 <p align= "left">
-<a href = "https://codingburgas-my.sharepoint.com/:w:/r/personal/tyatanasov21_codingburgas_bg/Documents/%D0%B4%D0%BE%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F.docx?d=w229cb6b4a0384a6abad8a3e20492d03c&csf=1&web=1&e=66deB8">Documentation</a>
+<ul>
+<li><a href = "https://codingburgas-my.sharepoint.com/:w:/r/personal/tyatanasov21_codingburgas_bg/Documents/%D0%B4%D0%BE%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F.docx?d=w229cb6b4a0384a6abad8a3e20492d03c&csf=1&web=1&e=66deB8">Documentation</a></li>
+<li>
+<a href = "https://codingburgas-my.sharepoint.com/:p:/g/personal/tyatanasov21_codingburgas_bg/EaTgtM1Yr5NIoMxWCxewG0gB4oiqQU3wjRUhXesuZ_wzvA?email=AZKazakov21%40codingburgas.bg&e=IW80U2">Presentation<a></li>
+</ul>
 </p>
 
 <hr>
