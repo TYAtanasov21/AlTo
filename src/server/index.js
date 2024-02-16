@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import bcrypt from 'bcrypt';
 
 import pkg from 'pg';
 import { error } from 'console';
@@ -17,6 +18,9 @@ const pool = new Pool({
 
 const app = express();
 
+const saltRounds = 10; 
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
@@ -30,9 +34,8 @@ app.post('/auth/signIn', (req, res) => {
         .then(result => {
           if (result.rows.length > 0) {
             const user = result.rows[0];
-            if (user.password === req.body.password) {
+            if (bcrypt.compareSync(req.body.password, user.password)) {
               console.log('You have logged in');
-
               res.status(200).json({ signedIn: true });
             } else {
               console.log('Invalid credentials');
@@ -78,17 +81,17 @@ app.post("/auth/register", async (req, res) => {
     } else if (check2.rows[0].count > 0) {
       res.status(200).json({ code: 3, message: 'Email already taken' });
     } else {
+      const hashedPassword = bcrypt.hashSync(password, saltRounds);
       res.status(200).json({ code: 1, message: 'Registration successful' });
-      return client.query('INSERT INTO users (username, email, password) VALUES ($1, $2, $3)', [username, email, password]);
-    };
+      return client.query('INSERT INTO users (username, email, password) VALUES ($1, $2, $3)', [username, email, hashedPassword]);
+    }
 
-    client.release(); 
+    client.release();
   } catch (error) {
     console.error('Error connecting to the database:', error);
     res.status(500).json({ signedIn: false, message: 'Internal Server Error' });
   }
 });
-
 
 app.post("/api/playback", (req, res) => {
   const { action, audioFileUrl } = req.body;
