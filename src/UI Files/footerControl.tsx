@@ -164,6 +164,21 @@ const Footer: React.FC<FooterProps> = ({song}) => {
     };
   }, [sound]);
 
+  const handleVolumeBarDragStart = (event: React.MouseEvent<HTMLProgressElement, MouseEvent>) => {
+    event.preventDefault();
+    setDragging(true);
+  };
+
+  const handleVolumeBarDragEnd = () => {
+    setDragging(false);
+  };
+
+  const handleVolumeBarDrag = (event: React.MouseEvent<HTMLProgressElement, MouseEvent>) => {
+    if (dragging) {
+      handleVolumeBarClick(event);
+    }
+  };
+
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -220,12 +235,15 @@ const Footer: React.FC<FooterProps> = ({song}) => {
               <IoPlayForward size={20} />
             </button>
             <progress
-              ref={volumeBarRef}
-              className="volume-bar"
-              value={volume}
-              max={100}
-              onClick={handleVolumeBarClick}
-            ></progress>
+            ref={volumeBarRef}
+            className="volume-bar"
+            value={volume}
+            max={100}
+            onClick={handleVolumeBarClick}
+            onMouseDown={handleVolumeBarDragStart}
+            onMouseMove={handleVolumeBarDrag}
+            onMouseUp={handleVolumeBarDragEnd}
+          ></progress>
             <MuteButton sound = {sound}></MuteButton>
           </div>
         </div>

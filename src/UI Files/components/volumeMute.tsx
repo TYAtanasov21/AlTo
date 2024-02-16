@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MdVolumeMute, MdVolumeUp } from "react-icons/md";
+import { MdVolumeMute, MdVolumeUp } from "react-icons/md"; 
 
 const MuteButton = ({ sound }) => {
   const [isMuted, setIsMuted] = useState(false);

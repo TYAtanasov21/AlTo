@@ -36,7 +36,7 @@
 .progress-bar {
   position: relative;
   width: 300px;
-  height: 10px;
+  height: 15px;
   margin: 0 10px; 
   overflow: hidden;
 
@@ -79,19 +79,28 @@
 
 
 .volume-bar {
-  width: 80px; /* Set the width of the volume bar */
-  height: 8px; /* Set the height of the volume bar */
-  border-radius: 4px; /* Set border-radius for rounded corners */
-  background-color: #333; /* Set the background color of the volume bar */
-  outline: none; /* Remove default outline */
-  appearance: none; /* Remove default appearance */
-  cursor: pointer; /* Set cursor to pointer for better user interaction */
+  width: 150px; 
+  height: 15px; 
+  border-radius: 4px;
+  background-color: #333; 
+  outline: none;
+  appearance: none; 
+  cursor: pointer; 
+}
+
+.volume-bar:hover{
+  &::-webkit-progress-value {
+    background: #A6B1E1;
+
+  }
 }
 
 .volume-bar::-webkit-progress-value {
   background-color: white; /* Set the color of the filled part of the volume bar in WebKit browsers */
+  border-radius: 4px;
 }
 
 .volume-bar::-webkit-progress-bar {
   background-color: #888; /* Set the color of the unfilled part of the volume bar in WebKit browsers */
+  border-radius: 4px;
 }
