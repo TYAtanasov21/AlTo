@@ -3,16 +3,16 @@ import { MdVolumeMute, MdVolumeUp } from "react-icons/md";
 
 const MuteButton = ({ sound }) => {
   const [isMuted, setIsMuted] = useState(false);
-  const [prevVolume, setPrevVolume] = useState(1);
+  const [prevVolume, setPrevVolume] = useState(sound.volume);
 
   const handleMuteToggle = () => {
     setIsMuted((prevMuted) => !prevMuted);
+    setPrevVolume(sound.volume);
     sound.volume = isMuted ? prevVolume : 0;
   };
 
   useEffect(() => {
     setIsMuted(sound.volume === 0);
-    setPrevVolume(sound.volume);
   }, [sound.volume]);
 
   return (
