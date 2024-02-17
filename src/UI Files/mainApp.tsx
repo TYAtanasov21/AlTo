@@ -61,30 +61,32 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <div id = "root" className="flex flex-col">
       <TopBar children onSearchSubmit={handleSearchSubmit}/>
+      {search === '' ? (
       <div className="flex-1 bg-black scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2">Recommended songs</h1>
         <div className="container p-4 w-100vh">
           <div className="song-container-wrapper">
-          {songs.rows.map((song, index) => {
-            if (index < 4) {
-              return (
-                <div className="song-container" key={index}>
-                  <SongContainer
-                    title={song.title}
-                    author={song.author}
-                    duration={song.duration}
-                    photo_url={song.photo_url}
-                    song_url={song.song_url}
-                    onPlayButtonClick={handlePlayButtonClick}
-                  />
-                </div>
-              );
-            }
-            return null;
-          })}
+            {songs.rows.map((song, index) => {
+              if (index < 4) {
+                return (
+                  <div className="song-container" key={index}>
+                    <SongContainer
+                      title={song.title}
+                      author={song.author}
+                      duration={song.duration}
+                      photo_url={song.photo_url}
+                      song_url={song.song_url}
+                      onPlayButtonClick={handlePlayButtonClick}
+                    />
+                  </div>
+                );
+              }
+              return null;
+            })}
           </div>
         </div>
-        </div>
+      </div>
+    ) : null}
         <div className="flex-1 bg-black scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2">Our library</h1>
           <div className="container p-4 w-100vh">
