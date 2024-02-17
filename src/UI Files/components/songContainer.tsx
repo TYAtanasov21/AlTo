@@ -44,7 +44,10 @@ const SongContainer: React.FC<SongContainerProps> = ({
           <h3 className="text-lg font-semibold">{title}</h3>
           <p className="text-gray-400">{author}</p>
           <p className="text-gray-400">{formatTime(duration)}</p>
-          <button onClick={handlePlayButtonClick}>
+          <button
+            onClick={handlePlayButtonClick}
+            className="mt-2 bg-neutral-700 text-white px-3 py-1 rounded-md hover:bg-neutral-500 focus:outline-none focus:ring focus:border-blue-300"
+          >
             Play
           </button>
         </div>
