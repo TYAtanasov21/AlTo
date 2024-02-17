@@ -40,7 +40,7 @@ const TopBar: React.FC<TopBarProps> = ({ children, onSearchSubmit }) => {
               name="search"
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white"
               id="searchbar"
-              placeholder="Search"
+              placeholder="🔍 Search"
               value={search}
               onChange={(event) => {
                 setSearch(event.target.value);

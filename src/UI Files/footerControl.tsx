@@ -10,18 +10,19 @@ interface FooterProps {
   song: Song;
 }
 
-
-const Footer: React.FC<FooterProps> = ({song}) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+const Footer: React.FC<FooterProps> = ({
+  song
+}) => {
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
   const [hoveredTime, setHoveredTime] = useState<number | null>(null);
-  const [dragging, setDragging] = useState(false);
+  const [dragging, setDragging] = useState<boolean>(false);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const progressBarRef = useRef<HTMLProgressElement | null>(null);
   const [sound, setSound] = useState(new Audio());
 
-  const [volume, setVolume] = useState(100); // Initial volume set to 100
+  const [volume, setVolume] = useState<number>(100);
   const volumeBarRef = useRef<HTMLProgressElement | null>(null);
 
   useEffect(() => {
@@ -119,7 +120,6 @@ const Footer: React.FC<FooterProps> = ({song}) => {
 
   const handleKeyDownEvent = (event: KeyboardEvent) => {
     if (event.key === ' ') {
-      // Toggle isPlaying when space bar is pressed
       handlePlayPause();
     }
   };
@@ -153,8 +153,6 @@ const Footer: React.FC<FooterProps> = ({song}) => {
       }
     };
   
-
-
     window.addEventListener('keydown', handleKeyDownEvent);
     sound.addEventListener('timeupdate', handleTimeUpdate);
 
@@ -202,10 +200,8 @@ const Footer: React.FC<FooterProps> = ({song}) => {
     <div className="music-player-footer text-white pt-2 bg-neutral-900">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
-          <div className="flex items-center"> {/* Wrap image and h2 in a flex container */}
-          
+          <div className="flex items-center">
           {getFooterImg()}
-
             <h2 className="font-bold text-white ml-2"> {song?.title ? song.title : "Not selected"}</h2>
           </div>
           <div

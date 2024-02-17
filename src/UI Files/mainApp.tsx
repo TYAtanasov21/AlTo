@@ -1,15 +1,15 @@
+import "../css/app.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Footer from "./footerControl";
 import TopBar from "./components/TopBar";
 import SongContainer from "./components/songContainer";
-import "../css/app.css";
 import { useSearchState, SearchState } from "./components/searchState";
 import { Song } from "./components/songState";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [songs, setSongs] = useState<{ rows: Song[] }>({ rows: [] });
-  const { search, setSearch }: SearchState = useSearchState(); // Corrected destructuring
+  const { search, setSearch }: SearchState = useSearchState()
   const [song, setSong] = useState<Song>();
   useEffect(() => {
     const fetchSongs = async () => {
@@ -32,7 +32,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         console.log("get");
         return {
           rows: response.data.rows
-          }; // Assuming response.data is an array of songs
+          }
       } 
       else {
         const response = await axios.post("http://localhost:5000/api/getSongsSearch",  { searchValue: search });
@@ -40,7 +40,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         console.log(search);
         return {
           rows: response.data.rows
-          }; // Assuming response.data is an array of songs
+          };
       }
   }catch (error)
      {
@@ -80,10 +80,34 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 </div>
               );
             }
-            return null; // or any other fallback you want to provide for the case when index is greater than or equal to 5
+            return null;
           })}
           </div>
         </div>
+        </div>
+        <div className="flex-1 bg-black scrollable-content">
+        <h1 className="text-xl text-white font-bold pt-2">Top picks</h1>
+          <div className="container p-4 w-100vh">
+            <div className="song-container-wrapper mb-12">
+            {songs.rows.map((song, index) => {
+              if (index>=4) {
+                return (
+                  <div className="song-container" key={index}>
+                    <SongContainer
+                      title={song.title}
+                      author={song.author}
+                      duration={song.duration}
+                      photo_url={song.photo_url}
+                      song_url={song.song_url}
+                      onPlayButtonClick={handlePlayButtonClick}
+                    />
+                  </div>
+                );
+              }
+              return null;
+            })}
+            </div>
+          </div>
         </div>
         <div className="fixed bottom-0 w-full">
         <Footer song={song} />
