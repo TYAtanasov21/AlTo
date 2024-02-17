@@ -86,11 +86,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </div>
         </div>
         <div className="flex-1 bg-black scrollable-content">
-        <h1 className="text-xl text-white font-bold pt-2">Top picks</h1>
+        <h1 className="text-xl text-white font-bold pt-2">Our library</h1>
           <div className="container p-4 w-100vh">
             <div className="song-container-wrapper mb-12">
             {songs.rows.map((song, index) => {
-              if (index>=4) {
                 return (
                   <div className="song-container" key={index}>
                     <SongContainer
@@ -103,9 +102,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     />
                   </div>
                 );
-              }
-              return null;
-            })}
+                })}
             </div>
           </div>
         </div>
