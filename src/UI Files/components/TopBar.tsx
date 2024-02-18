@@ -32,12 +32,14 @@ const TopBar: React.FC<TopBarProps> = ({ children, onSearchSubmit, onFilterSubmi
   };
 
   return (
-    <Box isTopBar>
-      <div className="container mx-auto flex items-center justify-between">
-        <div className="flex gap-4">
+  <Box isTopBar>
+      <div className="flex justify-between w-full">
+        <div>
           {choices.map((item) => ( 
             <TopBarItem key={item.label} {...item} />
           ))}
+          </div>
+          <div>
           <form onSubmit={(event) => {
             event.preventDefault();
             onSearchSubmit(search);
@@ -46,7 +48,7 @@ const TopBar: React.FC<TopBarProps> = ({ children, onSearchSubmit, onFilterSubmi
            <input
               type="text"
               name="search"
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white"
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white"
               id="searchbar"
               placeholder="🔍 Search"
               value={search}
@@ -57,31 +59,46 @@ const TopBar: React.FC<TopBarProps> = ({ children, onSearchSubmit, onFilterSubmi
                 else onSearchSubmit(event.target.value);
               }}
             />
-              <label htmlFor="filter">Filter</label>
-              <input
-              type="number"
-              name="class"
-              max = "12"
-              min = "0"
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white"
-              id="filter"
-              placeholder="None"
-              value={filter}
-              onChange={(event) => {
-                const inputValue = event.target.value;
-                setFilter(parseInt(inputValue));
-            
-                if (parseInt(inputValue, 10) === 0) {
-                  onFilterSubmit(0);
-                } else {
-                  onFilterSubmit(parseInt(inputValue, 10));
-                }
-              }}
-            />
           </form>
+          </div>
+          <div>
+          <form>
+            <label htmlFor="filter" className="text-white items-center">
+              <select
+                name="class"
+                id="filter"
+                className="text-center w-full ml-2 px-3 py-2 rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white appearance-none"
+                value={filter}
+                onChange={(event) => {
+                  const inputValue = event.target.value;
+                  setFilter(parseInt(inputValue));
+
+                  if (parseInt(inputValue, 10) === 0) {
+                    onFilterSubmit(0);
+                  } else {
+                    onFilterSubmit(parseInt(inputValue, 10));
+                  }
+                }}
+              >
+                <option value="0">Every</option>
+                <option value="1">1 Клас</option>
+                <option value="2">2 Клас</option>
+                <option value="3">3 Клас</option>
+                <option value="4">4 Клас</option>
+                <option value="5">5 Клас</option>
+                <option value="6">6 Клас</option>
+                <option value="7">7 Клас</option>
+                <option value="8">8 Клас</option>
+                <option value="9">9 Клас</option>
+                <option value="10">10 Клас</option>
+                <option value="11">11 Клас</option>
+                <option value="12">12 Клас</option>
+              </select>
+            </label>
+          </form>
+          </div>
         </div>
         <div className="text-white">{children}</div>
-      </div>
     </Box>
   );
 };
