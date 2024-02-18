@@ -98,10 +98,13 @@ app.post("/api/playback", (req, res) => {
 
   try {
     if (action === 'play') {
+      // Implement logic to play the audio file from the provided URL
+      // For example, you can use the 'sound' object you defined earlier
       const sound = new Audio();
       sound.src = audioFileUrl;
       sound.play();
     } else if (action === 'pause') {
+      // Implement logic to pause the audio playback
       sound.pause();
     }
 
@@ -113,7 +116,7 @@ app.post("/api/playback", (req, res) => {
 });
 
 app.get('/', (req, res) =>{
-  res.sendFile("C:/Users/PC/Documents/AlTo/src/server/index.html");
+  res.sendFile("C:/Users/alexk/Documents/AlTo/src/server/index.html");
 });
 
 app.post('/insertSong', async (req, res) => {
@@ -121,11 +124,11 @@ app.post('/insertSong', async (req, res) => {
   console.log("Connected to the pg database");
 
   try {
-    const query = "INSERT INTO songs (title, author, duration, song_url, photo_url, class_year) VALUES ($1, $2, $3, $4, $5, $6)";
+    const query = "INSERT INTO songs (title, author, duration, song_url, photo_url) VALUES ($1, $2, $3, $4, $5)";
     const request = req.body;
 
 
-    await client.query(query, [request.title, request.author, request.duration, request.song_url, request.photo_url, request.class]);
+    await client.query(query, [request.title, request.author, request.duration, request.song_url, request.photo_url]);
     console.log("Added to database");
 
     res.status(200).send("Song added successfully");
@@ -160,15 +163,19 @@ app.get("/api/getSongs", async (req, res) =>{
 app.post("/api/getSongsSearch", async (req, res) =>{
   const client = await pool.connect();
   console.log("Connected to the pg database");
-  if(req.body.filterValue == 0){
-    const response = await client.query("SELECT * FROM songs WHERE LOWER(title) LIKE LOWER($1);", [`%${req.body.searchValue}%`]);
+
+  const response = await client.query("SELECT * FROM songs WHERE LOWER(title) LIKE LOWER($1);", [`%${req.body.searchValue}%`]);
     res.status(200).json(response);
-  }
-  else {
-    const response = await client.query("SELECT * FROM songs WHERE LOWER(title) LIKE LOWER($1) AND class_year = $2;", [`%${req.body.searchValue}%`, req.body.filterValue]);
-    res.status(200).json(response);
-  }
   client.release();
+});
+
+app.post("/api/postUser", (req, res) => {
+
+  const password = req.body.pass;
+  const email = req.body.mail;
+
+  res.json(200).send();
+
 });
 
 const PORT = process.env.PORT || 5000;

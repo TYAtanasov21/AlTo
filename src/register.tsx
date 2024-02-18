@@ -20,7 +20,7 @@ function Register() {
       switch(response.data.code) {
         case 1: 
           setGreeting("Registration successful!");
-          navigate('/UI Files/mainApp');
+          navigate('/UI Files/mainApp', {state: {user: 0}});
           break;
         case 2: 
           setErrorMessage("This username already exists");
