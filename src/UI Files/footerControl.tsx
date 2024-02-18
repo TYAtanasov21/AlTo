@@ -219,9 +219,8 @@ const Footer: React.FC<FooterProps> = ({
       return (
         <img
         src={song?.photo_url ? song.photo_url : "Not selected"}
-        alt="song pic"
-        width="40px"
-        height = "40px"
+        className="footer-img"
+
       />
       );
     }
@@ -232,7 +231,7 @@ const Footer: React.FC<FooterProps> = ({
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-          {getFooterImg()}
+            {getFooterImg()}
             <h2 className="font-bold text-white ml-2"> {song?.title ? song.title : "Not selected"}</h2>
           </div>
           <div
