@@ -1,6 +1,8 @@
+import "./css/signIn.css"
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Footer from "./footer";
 
 const SignIn = () => {
   const [user, setUser] = useState({
@@ -21,7 +23,7 @@ const SignIn = () => {
     try {
       const response = await axios.post("http://localhost:5000/auth/signIn", user);
       if (response.data.signedIn) {
-        navigate('/UI Files/mainApp');
+        navigate('/UI Files/mainApp', {state: {user}});
       }
       else
       {
@@ -72,6 +74,15 @@ const SignIn = () => {
           Sign In
         </button>
       </form>
+      <div className = "footer">
+        <Footer/>
+      </div>
+      <section>
+        <div className="wave wave1"></div>
+        <div className="wave wave2"></div>
+        <div className="wave wave3"></div>
+        <div className="wave wave4"></div>
+      </section>
       </div>
   );
 };

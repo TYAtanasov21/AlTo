@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Footer from "./footer";
 
 function Register() {
   const [email, setEmail] = useState<string>('');
@@ -100,6 +101,15 @@ function Register() {
       </form>
     </div>
     {greeting && <h1 className = "text-green-500">{greeting}</h1>}
+    <div className = "footer">
+        <Footer/>
+      </div>
+      <section>
+        <div className="wave wave1"></div>
+        <div className="wave wave2"></div>
+        <div className="wave wave3"></div>
+        <div className="wave wave4"></div>
+      </section>
   </div>
   );
 }

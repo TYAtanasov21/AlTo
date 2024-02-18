@@ -3,6 +3,7 @@ body {
   flex-direction: column;
   height: 100vh;
   margin: 0;
+  padding: 0;
   overflow: auto;
 }
 
@@ -11,14 +12,88 @@ html {
 }
 
 #root {
-  flex-direction: column;
   min-height: 100vh;
 }
-
+.footer{
+  z-index: 100000;
+  bottom: 0;
+}
 .flex-col {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/* wave animation */
+section {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+}
+
+section .wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px; /* Adjust the height based on your design */
+  background: url(../assets/wave.png) repeat-x; /* Use repeat-x to repeat the wave horizontally */
+  background-size: 100% 150px;
+}
+
+section .wave.wave1
+{
+  animation: animate 30s linear infinite;
+  z-index: 500;
+  opacity: 1;
+  animation-delay: 0s;
+  bottom: 0;
+}
+
+section .wave.wave2
+{
+  animation: animate2 30s linear infinite;
+  z-index: 400;
+  opacity: 0.5;
+  animation-delay: -5s;
+  bottom: 10px;
+}
+
+section .wave.wave3
+{
+  animation: animate 30s linear infinite;
+  z-index: 300;
+  opacity: 0.2;
+  animation-delay: -2s;
+  bottom: 15px;
+}
+
+section .wave.wave4
+{
+  animation: animate2 30s linear infinite;
+  z-index: 200;
+  opacity: 0.7;
+  animation-delay: -5s;
+  bottom: 20px;
+}
+
+
+@keyframes animate {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 1000px;
+  }
+}
+
+@keyframes animate2 {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: -1000px;
+  }
 }
