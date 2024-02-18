@@ -109,7 +109,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </div>
         </div>
         <div className="fixed bottom-0 w-full">
-        <Footer song={song} />
+        <Footer picked_song={song} songs={songs.rows} />
       </div>
     </div>
   );

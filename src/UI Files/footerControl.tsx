@@ -2,16 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { IoPlayBack, IoPlayForward } from "react-icons/io5";
 import '../css/footerControl.css';
-import { Song } from "./components/songState";
+import { Song, useSongsState } from "./components/songState";
 import MuteButton from "./components/volumeMute";
 
 interface FooterProps {
   className?: React.ReactNode;
-  song: Song;
+  picked_song: Song;
+  songs: Song[];
 }
 
 const Footer: React.FC<FooterProps> = ({
-  song
+  picked_song, songs
 }) => {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
@@ -21,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const progressBarRef = useRef<HTMLProgressElement | null>(null);
   const [sound, setSound] = useState(new Audio());
-
+  const [song, setSong] = useState<Song>(picked_song);
   const [volume, setVolume] = useState<number>(100);
   const volumeBarRef = useRef<HTMLProgressElement | null>(null);
 
@@ -30,6 +31,10 @@ const Footer: React.FC<FooterProps> = ({
       volumeBarRef.current.value = volume;
     }
   }, [volume]);
+
+  useEffect(()=>{
+    setSong(picked_song);
+  }, [picked_song]);
 
   const handleVolumeBarClick = (event: React.MouseEvent<HTMLProgressElement, MouseEvent>) => {
     const volumeBar = volumeBarRef.current;
@@ -57,6 +62,7 @@ const Footer: React.FC<FooterProps> = ({
     handlePlayPause();
   }, [soundUrl]);
 
+
   const handlePlayPause = async () => {
     try {
       if (!sound.paused) {
@@ -71,12 +77,32 @@ const Footer: React.FC<FooterProps> = ({
     }
   };
 
-  const handleSkipBackward = async () => {
-    // Implement your logic for skipping backward
+  const findSongIndex = () => {
+    let index = 0;
+    for (const s of songs) {
+      if (s.title == song.title) {
+        return index;
+      }
+      index++;
+    }
+    return -1; // Return -1 if the song is not found in the array
   };
 
-  const handleSkipForward = async () => {
-    // Implement your logic for skipping forward
+  const handleSkipBackward = () => {
+    const index = findSongIndex();
+
+      if(sound.currentTime<5){
+        if(index>0)
+          setSong(songs[index-1]);
+      }
+      else sound.currentTime = 0;
+
+  };
+
+  const handleSkipForward = () => {
+    const index = findSongIndex();
+    if(index<songs.length)
+      setSong(songs[index+1]);
   };
 
   const handleProgressBarClick = (event: React.MouseEvent<HTMLProgressElement, MouseEvent>) => {
@@ -149,7 +175,12 @@ const Footer: React.FC<FooterProps> = ({
       setCurrentTime(sound.currentTime);
     
       if (sound.currentTime === newDuration) {
-        setIsPlaying(false);
+        if(findSongIndex()<songs.length){
+          handleSkipForward();
+        }
+        else {
+          setIsPlaying(false);
+        }
       }
     };
   
