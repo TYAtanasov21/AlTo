@@ -169,14 +169,38 @@ app.post("/api/getSongsSearch", async (req, res) =>{
   client.release();
 });
 
-app.post("/api/postUser", (req, res) => {
+app.post("/api/postUser", async (req, res) => {
+  try {
+    const client = await pool.connect();
+    console.log('Connected to the pg database');
 
-  const password = req.body.pass;
-  const email = req.body.mail;
+    const password = req.body.password;
+    const email = req.body.email;
 
-  res.json(200).send();
+    const response = await client.query("SELECT * FROM users WHERE email = $1", [email]);
 
+    if (response.rows.length > 0) {
+      const user = response.rows[0];
+      // Compare the provided password with the hashed password stored in the database
+      if (bcrypt.compareSync(password, user.password)) {
+        console.log(user);
+        res.status(200).json(user);
+      } else {
+        console.log('Invalid password');
+        res.status(401).json({ message: 'Invalid password' });
+      }
+    } else {
+      console.log('User not found');
+      res.status(404).json({ message: 'User not found' });
+    }
+
+    client.release(); // Release the connection in the success case
+  } catch (error) {
+    console.error('Error querying user:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

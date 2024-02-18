@@ -183,6 +183,8 @@ const Footer: React.FC<FooterProps> = ({
         }
       }
     };
+
+    
   
     window.addEventListener('keydown', handleKeyDownEvent);
     sound.addEventListener('timeupdate', handleTimeUpdate);

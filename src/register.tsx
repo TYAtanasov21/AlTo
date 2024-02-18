@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "./footer";
+import { request } from "http";
 
 function Register() {
   const [email, setEmail] = useState<string>('');
@@ -16,17 +17,31 @@ function Register() {
     try {
       const user = { name: username, mail: email, pass: password };
       const response = await axios.post("http://localhost:5000/auth/register", user);
-
-      switch(response.data.code) {
-        case 1: 
+  
+      const { code, data } = response.data;
+  
+      switch (code) {
+        case 1:
           setGreeting("Registration successful!");
-          navigate('/UI Files/mainApp', {state: {user: 0}});
+  
+          const request_user = {
+            email: email,
+            password: password
+          };
+  
+          const { data: registeredUserData } = await axios.post("http://localhost:5000/api/postUser", request_user);
+  
+          const userState = {
+            email: registeredUserData.email,
+          };
+  
+          navigate('/UI Files/mainApp', { state: { user: userState } });
           break;
-        case 2: 
+        case 2:
           setErrorMessage("This username already exists");
           console.log(1);
           break;
-        case 3: 
+        case 3:
           setErrorMessage("This email is already taken");
           console.log(2);
           break;
@@ -39,6 +54,7 @@ function Register() {
       setErrorMessage("Error during registration:");
     }
   };
+  
 
   return (
     <div className="flex flex-col items-center justify-between min-h-screen bg-gradient-to-r from-neutral-800 to-neutral-900 text-white">

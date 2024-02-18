@@ -23,7 +23,8 @@ const SignIn = () => {
     try {
       const response = await axios.post("http://localhost:5000/auth/signIn", user);
       if (response.data.signedIn) {
-        navigate('/UI Files/mainApp', {state: {user}});
+        const signedInUser = await axios.post("http://localhost:5000/api/postUser", user);
+        navigate('/UI Files/mainApp', {state: {user: signedInUser}});
       }
       else
       {

@@ -12,7 +12,6 @@ import { useLocation } from "react-router-dom";
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const user = location.state?.user;
-  console.log(user);
   const [songs, setSongs] = useState<{ rows: Song[] }>({ rows: [] });
   const { search, setSearch }: SearchState = useSearchState()
   const {filter, setFilter} : FilterState = useFilterState();
