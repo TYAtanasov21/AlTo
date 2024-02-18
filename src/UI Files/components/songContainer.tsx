@@ -5,9 +5,10 @@ import { Song } from "./songState";
 interface SongContainerProps {
   title: string;
   author: string;
-  duration: number; // Assuming duration is in the format 'mm:ss'
-  photo_url : string;
-  song_url : string;
+  duration: number;
+  photo_url: string;
+  song_url: string;
+  class_year: number;
   onPlayButtonClick: (song: Song) => void;
 }
 
@@ -17,6 +18,7 @@ const SongContainer: React.FC<SongContainerProps> = ({
   duration,
   photo_url,
   song_url,
+  class_year,
   onPlayButtonClick,
 }: SongContainerProps) => {
   const handlePlayButtonClick = () => {
@@ -26,9 +28,11 @@ const SongContainer: React.FC<SongContainerProps> = ({
       duration,
       photo_url,
       song_url,
+      class_year,
     };
     onPlayButtonClick(song);
   };
+
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);

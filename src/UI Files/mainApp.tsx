@@ -6,10 +6,12 @@ import TopBar from "./components/TopBar";
 import SongContainer from "./components/songContainer";
 import { useSearchState, SearchState } from "./components/searchState";
 import { Song } from "./components/songState";
+import { FilterState, useFilterState } from "./components/filterState";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [songs, setSongs] = useState<{ rows: Song[] }>({ rows: [] });
   const { search, setSearch }: SearchState = useSearchState()
+  const {filter, setFilter} : FilterState = useFilterState();
   const [song, setSong] = useState<Song>();
   useEffect(() => {
     const fetchSongs = async () => {
@@ -22,12 +24,12 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     };
 
     fetchSongs();
-  }, [search]);
+  }, [search, filter]);
 
   const getSongs = async () => {
     console.log(search);
     try {
-      if(search === ''){
+      if(search === '' && filter == 0){
         const response = await axios.get("http://localhost:5000/api/getSongs");
         console.log("get");
         return {
@@ -35,9 +37,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           }
       } 
       else {
-        const response = await axios.post("http://localhost:5000/api/getSongsSearch",  { searchValue: search });
+        const response = await axios.post("http://localhost:5000/api/getSongsSearch",  { searchValue: search, filterValue: filter });
         console.log("post");
-        console.log(search);
         return {
           rows: response.data.rows
           };
@@ -53,14 +54,20 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     setSearch(newSearchTerm);
   };
 
+  const handleFilterSubmit = (newFilter: number) => {
+    setFilter(newFilter);
+  }
+
   const handlePlayButtonClick = (song: Song) => {
     setSong(song);
     console.log("Play button clicked for:", song);
   };
 
+
+
   return (
     <div id = "root" className="flex flex-col">
-      <TopBar children onSearchSubmit={handleSearchSubmit}/>
+      <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
       {search === '' ? (
       <div className="flex-1 bg-black scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2">Recommended songs</h1>
@@ -76,6 +83,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                       duration={song.duration}
                       photo_url={song.photo_url}
                       song_url={song.song_url}
+                      class_year={song.class_year}
                       onPlayButtonClick={handlePlayButtonClick}
                     />
                   </div>
@@ -100,6 +108,8 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                       duration={song.duration}
                       photo_url={song.photo_url}
                       song_url={song.song_url}
+                      class_year={song.class_year}
+
                       onPlayButtonClick={handlePlayButtonClick}
                     />
                   </div>

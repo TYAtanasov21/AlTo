@@ -7,6 +7,8 @@ export interface Song {
   duration: number;
   song_url: string;
   photo_url: string;
+  class_year: number;
+
 }
 
 export interface SongsState {
