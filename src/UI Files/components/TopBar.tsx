@@ -61,6 +61,8 @@ const TopBar: React.FC<TopBarProps> = ({ children, onSearchSubmit, onFilterSubmi
               <input
               type="number"
               name="class"
+              max = "12"
+              min = "0"
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white"
               id="filter"
               placeholder="None"
