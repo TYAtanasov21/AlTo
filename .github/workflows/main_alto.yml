@@ -27,7 +27,7 @@ jobs:
         run: npm run build
 
       - name: Build express server
-        run: npm server
+        run: npm run server
 
       - name: Run tests
         run: npx jest --passWithNoTests
