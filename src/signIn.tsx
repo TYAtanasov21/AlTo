@@ -71,7 +71,7 @@ const SignIn = () => {
         <button
           type="button"
           onClick={sendData}
-          className="bg-neutral-600 text-white py-2 px-4 rounded-md hover:bg-neutral-800 focus:outline-none"
+          className="bg-neutral-900 text-white py-2 px-4 rounded-md hover:bg-neutral-800 focus:outline-none transition-colors"
         >
           Sign In
         </button>

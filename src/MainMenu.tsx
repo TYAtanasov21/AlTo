@@ -13,14 +13,14 @@ const MainMenu: React.FC = () => {
           <h1 className="text-5xl font-bold mb-4">AlTo Music</h1>
           <button
             type="button"
-            className="bg-neutral-600 hover:bg-neutral-500 text-white font-bold py-2 px-3 rounded mb-3 mt-2"
+            className="bg-neutral-600 hover:bg-neutral-500 text-white font-bold py-2 px-3 rounded mb-3 mt-2 transition-colors"
             onClick={() => navigate('SignIn')}
           >
             Sign In
           </button>
           <button
             type="button"
-            className="btn btn-link hover:text-zinc-500 hover:underline underline-offset-1 text-white"
+            className="btn btn-link hover:text-zinc-500 hover:underline underline-offset-1 text-white transition-colors"
             onClick={() => navigate('register')}
           >
             Register

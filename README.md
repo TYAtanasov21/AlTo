@@ -32,17 +32,30 @@
     <a href="https://code.visualstudio.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/2048px-Visual_Studio_Code_1.35_icon.svg.png" alt="VS code logo" width=48px /></a>
     <a href="https://github.com/"><img src="https://joshuapenalba.files.wordpress.com/2014/12/github-icon.png" alt="GitHub logo" width = "55"/></a>
     <a href = "https://git-scm.com/"><img src = "https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" alt = "Git logo" width = 48px></a>
+    <a href="https://azure.microsoft.com/en-us"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1200px-Microsoft_Azure.svg.png" alt="Azure logo" width="50px" style = "margin-left: 5px"/></a>
+    <a href="https://www.postgresql.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/640px-Postgresql_elephant.svg.png" alt="Postgre SQL logo" width="50px" style = "margin-left: 5px"/></a>
     </p>
 <h3>Programming & markup languages & third party libraries & frameworks:</h3>
 <p align = "left">
     <a href="https://html.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1024px-HTML5_logo_and_wordmark.svg.png" alt="HTML logo" width="58px"/></a>
     <a href="https://en.wikipedia.org/wiki/CSS"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS logo" width="41px"/></a>
+    <a href="https://nodejs.org/en"><img src="https://miro.medium.com/v2/resize:fit:800/1*v2vdfKqD4MtmTSgNP0o5cg.png" alt="Node logo" width="50px" style = "margin-left: 5px"/></a>
+    <a href="https://www.javascript.com/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/800px-JavaScript-logo.png" alt="JS logo" width="50px" style = "margin-left: 5px"/></a>
+    <a href="https://www.typescriptlang.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1024px-Typescript_logo_2020.svg.png" alt="TS logo" width="50px" style = "margin-left: 5px"/></a>
+    <a href="https://react.dev/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/React_Logo_SVG.svg/1200px-React_Logo_SVG.svg.png" alt="React logo" width="50px" style = "margin-left: 5px"/></a>
+    <a href="https://tailwindcss.com/"><img src="https://adware-technologies.s3.amazonaws.com/uploads/technology/thumbnail/31/tailwind.png" alt="Tailwind logo" width="50px" style = "margin-left: 3px"/></a>
+    <a href="https://www.postman.com/"><img src="https://static-00.iconduck.com/assets.00/postman-icon-497x512-beb7sy75.png" alt="Postman logo" width="50px" style = "margin-left: 3px"/></a>
+    <a href="https://expressjs.com/"><img src="https://ajeetchaulagain.com/static/7cb4af597964b0911fe71cb2f8148d64/87351/express-js.png" alt="Express logo" width="50px" style = "margin-left: 3px"/></a>
+
 </p>
 <h3>Softwares used for visual elements:</h3>
     <a href = "https://www.adobe.com/products/illustrator.html"><img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/1200px-Adobe_Illustrator_CC_icon.svg.png" alt = "Adobe Illustrator logo" width = 50px /></a>
-<h3>Used program for creating the presentation:</h3>
+    <a href = "https://www.figma.com/"><img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt = "Figma logo" width = 32px style = "margin-left: 5px"/></a>
+<h3>Used program for creating the presentation and documentation:</h3>
 <p align="left">
    <a href="https://www.microsoft.com/en-ww/microsoft-365/powerpoint"><img src="https://img.icons8.com/color/344/ms-powerpoint.png" alt="MS PowerPoint logo" width=48px /></a>
+   <a href="https://www.microsoft.com/en-ww/microsoft-365/word"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Microsoft_Word_2013-2019_logo.svg/800px-Microsoft_Word_2013-2019_logo.svg.png" alt="MS PowerPoint logo" width = 45px/></a>
+
 </p>
 <hr>
 <h2 align = "left">🧒Our team</h2>
