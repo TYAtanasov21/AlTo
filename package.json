@@ -39,6 +39,7 @@
     "test": "jest --passWithNoTests",
     "eject": "react-scripts eject",
     "predeploy": "npm run build"
+    "run-express"
   },
   "eslintConfig": {
     "extends": [
