@@ -110,7 +110,7 @@ useEffect(() => {
     };
   
     fetchLikedSongs();
-  }, [user?.id]);
+  }, [user?.id, likedSongs.rows]);
   return (
     <div id = "root" className="flex flex-col">
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>

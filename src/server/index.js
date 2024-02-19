@@ -216,7 +216,8 @@ app.post("/api/likeSong", async (req, res) => {
       await client.query("INSERT INTO liked_songs (user_id, song_id) VALUES ($1, $2)", [user.id, song.id]);
       console.log(`Added ${song.title} to ${user.name}'s liked songs`);
     } else {
-      console.log("User has already liked this song!");
+      await client.query("DELETE FROM liked_songs WHERE user_id = $1 AND song_id = $2", [user.id, song.id]);
+      console.log(`Removed ${song.title} from ${user.name}'s liked songs`);
     }
 
     res.status(200).json({ success: true, message: 'Song liked successfully' });
