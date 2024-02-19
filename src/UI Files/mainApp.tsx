@@ -142,7 +142,7 @@ useEffect(() => {
       </div>
     ) : null}
         <div className="flex-1 bg-black scrollable-content">
-        <h1 className="text-xl text-white font-bold pt-2">Our library</h1>
+        <h1 className="text-xl text-white font-bold pt-2 ml-3">Our library</h1>
         {songs.rows.length>0 ? (
           <div className="container p-4 w-100vh">
             <div className="song-container-wrapper mb-12">
