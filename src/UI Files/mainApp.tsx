@@ -117,7 +117,7 @@ useEffect(() => {
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
       {search === '' && likedSongs.rows.length>0 ? (
       <div className="flex-1 bg-black scrollable-content">
-        <h1 className="text-xl text-white font-bold pt-2">Liked Songs</h1>
+        <h1 className="text-xl text-white font-bold pt-2 ml-2">Liked Songs</h1>
         <div className="container p-4 w-100vh">
           <div className="song-container-wrapper">
           { likedSongs.rows && likedSongs.rows.map((song, index) => {
