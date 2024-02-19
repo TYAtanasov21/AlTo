@@ -95,17 +95,22 @@ useEffect(() => {
     await axios.post("http://localhost:5000/api/likeSong", {song: song, user: user});
   }
 
-const getLikedSongs = async () =>{
-  const response = await axios.post("http://localhost:5000/api/getLikedSongs", { user_id: user.id });
-  setLikedSongs(response.data);
-}
 
-useEffect(() => {
-    getLikedSongs();
-
-    console.log(likedSongs);
-}, [likedSongs.rows]);
-
+  useEffect(() => {
+    const fetchLikedSongs = async () => {
+      if (user?.id) {
+        try {
+          const response = await axios.post("http://localhost:5000/api/getLikedSongs", { user_id: user.id });
+          setLikedSongs(response.data);
+          console.log(response.data);
+        } catch (error) {
+          console.error("Error fetching liked songs:", error);
+        }
+      }
+    };
+  
+    fetchLikedSongs();
+  }, [user?.id]);
   return (
     <div id = "root" className="flex flex-col">
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
