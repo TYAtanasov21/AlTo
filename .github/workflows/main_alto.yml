@@ -1,4 +1,4 @@
-name: Build and deploy React app with Express server to Azure
+name: Build and deploy Node.js app to Azure Web App - alto
 
 on:
   push:
@@ -8,52 +8,51 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js for React app
+      - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '18.x'
+          # Optionally, you can cache npm dependencies
+          cache: 'npm'
 
-      - name: Install Server app dependencies
-        run: |
-          npm install
-      
-      - name: Copy dependencies to server dir
-        run: |
-          cp -r node_modules ./src/server/node_modules
+      - name: npm install
+        run: npm install
 
-      - name: Upload Server app artifact
-        uses: actions/upload-artifact@v2
+      - name: Build React app
+        run: npm run build
+
+      - name: Run tests
+        run: npx jest --passWithNoTests
+
+      - name: Upload build artifacts for deployment
+        uses: actions/upload-artifact@v3
         with:
-          name: server-app
-          path: src/server
+          name: build-artifact # This is just a label for the artifact
+          path: ./build # This is the output directory of your React build command
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
-      - name: Download React app artifact
-        uses: actions/download-artifact@v2
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
         with:
-          name: server-app
-          path: ./server-app
+          name: build-artifact
 
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_86897DC92D59442A97367B85C5CE3216 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A76123D197A842B580B2EB7BAA37ED60 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_061785E8F9984E4A951BB71A0F836DD8 }}
-
-      - name: Deploy Express server to Azure Web App
+      - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
+        id: deploy-to-webapp
         with:
-          app-name: 'alto-server'
+          app-name: 'alto'
           slot-name: 'Production'
-          package: ./server-app
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CE6082F946DD4AC0B191680376A17ECB }}
+          package: .
