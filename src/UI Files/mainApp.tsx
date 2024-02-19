@@ -114,7 +114,7 @@ useEffect(() => {
   return (
     <div id = "root" className="flex flex-col">
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
-      {search === '' ? (
+      {search === '' && likedSongs.rows.length>0 ? (
       <div className="flex-1 bg-black scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2">Liked Songs</h1>
         <div className="container p-4 w-100vh">
@@ -142,6 +142,7 @@ useEffect(() => {
     ) : null}
         <div className="flex-1 bg-black scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2">Our library</h1>
+        {songs.rows.length>0 ? (
           <div className="container p-4 w-100vh">
             <div className="song-container-wrapper mb-12">
             {songs.rows.map((song, index) => {
@@ -163,6 +164,9 @@ useEffect(() => {
                 })}
             </div>
           </div>
+        ) : (
+          <h1 className="text-white text-xl items-center font-semibold">No found songs</h1>
+        )}
         </div>
         <div className="fixed bottom-0 w-full">
         <Footer picked_song={song} songs={songs.rows} />
