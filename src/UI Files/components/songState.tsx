@@ -8,8 +8,7 @@ export interface Song {
   song_url: string;
   photo_url: string;
   class_year: number;
-  id: number
-
+  id: number;
 }
 
 export interface SongsState {

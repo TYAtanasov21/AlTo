@@ -229,10 +229,9 @@ const Footer: React.FC<FooterProps> = ({
   }
 
   return (
-    <div className="music-player-footer text-white pt-2 bg-neutral-900">
-      <div className="container mx-auto">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center">
+    <div className="text-white pt-2 bg-neutral-900 music-player-footer">
+        <div className="flex items-center justify-between mx-2">
+          <div className="flex items-center my-2">
             {getFooterImg()}
             <h2 className="font-bold text-white ml-2"> {song?.title ? song.title : "Not selected"}</h2>
           </div>
@@ -286,7 +285,6 @@ const Footer: React.FC<FooterProps> = ({
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

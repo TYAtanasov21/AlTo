@@ -2,9 +2,11 @@
 import React, { useMemo, FormEvent, useState } from "react";
 import { HiHome } from "react-icons/hi";
 import Box from "./Box";
-import TopBarItem from "./TopBarItem";
 import { useSearchState } from "./searchState";
 import { useFilterState } from "./filterState";
+import { IoMdHome } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+
 
 interface TopBarProps {
   children: React.ReactNode;
@@ -30,15 +32,19 @@ const TopBar: React.FC<TopBarProps> = ({ children, onSearchSubmit, onFilterSubmi
   const handleSearchSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
-
+  const navigate = useNavigate();
   return (
   <Box isTopBar>
       <div className="flex justify-between w-full">
-        <div>
-          {choices.map((item) => ( 
-            <TopBarItem key={item.label} {...item} />
-          ))}
-          </div>
+          <form>
+            <button
+            type = "button"
+            className="flex flex-row font-bold cursor-pointer hover:text-white transition-colors text-neutral-400"
+            onClick = {() => {navigate('/')}}
+            >
+              <IoMdHome size = {29} className="text-center"/>
+              <p className = "truncate w-full mt-1">Alto Music</p></button>
+          </form>
           <div>
           <form onSubmit={(event) => {
             event.preventDefault();

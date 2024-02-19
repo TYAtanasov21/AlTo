@@ -105,7 +105,7 @@ function Register() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </div>
-        <div className="d-grid gap-2">
+        <div className="flex flex-row">
           <button
             onClick={sendData}
             type="button"
@@ -113,6 +113,11 @@ function Register() {
           >
             Register
           </button>
+          <button
+          onClick = {() => {navigate('/')}}
+          type = "button"
+          className="btn btn-link hover:text-zinc-500 hover:underline underline-offset-1 text-white transition-colors ml-3"
+          >Back</button>
         </div>
       </form>
     </div>

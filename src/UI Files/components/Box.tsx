@@ -14,7 +14,7 @@ const Box: React.FC<BoxProps> = ({ children, className, isTopBar, isSongContaine
         rounded-lg
         ${isTopBar && !isSongContainer ? "bg-neutral-900" : ""}
         ${isTopBar ? "bg-neutral-900 p-5 w-full" : ""}
-        ${isSongContainer ? "bg-neutral-900 p-4" : ""}
+        ${isSongContainer ? "bg-neutral-900 p-4 text-left" : ""}
         ${className || ""}
       `}
     >
@@ -24,3 +24,4 @@ const Box: React.FC<BoxProps> = ({ children, className, isTopBar, isSongContaine
 };
 
 export default Box;
+

@@ -9,7 +9,7 @@ interface TopBarItemProps {
 
 const TopBarItem: React.FC<TopBarItemProps> = ({ icon, label }) => {
   return (
-    <div className={twMerge("flex flex-row h-auto items-center gap-x-4 text-md font-medium cursor-pointer hover:text-white transition-colors text-neutral-400 py-1")}>
+    <div className={twMerge("flex flex-row items-center gap-x-4 font-medium cursor-pointer hover:text-white transition-colors text-neutral-400 ")}>
       {icon({ size: "1.5em" })}
       <p className="truncate w-full">{label}</p>
     </div>

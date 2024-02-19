@@ -68,6 +68,7 @@ const SignIn = () => {
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white"
           />
         </div>
+        <div className = "flex flex-row">
         <button
           type="button"
           onClick={sendData}
@@ -75,6 +76,12 @@ const SignIn = () => {
         >
           Sign In
         </button>
+        <button
+          onClick = {() => {navigate('/')}}
+          type = "button"
+          className="btn btn-link hover:text-zinc-500 hover:underline underline-offset-1 text-white transition-colors ml-3"
+          >Back</button>
+          </div>
       </form>
       <div className = "footer">
         <Footer/>

@@ -1,26 +1,6 @@
-.music-player-footer {
-  position: fixed;
-  bottom: 0;
-  height: 7vh;
-  width: 100%;
-}
-
-.music-player-footer p {
-  color: white;
-  margin: 0;
-}
-
-.music-player-footer button {
-  background-color: transparent;
-  border: none;
-  font-size: 1.5rem;
-  color: white;
-  margin: 0 1px;
-  cursor: pointer;
-}
-
 .music-player-footer button:hover {
   color: #A6B1E1;
+  transition: 0.2s;
 }
 .progress-container {
   display: flex;

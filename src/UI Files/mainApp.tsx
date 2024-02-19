@@ -12,6 +12,8 @@ import { User } from "./components/user";
 
 
 
+
+
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const [user, setUser] = useState<User>(null);
@@ -102,7 +104,6 @@ useEffect(() => {
         try {
           const response = await axios.post("http://localhost:5000/api/getLikedSongs", { user_id: user.id });
           setLikedSongs(response.data);
-          console.log(response.data);
         } catch (error) {
           console.error("Error fetching liked songs:", error);
         }
@@ -165,7 +166,9 @@ useEffect(() => {
             </div>
           </div>
         ) : (
-          <h1 className="text-white text-xl items-center font-semibold">No found songs</h1>
+          <div className="items-center justify-center place-self-center">
+          <h1 className="text-rose-800 text-xl font-semibold">No found songs</h1>
+        </div>
         )}
         </div>
         <div className="fixed bottom-0 w-full">
