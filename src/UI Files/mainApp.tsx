@@ -8,14 +8,38 @@ import { useSearchState, SearchState } from "./components/searchState";
 import { Song } from "./components/songState";
 import { FilterState, useFilterState } from "./components/filterState";
 import { useLocation } from "react-router-dom";
+import { User } from "./components/user";
+
+
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
-  const user = location.state?.user;
+  const [user, setUser] = useState<User>(null);
   const [songs, setSongs] = useState<{ rows: Song[] }>({ rows: [] });
+  const [likedSongs, setLikedSongs] = useState<{ rows: Song[] }>({ rows: [] });
   const { search, setSearch }: SearchState = useSearchState()
-  const {filter, setFilter} : FilterState = useFilterState();
+  const {filter, setFilter} : FilterState = useFilterState(); 
   const [song, setSong] = useState<Song>();
+
+useEffect(() => {
+  const setUserAsync = async () => {
+    const temp_user = location.state?.user;
+    try {
+      const response = await axios.post("http://localhost:5000/api/postUser", {
+        email: temp_user.email,
+        password: temp_user.password
+      });
+      setUser(response.data as User);
+      console.log(user);
+    } catch (error) {
+      console.error("Error setting user:", error.response?.data || error.message);
+    }
+  };
+
+
+
+  setUserAsync();
+}, []);
   useEffect(() => {
     const fetchSongs = async () => {
       try {
@@ -25,6 +49,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         console.error("Error setting songs:", error);
       }
     };
+    
 
     fetchSongs();
   }, [search, filter]);
@@ -66,18 +91,30 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     console.log("Play button clicked for:", song);
   };
 
+  const handleLikeButtonClick = async (song: Song) => {
+    await axios.post("http://localhost:5000/api/likeSong", {song: song, user: user});
+  }
 
+const getLikedSongs = async () =>{
+  const response = await axios.post("http://localhost:5000/api/getLikedSongs", { user_id: user.id });
+  setLikedSongs(response.data);
+}
+
+useEffect(() => {
+    getLikedSongs();
+
+    console.log(likedSongs);
+}, [likedSongs.rows]);
 
   return (
     <div id = "root" className="flex flex-col">
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
       {search === '' ? (
       <div className="flex-1 bg-black scrollable-content">
-        <h1 className="text-xl text-white font-bold pt-2">Recommended songs</h1>
+        <h1 className="text-xl text-white font-bold pt-2">Liked Songs</h1>
         <div className="container p-4 w-100vh">
           <div className="song-container-wrapper">
-            {songs.rows.map((song, index) => {
-              if (index < 4) {
+          { likedSongs.rows && likedSongs.rows.map((song, index) => {
                 return (
                   <div className="song-container" key={index}>
                     <SongContainer
@@ -86,13 +123,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                       duration={song.duration}
                       photo_url={song.photo_url}
                       song_url={song.song_url}
+                      id = {song.id}
                       class_year={song.class_year}
                       onPlayButtonClick={handlePlayButtonClick}
+                      onLikeButtonClick={handleLikeButtonClick}
                     />
                   </div>
                 );
-              }
-              return null;
             })}
           </div>
         </div>
@@ -111,9 +148,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                       duration={song.duration}
                       photo_url={song.photo_url}
                       song_url={song.song_url}
+                      id = {song.id}
                       class_year={song.class_year}
-
                       onPlayButtonClick={handlePlayButtonClick}
+                      onLikeButtonClick={handleLikeButtonClick}
                     />
                   </div>
                 );

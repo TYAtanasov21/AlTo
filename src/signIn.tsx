@@ -22,19 +22,20 @@ const SignIn = () => {
   const sendData = async () => {
     try {
       const response = await axios.post("http://localhost:5000/auth/signIn", user);
+  
       if (response.data.signedIn) {
-        const signedInUser = await axios.post("http://localhost:5000/api/postUser", user);
-        navigate('/UI Files/mainApp', {state: {user: signedInUser}});
-      }
-      else
-      {
-        setErrorMessage("Wrong email or password")
+        // Only store the necessary user data in the state
+        const {email, password} = user;
+        navigate('/UI Files/mainApp', { state: { user: { email, password } } });
+      } else {
+        setErrorMessage("Wrong email or password");
       }
     } catch (error) {
       console.error("Error during sign-in:", error);
       setErrorMessage("Error during sign-in");
     }
   };
+  
 
   return (
     <div className="content flex flex-col items-center justify-center h-screen bg-gradient-to-r from-neutral-800 to-neutral-900 text-white">

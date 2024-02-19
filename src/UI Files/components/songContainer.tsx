@@ -1,6 +1,8 @@
 import React from "react";
 import Box from "./Box";
 import { Song } from "./songState";
+import { FaHeart } from "react-icons/fa";
+
 
 interface SongContainerProps {
   title: string;
@@ -9,7 +11,9 @@ interface SongContainerProps {
   photo_url: string;
   song_url: string;
   class_year: number;
+  id: number
   onPlayButtonClick: (song: Song) => void;
+  onLikeButtonClick: (song: Song) => void;
 }
 
 const SongContainer: React.FC<SongContainerProps> = ({
@@ -19,7 +23,9 @@ const SongContainer: React.FC<SongContainerProps> = ({
   photo_url,
   song_url,
   class_year,
+  id,
   onPlayButtonClick,
+  onLikeButtonClick,
 }: SongContainerProps) => {
   const handlePlayButtonClick = () => {
     const song: Song = {
@@ -29,8 +35,21 @@ const SongContainer: React.FC<SongContainerProps> = ({
       photo_url,
       song_url,
       class_year,
+      id,
     };
     onPlayButtonClick(song);
+  };
+  const handleLikeButtonClick = () => {
+    const song: Song = {
+      title,
+      author,
+      duration,
+      photo_url,
+      song_url,
+      class_year,
+      id,
+    };
+    onLikeButtonClick(song);
   };
 
 
@@ -54,6 +73,12 @@ const SongContainer: React.FC<SongContainerProps> = ({
           >
             Play
           </button>
+          <button
+              onClick={handleLikeButtonClick}
+              className="mt-2 bg-neutral-700 text-white px-3 py-1 rounded-md hover:bg-neutral-500 focus:outline-none focus:ring focus:border-blue-300"
+            >
+              <FaHeart />
+            </button>
         </div>
       </div>
     </Box>

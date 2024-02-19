@@ -98,13 +98,10 @@ app.post("/api/playback", (req, res) => {
 
   try {
     if (action === 'play') {
-      // Implement logic to play the audio file from the provided URL
-      // For example, you can use the 'sound' object you defined earlier
       const sound = new Audio();
       sound.src = audioFileUrl;
       sound.play();
     } else if (action === 'pause') {
-      // Implement logic to pause the audio playback
       sound.pause();
     }
 
@@ -163,12 +160,16 @@ app.get("/api/getSongs", async (req, res) =>{
 app.post("/api/getSongsSearch", async (req, res) =>{
   const client = await pool.connect();
   console.log("Connected to the pg database");
-
-  const response = await client.query("SELECT * FROM songs WHERE LOWER(title) LIKE LOWER($1);", [`%${req.body.searchValue}%`]);
+  if(req.body.filterValue == 0){
+    const response = await client.query("SELECT * FROM songs WHERE LOWER(title) LIKE LOWER($1);", [`%${req.body.searchValue}%`]);
     res.status(200).json(response);
+  }
+  else {
+    const response = await client.query("SELECT * FROM songs WHERE LOWER(title) LIKE LOWER($1) AND class_year = $2;", [`%${req.body.searchValue}%`, req.body.filterValue]);
+    res.status(200).json(response);
+  }
   client.release();
 });
-
 app.post("/api/postUser", async (req, res) => {
   try {
     const client = await pool.connect();
@@ -201,6 +202,51 @@ app.post("/api/postUser", async (req, res) => {
   }
 });
 
+app.post("/api/likeSong", async (req, res) => {
+  const client = await pool.connect();
+
+  try {
+    const user = req.body.user;
+    const song = req.body.song;
+
+    const checkResult = await client.query("SELECT COUNT(*) FROM liked_songs WHERE user_id = $1 AND song_id = $2", [user.id, song.id]);
+    const likeCount = checkResult.rows[0].count;
+
+    if (likeCount === '0') {  // Note: comparing with the string '0' because COUNT(*) returns a string
+      await client.query("INSERT INTO liked_songs (user_id, song_id) VALUES ($1, $2)", [user.id, song.id]);
+      console.log(`Added ${song.title} to ${user.name}'s liked songs`);
+    } else {
+      console.log("User has already liked this song!");
+    }
+
+    res.status(200).json({ success: true, message: 'Song liked successfully' });
+  } catch (error) {
+    console.error("Error during liking song:", error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  } finally {
+    client.release();
+  }
+});
+
+app.post("/api/getLikedSongs", async (req, res) => {
+  const client = await pool.connect();
+
+  try {
+    const user_id = req.body.user_id;
+
+    const query = "SELECT songs.* FROM songs JOIN liked_songs ON songs.id = liked_songs.song_id WHERE liked_songs.user_id = $1";
+    const values = [user_id];
+
+    const result = await client.query(query, values);
+
+    res.json(result); // Send only the data rows
+  } catch (error) {
+    console.error("Error executing query:", error);
+    res.status(500).send("Internal Server Error");
+  } finally {
+    client.release();
+  }
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
