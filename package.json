@@ -38,8 +38,8 @@
     "build": "set \"CI=false\" && react-scripts build",
     "test": "jest --passWithNoTests",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build"
-    "run-express"
+    "predeploy": "npm run build", 
+    "server": "node ../src/server/index.js"
   },
   "eslintConfig": {
     "extends": [
