@@ -26,6 +26,23 @@
 </p>
 
 <hr>
+<h2>🚀Download and run</h2>
+<h3>Download:</h3>
+<pre>https://github.com/TYAtanasov21/AlTo.git</pre>
+
+<h3>Run:</h3>
+<p>Open the project folder and find the parrent directory</p>
+<pre>
+AlTo> npm install
+AlTo> npm start
+</pre>
+
+<p>Open a new terminal and write this command</p>
+<pre>
+AlTo> node src/server/index.js
+</pre>
+
+<hr>
 <h2>🧑‍💻Technologies</h2>
 <h3> Code editors and collaborative services used:</h3>
 <p align = "left">
