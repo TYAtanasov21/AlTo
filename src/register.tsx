@@ -35,7 +35,7 @@ function Register() {
             email: registeredUserData.email,
           };
   
-          navigate('/UI Files/mainApp', { state: { user: userState } });
+          navigate('/', { state: { user: userState } });
           break;
         case 2:
           setErrorMessage("This username already exists");
