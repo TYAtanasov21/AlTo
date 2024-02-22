@@ -1,9 +1,10 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
-import MainMenu from './MainMenu';
+import MainMenu from './mainMenu';
 import SignIn from './signIn';
 import Register from './register';
-import AppLayout from './UI Files/mainApp';
+import AppLayout from './mainApp';
+
 
 const router = createBrowserRouter([
   {path: '/', element : <MainMenu/>},

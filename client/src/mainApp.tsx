@@ -1,8 +1,8 @@
-import "../css/app.css";
+import "./css/app.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Footer from "./footerControl";
-import TopBar from "./components/TopBar";
+import TopBar from "./components/topBar";
 import SongContainer from "./components/songContainer";
 import { useSearchState, SearchState } from "./components/searchState";
 import { Song } from "./components/songState";

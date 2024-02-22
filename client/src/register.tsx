@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Footer from "./footer";
-import { request } from "http";
 
 function Register() {
   const [email, setEmail] = useState<string>('');
