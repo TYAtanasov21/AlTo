@@ -121,11 +121,11 @@ app.post('/insertSong', async (req, res) => {
   console.log("Connected to the pg database");
 
   try {
-    const query = "INSERT INTO songs (title, author, duration, song_url, photo_url) VALUES ($1, $2, $3, $4, $5)";
+    const query = "INSERT INTO songs (title, author, duration, song_url, photo_url, class_year) VALUES ($1, $2, $3, $4, $5, $6)";
     const request = req.body;
 
 
-    await client.query(query, [request.title, request.author, request.duration, request.song_url, request.photo_url]);
+    await client.query(query, [request.title, request.author, request.duration, request.song_url, request.photo_url, request.class_year]);
     console.log("Added to database");
 
     res.status(200).send("Song added successfully");
@@ -182,7 +182,6 @@ app.post("/api/postUser", async (req, res) => {
 
     if (response.rows.length > 0) {
       const user = response.rows[0];
-      // Compare the provided password with the hashed password stored in the database
       if (bcrypt.compareSync(password, user.password)) {
         console.log(user);
         res.status(200).json(user);
@@ -195,7 +194,7 @@ app.post("/api/postUser", async (req, res) => {
       res.status(404).json({ message: 'User not found' });
     }
 
-    client.release(); // Release the connection in the success case
+    client.release();
   } catch (error) {
     console.error('Error querying user:', error);
     res.status(500).json({ message: 'Internal Server Error' });
@@ -212,7 +211,7 @@ app.post("/api/likeSong", async (req, res) => {
     const checkResult = await client.query("SELECT COUNT(*) FROM liked_songs WHERE user_id = $1 AND song_id = $2", [user.id, song.id]);
     const likeCount = checkResult.rows[0].count;
 
-    if (likeCount === '0') {  // Note: comparing with the string '0' because COUNT(*) returns a string
+    if (likeCount === '0') {
       await client.query("INSERT INTO liked_songs (user_id, song_id) VALUES ($1, $2)", [user.id, song.id]);
       console.log(`Added ${song.title} to ${user.name}'s liked songs`);
     } else {
@@ -240,7 +239,7 @@ app.post("/api/getLikedSongs", async (req, res) => {
 
     const result = await client.query(query, values);
 
-    res.json(result); // Send only the data rows
+    res.json(result);
   } catch (error) {
     console.error("Error executing query:", error);
     res.status(500).send("Internal Server Error");
