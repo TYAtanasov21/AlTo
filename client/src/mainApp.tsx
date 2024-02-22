@@ -27,7 +27,7 @@ useEffect(() => {
   const setUserAsync = async () => {
     const temp_user = location.state?.user;
     try {
-      const response = await axios.post("http://localhost:5000/api/postUser", {
+      const response = await axios.post("http://localhost:5000/user/postUser", {
         email: temp_user.email,
         password: temp_user.password
       });
@@ -94,7 +94,7 @@ useEffect(() => {
   };
 
   const handleLikeButtonClick = async (song: Song) => {
-    await axios.post("http://localhost:5000/api/likeSong", {song: song, user: user});
+    await axios.post("http://localhost:5000/user/likeSong", {song: song, user: user});
   }
 
 
@@ -102,7 +102,7 @@ useEffect(() => {
     const fetchLikedSongs = async () => {
       if (user?.id) {
         try {
-          const response = await axios.post("http://localhost:5000/api/getLikedSongs", { user_id: user.id });
+          const response = await axios.post("http://localhost:5000/user/getLikedSongs", { user_id: user.id });
           setLikedSongs(response.data);
         } catch (error) {
           console.error("Error fetching liked songs:", error);
