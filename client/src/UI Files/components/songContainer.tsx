@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Box from "./Box";
+import Box from "./box";
 import { Song } from "./songState";
 import { IoHeartOutline } from "react-icons/io5";
 import { IoHeart } from "react-icons/io5";

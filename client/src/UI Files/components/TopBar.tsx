@@ -1,7 +1,7 @@
 // TopBar.tsx
 import React, { useMemo, FormEvent, useState } from "react";
 import { HiHome } from "react-icons/hi";
-import Box from "./Box";
+import Box from "./box";
 import { useSearchState } from "./searchState";
 import { useFilterState } from "./filterState";
 import { IoMdHome } from "react-icons/io";
