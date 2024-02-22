@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Server-side code",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mp3-duration": "^1.1.0",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.15"
+  },
+  "engines": {
+    "node": ">=14.17.5"
+  },
+  "license": "ISC"
+}
