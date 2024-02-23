@@ -29,7 +29,7 @@ app.use('/song', songRoutes);
 app.use('/user', userRoutes);
 
 app.get('/', (req, res) => {
-  res.sendFile("C:/DSK/AlTo/src/server/index.html");
+  res.sendFile("C:/Users/alexk/Documents/AlTo/server/addSongs.html");
 });
 
 app.listen(PORT, () => {
