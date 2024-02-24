@@ -1,7 +1,7 @@
-import './css/mainMenu.css'
+import '../css/mainMenu.css'
 import React from 'react';
 import { useNavigate} from 'react-router-dom';
-import Footer from './footer';
+import Footer from '../components/footer';
 
 const MainMenu: React.FC = () => {
   const navigate = useNavigate();

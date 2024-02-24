@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-import Footer from "./footer";
+import Footer from "../components/footer";
 
 function Register() {
   const [email, setEmail] = useState<string>('');
@@ -9,16 +9,20 @@ function Register() {
   const [username, setUsername] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [greeting, setGreeting] = useState<string>('');
+  const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
   const emailInput = useRef();
   const navigate = useNavigate();
 
   const sendData = async () => {
+    if(acceptTerms)
+    {
     try {
       const user = { name: username, mail: email, pass: password };
       const response = await axios.post("http://localhost:5000/auth/register", user);
   
       const { code, data } = response.data;
   
+
       switch (code) {
         case 1:
           setGreeting("Registration successful!");
@@ -51,6 +55,11 @@ function Register() {
     } catch (error) {
       console.error("Error during registration:", error);
       setErrorMessage("Error during registration:");
+    }
+  }
+    else
+    {
+      setErrorMessage("Please accept the Terms of Use.");
     }
   };
   
@@ -103,6 +112,18 @@ function Register() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
+            <label className="flex items-center mt-2">
+              <input
+                type="checkbox"
+                checked={acceptTerms}
+                onChange={() => setAcceptTerms(!acceptTerms)}
+                className="form-checkbox h-4 w-4 text-neutral-600 border-neutral-600 focus:ring-neutral-500"
+              />
+              <span className="ml-2 text-gray-300">
+                I accept the <Link to="/termsOfUse" className="text-sky-500 hover:text-sky-700 hover:underline">Terms of Use</Link>
+              </span>
+            </label>
+
         </div>
         <div className="flex flex-row">
           <button

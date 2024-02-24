@@ -1,8 +1,8 @@
-import "./css/signIn.css"
+import "../css/signIn.css"
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Footer from "./footer";
+import Footer from "../components/footer";
 
 const SignIn = () => {
   const [user, setUser] = useState({
@@ -24,7 +24,6 @@ const SignIn = () => {
       const response = await axios.post("http://localhost:5000/auth/signIn", user);
   
       if (response.data.signedIn) {
-        // Only store the necessary user data in the state
         const {email, password} = user;
         navigate('/UI Files/mainApp', { state: { user: { email, password } } });
       } else {

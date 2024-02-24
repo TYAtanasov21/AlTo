@@ -1,20 +1,20 @@
-import "./css/app.css";
+import "../css/app.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Footer from "./footerControl";
-import TopBar from "./components/topBar";
-import SongContainer from "./components/songContainer";
-import { useSearchState, SearchState } from "./components/searchState";
-import { Song } from "./components/songState";
-import { FilterState, useFilterState } from "./components/filterState";
+import Footer from "../components/footerControl";
+import TopBar from "../components/topBar";
+import SongContainer from "../components/songContainer";
+import { useSearchState, SearchState } from "../components/searchState";
+import { Song } from "../components/songState";
+import { FilterState, useFilterState } from "../components/filterState";
 import { useLocation } from "react-router-dom";
-import { User } from "./components/user";
+import { User } from "../components/user";
 
 
 
 
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+export default function AppLayout() {
   const location = useLocation();
   const [user, setUser] = useState<User>(null);
   const [songs, setSongs] = useState<{ rows: Song[] }>({ rows: [] });
