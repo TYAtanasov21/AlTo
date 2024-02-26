@@ -32,7 +32,7 @@ function Register() {
             password: password
           };
   
-          const { data: registeredUserData } = await axios.post("http://localhost:5000/api/postUser", request_user);
+          const { data: registeredUserData } = await axios.post("http://localhost:5000/user/postUser", request_user);
   
           const userState = {
             email: registeredUserData.email,
