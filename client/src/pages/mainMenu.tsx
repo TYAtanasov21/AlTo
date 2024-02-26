@@ -2,14 +2,14 @@ import '../css/mainMenu.css'
 import React from 'react';
 import { useNavigate} from 'react-router-dom';
 import Footer from '../components/footer';
-
+import { BackgroundBeams } from '../components/backgroundBeams';
 const MainMenu: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-between min-h-screen text-white bg-gradient-to-r from-neutral-700 via-neutral-800 to-neutral-900">
+    <div className="flex flex-col items-center justify-between min-h-screen text-white">
       <div className="flex flex-col items-center justify-center h-1/2">
-        <div className="button-container flex flex-col items-center">
+        <div className="content button-container flex flex-col items-center">
           <h1 className="text-5xl font-bold mb-4">AlTo Music</h1>
           <button
             type="button"
@@ -36,6 +36,7 @@ const MainMenu: React.FC = () => {
         <div className="wave wave3"></div>
         <div className="wave wave4"></div>
       </section>
+      <BackgroundBeams/>
     </div>
   );
 };

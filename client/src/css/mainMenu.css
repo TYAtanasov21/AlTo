@@ -15,8 +15,11 @@ html {
   min-height: 100vh;
 }
 .footer{
-  z-index: 100000;
+  z-index: 1;
   bottom: 0;
+}
+.content{
+  z-index: 1;
 }
 .flex-col {
   flex-grow: 1;
@@ -25,14 +28,12 @@ html {
   justify-content: center;
   align-items: center;
 }
-
 /* wave animation */
 section {
   position: relative;
   width: 100%;
   bottom: 0;
 }
-
 section .wave {
   position: absolute;
   bottom: 0;
