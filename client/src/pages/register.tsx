@@ -18,7 +18,7 @@ function Register() {
     {
     try {
       const user = { name: username, mail: email, pass: password };
-      const response = await axios.post("http://localhost:5000/auth/register", user);
+      const response = await axios.post("https://alto-server.vercel.app/auth/register", user);
   
       const { code, data } = response.data;
   
@@ -32,7 +32,7 @@ function Register() {
             password: password
           };
   
-          const { data: registeredUserData } = await axios.post("http://localhost:5000/user/postUser", request_user);
+          const { data: registeredUserData } = await axios.post("https://alto-server.vercel.app/user/postUser", request_user);
   
           const userState = {
             email: registeredUserData.email,

@@ -27,7 +27,7 @@ useEffect(() => {
   const setUserAsync = async () => {
     const temp_user = location.state?.user;
     try {
-      const response = await axios.post("http://localhost:5000/user/postUser", {
+      const response = await axios.post("https://alto-server.vercel.app/user/postUser", {
         email: temp_user.email,
         password: temp_user.password
       });
@@ -60,14 +60,14 @@ useEffect(() => {
     console.log(search);
     try {
       if(search === '' && filter == 0){
-        const response = await axios.get("http://localhost:5000/api/getSongs");
+        const response = await axios.get("https://alto-server.vercel.app/api/getSongs");
         console.log("get");
         return {
           rows: response.data.rows
           }
       } 
       else {
-        const response = await axios.post("http://localhost:5000/api/getSongsSearch",  { searchValue: search, filterValue: filter });
+        const response = await axios.post("https://alto-server.vercel.app/api/getSongsSearch",  { searchValue: search, filterValue: filter });
         console.log("post");
         return {
           rows: response.data.rows
@@ -94,7 +94,7 @@ useEffect(() => {
   };
 
   const handleLikeButtonClick = async (song: Song) => {
-    await axios.post("http://localhost:5000/user/likeSong", {song: song, user: user});
+    await axios.post("https://alto-server.vercel.app/user/likeSong", {song: song, user: user});
   }
 
 
@@ -102,7 +102,7 @@ useEffect(() => {
     const fetchLikedSongs = async () => {
       if (user?.id) {
         try {
-          const response = await axios.post("http://localhost:5000/user/getLikedSongs", { user_id: user.id });
+          const response = await axios.post("https://alto-server.vercel.app/user/getLikedSongs", { user_id: user.id });
           setLikedSongs(response.data);
         } catch (error) {
           console.error("Error fetching liked songs:", error);
