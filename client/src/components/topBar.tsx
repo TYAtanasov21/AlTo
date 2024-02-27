@@ -1,4 +1,3 @@
-// TopBar.tsx
 import React, { useMemo, FormEvent, useState } from "react";
 import { HiHome } from "react-icons/hi";
 import Box from "./box";
@@ -7,6 +6,13 @@ import { useFilterState } from "./filterState";
 import { IoMdHome } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "./select"
 
 interface TopBarProps {
   children: React.ReactNode;
@@ -99,6 +105,7 @@ const TopBar: React.FC<TopBarProps> = ({ children, onSearchSubmit, onFilterSubmi
                 <option value="10">10 Клас</option>
                 <option value="11">11 Клас</option>
                 <option value="12">12 Клас</option>
+                
               </select>
             </label>
           </form>

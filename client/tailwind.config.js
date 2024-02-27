@@ -8,7 +8,7 @@ const {
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{ts,tsx}"],
-  darkMode: "class",
+  darkMode: ["class"],
   theme: {
   },
   plugins: [require("@tailwindcss/aspect-ratio"), addVariablesForColors],
