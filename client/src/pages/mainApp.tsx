@@ -95,23 +95,20 @@ useEffect(() => {
 
   const handleLikeButtonClick = async (song: Song) => {
     await axios.post("https://alto-server.vercel.app/user/likeSong", {song: song, user: user});
+    fetchLikedSongs();
   }
 
-
-  useEffect(() => {
-    const fetchLikedSongs = async () => {
-      if (user?.id) {
-        try {
-          const response = await axios.post("https://alto-server.vercel.app/user/getLikedSongs", { user_id: user.id });
-          setLikedSongs(response.data);
-        } catch (error) {
-          console.error("Error fetching liked songs:", error);
-        }
+  const fetchLikedSongs = async () => {
+    if (user?.id) {
+      try {
+        const response = await axios.post("https://alto-server.vercel.app/user/getLikedSongs", { user_id: user.id });
+        setLikedSongs(response.data);
+      } catch (error) {
+        console.error("Error fetching liked songs:", error);
       }
-    };
-  
-    fetchLikedSongs();
-  }, [user?.id, likedSongs.rows]);
+    }
+  };
+
   return (
     <div id = "root" className="flex flex-col">
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
