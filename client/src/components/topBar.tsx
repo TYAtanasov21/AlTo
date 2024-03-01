@@ -6,13 +6,6 @@ import { useFilterState } from "./filterState";
 import { IoMdHome } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "./select"
 
 interface TopBarProps {
   children: React.ReactNode;
@@ -92,7 +85,7 @@ const TopBar: React.FC<TopBarProps> = ({ children, onSearchSubmit, onFilterSubmi
                   }
                 }}
               >
-                <option value="0">Every</option>
+                <option value="0">Категории</option>
                 <option value="1">1 Клас</option>
                 <option value="2">2 Клас</option>
                 <option value="3">3 Клас</option>

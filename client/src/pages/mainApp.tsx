@@ -9,6 +9,7 @@ import { Song } from "../components/songState";
 import { FilterState, useFilterState } from "../components/filterState";
 import { useLocation } from "react-router-dom";
 import { User } from "../components/user";
+import PlayList from "../components/playListSection";
 
 
 
@@ -110,34 +111,12 @@ useEffect(() => {
   };
 
   return (
-    <div id = "root" className="flex flex-col">
+    <div className = "flex-1 h-screen overflow-hidden">
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
-      {search === '' && likedSongs.rows.length>0 ? (
-      <div className="flex-1 bg-black scrollable-content">
-        <h1 className="text-xl text-white font-bold pt-2 ml-2">Liked Songs</h1>
-        <div className="container p-4 w-100vh">
-          <div className="song-container-wrapper">
-          { likedSongs.rows && likedSongs.rows.map((song, index) => {
-                return (
-                  <div className="song-container" key={index}>
-                    <SongContainer
-                      title={song.title}
-                      author={song.author}
-                      duration={song.duration}
-                      photo_url={song.photo_url}
-                      song_url={song.song_url}
-                      id = {song.id}
-                      class_year={song.class_year}
-                      onPlayButtonClick={handlePlayButtonClick}
-                      onLikeButtonClick={handleLikeButtonClick}
-                    />
-                  </div>
-                );
-            })}
-          </div>
-        </div>
+    <div className = "flex h-screen m-2">
+      <div className = "flex-1">
+        <PlayList title = {''} url = {''} imageUrl=""/>
       </div>
-    ) : null}
         <div className="flex-1 bg-black scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2 ml-3">Our library</h1>
         {songs.rows.length>0 ? (
@@ -167,7 +146,34 @@ useEffect(() => {
           <h1 className="text-rose-800 text-xl font-semibold">No found songs</h1>
         </div>
         )}
+        {search === '' && likedSongs.rows.length>0 ? (
+      <div className=" bg-black scrollable-content">
+        <h1 className="text-xl text-white font-bold pt-2 ml-2">Liked Songs</h1>
+        <div className="container p-4 w-100vh items-center">
+          <div className="song-container-wrapper">
+          { likedSongs.rows && likedSongs.rows.map((song, index) => {
+                return (
+                  <div className="song-container" key={index}>
+                    <SongContainer
+                      title={song.title}
+                      author={song.author}
+                      duration={song.duration}
+                      photo_url={song.photo_url}
+                      song_url={song.song_url}
+                      id = {song.id}
+                      class_year={song.class_year}
+                      onPlayButtonClick={handlePlayButtonClick}
+                      onLikeButtonClick={handleLikeButtonClick}
+                    />
+                  </div>
+                );
+            })}
+          </div>
         </div>
+      </div>
+    ) : null}
+        </div>
+      </div>
         <div className="fixed bottom-0 w-full">
         <Footer picked_song={song} songs={songs.rows} />
       </div>

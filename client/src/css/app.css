@@ -10,10 +10,6 @@ body {
     height: 100%;
   }
   
-  #root {
-    flex-direction: column;
-  }
-  
   .flex-col {
     flex-grow: 1;
     display: flex;

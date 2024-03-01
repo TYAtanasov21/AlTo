@@ -10,7 +10,7 @@ const MainMenu: React.FC = () => {
     <div className="flex flex-col items-center justify-between min-h-screen text-white">
       <div className="flex flex-col items-center justify-center h-1/2">
         <div className="content button-container flex flex-col items-center">
-          <h1 className="text-5xl font-bold mb-4">AlTo Music</h1>
+          <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-purple-500 via-purple-700 to-blue-500 text-transparent bg-clip-text">AlTo Music</h1>
           <button
             type="button"
             className="bg-neutral-600 hover:bg-neutral-500 text-white font-bold py-2 px-3 rounded mb-3 mt-2 transition-colors"

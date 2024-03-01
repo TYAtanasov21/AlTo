@@ -3,6 +3,7 @@ import Box from "./box";
 import { Song } from "./songState";
 import { IoHeartOutline } from "react-icons/io5";
 import { IoHeart } from "react-icons/io5";
+import { GoPlus } from "react-icons/go";
 
 interface SongContainerProps {
   title: string;
@@ -52,6 +53,18 @@ const SongContainer: React.FC<SongContainerProps> = ({
     onLikeButtonClick(song);
   };
 
+  const handlePlaylistClick = () => {
+    const song: Song = {
+      title,
+      author,
+      duration,
+      photo_url,
+      song_url,
+      class_year,
+      id,
+    };
+  }
+
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -75,6 +88,12 @@ const SongContainer: React.FC<SongContainerProps> = ({
               className="mt-2 bg-neutral-700 text-white px-3 py-1 rounded-md hover:bg-neutral-500 focus:outline-none focus:ring focus:border-blue-300"
             >
               Play
+            </button>
+            <button
+            onClick={(handlePlaylistClick)}
+            className = "mt-2 text-white px-3 py-1 hover:text-neutral-700 transition:color"
+            >
+              <GoPlus size = '30'/>
             </button>
             <button
               onClick={handleLikeButtonClick}

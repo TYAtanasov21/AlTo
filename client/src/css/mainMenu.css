@@ -98,3 +98,8 @@ section .wave.wave4
     background-position: -1000px;
   }
 }
+
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
