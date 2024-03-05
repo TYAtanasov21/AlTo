@@ -3,9 +3,6 @@
 <img src = "./client/src/assets/logo-white.png" alt = "logo" align = "center" width = 300px">
 </p>
 <hr>
-<h1>
-<a href = "https://alto-music.vercel.app/">LINK!</a>
-</h1>
 <h2>📰About</h2>
 <p>
 Целта на <b>проекта</b> ни е да създадем <b>уеб страница</b> съдържаща <b>музиково съдържание</b> което да подобри успешността на <b>учебния процес</b>. Идеята е да се улесни достъпа на учители до файловете, като те могат просто да влязат в нашата уеб страница и да <b>стриймват</b> от там.
@@ -29,21 +26,19 @@
 
 <hr>
 <h2>🚀Download and run</h2>
+<h3>Open our website in the web: </h3>
+<a href = "https://alto-music.vercel.app/">Click here!</a>
 <h3>Download:</h3>
 <pre>https://github.com/TYAtanasov21/AlTo.git</pre>
 
 <h3>Run:</h3>
-<p>Open the project folder and find the parrent directory</p>
+<p>Open the project folder and find the parent directory</p>
+<h4>Install and run the client side: </h4>
 <pre>
+AlTo> client
 AlTo> npm install
 AlTo> npm start
 </pre>
-
-<p>Open a new terminal and write this command</p>
-<pre>
-AlTo> node src/server/index.js
-</pre>
-
 <hr>
 <h2>🧑‍💻Technologies</h2>
 <h3> Code editors and collaborative services used:</h3>

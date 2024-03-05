@@ -1,14 +1,14 @@
-import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function TermsOfUse() {
   const navigate = useNavigate();
-  return (
 
-    <div className="flex flex-col items-center justify-center h-screen">
-      <div className="max-w-2xl mx-auto p-4 bg-white rounded-md shadow-md text-neutral-800 mb-8">
+  return (
+    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-neutral-600 to-zinc-700 text-white">
+      <div className="max-w-2xl mx-auto p-6 bg-zinc-300 rounded-md shadow-md text-neutral-900 mb-8">
         <h2 className="text-3xl font-semibold mb-4">Terms of Use</h2>
-      <p className="mb-4">
+        <p className="mb-4">
         Welcome to AlTo Music. By using this website, you agree to comply with and be bound by the following terms and conditions of use.
       </p>
       <p className="mb-4">
@@ -32,20 +32,19 @@ function TermsOfUse() {
       <p className="mb-4">
         Your use of song information on this website is entirely at your own risk. It is your responsibility to ensure compliance with legal rights and requirements.
       </p>
-    </div>
-    <form>
+      </div>
+      <form>
         <button
           onClick={() => {
             navigate('/');
           }}
           type="button"
-          className="btn btn-link hover:text-zinc-500 hover:bg-zinc-400  text-white transition-colors ml-3 bg-zinc-300 rounded-md p-2"
+          className="bg-neutral-800 hover:bg-neutral-700 text-white font-bold py-2 px-3 rounded mb-3 mt-2 transition-colors"
         >
           Back
         </button>
       </form>
     </div>
-
   );
 }
 
