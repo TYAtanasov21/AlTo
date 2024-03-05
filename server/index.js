@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import apiRoutes from './routes/apiRoutes.js';
 import songRoutes from './routes/songRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import playlistRoutes from './routes/playlistRoutes.js';
 
 const { Pool } = pkg;
 const app = express();
@@ -27,6 +28,8 @@ app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
 app.use('/song', songRoutes);
 app.use('/user', userRoutes);
+app.use('/playlist', playlistRoutes);
+
 
 // app.get('/', (req, res) => {
 //   res.sendFile("C:/Users/alexk/Documents/AlTo/server/addSongs.html");

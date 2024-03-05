@@ -110,10 +110,38 @@ useEffect(() => {
     }
   };
 
+  const playlist_name:string = "Test";
+
+  const addPlaylist = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/playlist/createPlaylist", {
+        user_id: user.id,
+        playlist_name: playlist_name
+      });
+  
+      console.log("Server response:", response.data);
+    } catch (error) {
+      console.error("Error adding playlist:", error);
+    }
+  };
+
+  const getPlaylists = async () =>{
+
+  try {
+    const response = await axios.post("http://localhost:5000/playlist/getPlaylists", {user_id: user.id});
+    console.log(response.data.playlists);
+    }
+  catch (error) {
+    console.error("Error fetching playlists:", error);
+  }
+  };
   return (
+    
     <div className = "flex-1 h-screen overflow-hidden">
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
     <div className = "flex h-screen m-2">
+    <button onClick={getPlaylists}>+asdasdasd</button>
+
       <div className = "flex-1">
         <PlayList title = {''} url = {''} imageUrl=""/>
       </div>
