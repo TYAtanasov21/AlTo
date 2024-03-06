@@ -7,6 +7,7 @@ import AppLayout from './pages/mainApp';
 import TermsOfUse from './pages/termsOfUse';
 
 
+
 const router = createBrowserRouter([
   {path: '/', element : <MainMenu/>},
   {path: "/signIn", element: <SignIn /> },
