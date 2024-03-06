@@ -135,13 +135,16 @@ useEffect(() => {
     console.error("Error fetching playlists:", error);
   }
   };
+
+  const addSongToPlaylist = async () =>{
+    const response = await axios.post("http://localhost:5000/playlist/addSong", {song_id: 12, playlist_id: 1});
+  };
   return (
     
     <div className = "flex-1 h-screen overflow-hidden">
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
     <div className = "flex h-screen m-2">
-    <button onClick={getPlaylists}>+asdasdasd</button>
-
+    <button onClick={addSongToPlaylist}>+asdasdasd</button>
       <div className = "flex-1">
         <PlayList title = {''} url = {''} imageUrl=""/>
       </div>

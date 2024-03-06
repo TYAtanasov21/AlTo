@@ -38,26 +38,22 @@ router.post('/createPlaylist', async (req, res) =>{
 });
 
 router.post('/addSong', async (req,res) =>{
-    const client = await pool.connect();
-    try {
-      const user = req.body.user;
-      const song = req.body.song;
-      const playlist = req.body.playlist;
-  
-      const checkResult = await client.query("SELECT COUNT(*) FROM liked_songs WHERE user_id = $1 AND song_id = $2", [user.id, song.id]);
-      const likeCount = checkResult.rows[0].count;
-  
-        await client.query("INSERT INTO liked_songs (user_id, song_id) VALUES ($1, $2)", [user.id, song.id]);
-        console.log(`Added ${song.title} to ${user.name}'s liked songs`);
+  const client = await pool.connect();
+  console.log("Connected to the pg database");
+  try {
 
-  
-      res.status(200).json({ success: true, message: 'Song liked successfully' });
-    } catch (error) {
-      console.error("Error during liking song:", error);
-      res.status(500).json({ success: false, message: 'Internal server error' });
-    } finally {
-      client.release();
-    }
+    const playlist_id = req.body.playlist_id;
+    const song_id = req.body.song_id;
+    const query = "INSERT INTO playlist_songs (playlist_id, song_id) VALUES ($1, $2)";
+    await client.query(query, [playlist_id, song_id]);
+    console.log("Added to database");
+    res.status(200).json({message: `Song with id ${song_id} added sucessfully into playlist with id ${playlist_id}`});
+  } catch (error) {
+    console.error("Error adding song to playlist:", error);
+    res.status(500).send("Internal Server Error");
+  } finally {
+    client.release();
+  }
 
 });
 
