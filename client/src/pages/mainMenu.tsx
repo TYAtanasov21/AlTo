@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate} from 'react-router-dom';
 import Footer from '../components/footer';
 import { BackgroundBeams } from '../components/backgroundBeams';
+import { Analytics } from "@vercel/analytics/react";
 const MainMenu: React.FC = () => {
   const navigate = useNavigate();
 
@@ -37,6 +38,7 @@ const MainMenu: React.FC = () => {
         <div className="wave wave4"></div>
       </section>
       <BackgroundBeams/>
+      <Analytics/>
     </div>
   );
 };
