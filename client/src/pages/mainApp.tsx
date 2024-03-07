@@ -41,6 +41,12 @@ useEffect(() => {
 
   setUserAsync();
 }, []);
+
+useEffect(()=>{
+  fetchLikedSongs();
+});
+
+
   useEffect(() => {
     const fetchSongs = async () => {
       try {
