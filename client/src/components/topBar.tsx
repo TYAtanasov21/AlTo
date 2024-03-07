@@ -95,10 +95,7 @@ const TopBar: React.FC<TopBarProps> = ({ children, onSearchSubmit, onFilterSubmi
                 <option value="7">7 Клас</option>
                 <option value="8">8 Клас</option>
                 <option value="9">9 Клас</option>
-                <option value="10">10 Клас</option>
-                <option value="11">11 Клас</option>
-                <option value="12">12 Клас</option>
-                
+                <option value="10">10 Клас</option>                
               </select>
             </label>
           </form>

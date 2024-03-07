@@ -13,8 +13,6 @@ import PlayList from "../components/playListSection";
 
 
 
-
-
 export default function AppLayout() {
   const location = useLocation();
   const [user, setUser] = useState<User>(null);
@@ -140,14 +138,12 @@ useEffect(() => {
     const response = await axios.post("http://localhost:5000/playlist/addSong", {song_id: 12, playlist_id: 1});
   };
   return (
-    
     <div className = "flex-1 h-screen overflow-hidden">
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
     <div className = "flex h-screen m-2">
-    <button onClick={addSongToPlaylist}>+asdasdasd</button>
       <div className = "flex-1">
-        <PlayList title = {''} url = {''} imageUrl=""/>
-      </div>
+        <PlayList userId = {user?.id}/>
+        </div>
         <div className="flex-1 bg-black scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2 ml-3">Our library</h1>
         {songs.rows.length>0 ? (
