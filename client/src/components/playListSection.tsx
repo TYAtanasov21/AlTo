@@ -30,7 +30,6 @@ const PlayList: React.FC<Playlist> = ({userId}) => {
       });
 
       setAddPlaylist(false);
-      // Refresh playlists after adding a new one
       await getPlaylists();
     } catch (error) {
       console.error("Error adding playlist:", error);
@@ -48,7 +47,6 @@ const PlayList: React.FC<Playlist> = ({userId}) => {
   };
 
   useEffect(() => {
-    // Fetch playlists when the component mounts
     getPlaylists();
   });
 
@@ -56,7 +54,7 @@ const PlayList: React.FC<Playlist> = ({userId}) => {
     <div className="p-3 h-full rounded-lg bg-neutral-900">
       <div className="flex flex-row justify-between">
         <p className="text-xl text-white font-bold">Playlists</p>
-        <div className="text-white bold">
+        <div className="text-white bold hover:text-zinc-600 transition:color border-zinc-700">
           <button onClick={handleAddPlaylist}>
             <GoPlus size="35" />
           </button>
@@ -87,14 +85,11 @@ const PlayList: React.FC<Playlist> = ({userId}) => {
           </form>
         </div>
       )}
-      
-      <div className="flex flex-col">
+      <div>
         {playlists.map((playlist) => (
-          <div key={playlist.playlistId} className="bg-neutral-500 p-6 justify-start ml-0 mr-auto rounded-md">
             <PlayListComponent name={playlist.playlist_name}/>
-          </div>
         ))}
-      </div>
+        </div>
     </div>
   );
 };

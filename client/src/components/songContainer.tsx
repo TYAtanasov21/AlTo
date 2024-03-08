@@ -15,6 +15,7 @@ interface SongContainerProps {
   id: number;
   onPlayButtonClick: (song: Song) => void;
   onLikeButtonClick: (song: Song) => void;
+  onPlayListClick: (song: Song) => void;
 }
 
 const SongContainer: React.FC<SongContainerProps> = ({
@@ -27,7 +28,10 @@ const SongContainer: React.FC<SongContainerProps> = ({
   id,
   onPlayButtonClick,
   onLikeButtonClick,
+  onPlayListClick
 }: SongContainerProps) => {  
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+
   const handlePlayButtonClick = () => {
     const song: Song = {
       title,
@@ -40,6 +44,7 @@ const SongContainer: React.FC<SongContainerProps> = ({
     };
     onPlayButtonClick(song);
   };
+
   const handleLikeButtonClick = () => {
     const song: Song = {
       title,
@@ -63,15 +68,28 @@ const SongContainer: React.FC<SongContainerProps> = ({
       class_year,
       id,
     };
-  }
-
+    onPlayListClick(song);
+  };
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${String(minutes).padStart(2, '0')} : ${String(seconds).padStart(2, '0')}`;
   };
-  
+
+  const renderDropdown = () => {
+    if (showDropdown) {
+      return (
+        <div className="dropdown-container">
+          {/* Add dropdown content here */}
+          <button onClick={handlePlaylistClick}>Add to Playlist</button>
+          {/* Add more dropdown options as needed */}
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <Box isSongContainer>
       <div className="flex-auto">
@@ -90,20 +108,21 @@ const SongContainer: React.FC<SongContainerProps> = ({
               Play
             </button>
             <button
-            onClick={(handlePlaylistClick)}
-            className = "mt-2 text-white px-3 py-1 hover:text-neutral-700 transition:color"
+              onClick={() => setShowDropdown(!showDropdown)}
+              className="mt-2 text-white px-3 py-1 hover:text-neutral-700 transition:color"
             >
-              <GoPlus size = '30'/>
+              <GoPlus size='30' />
             </button>
             <button
               onClick={handleLikeButtonClick}
               className="mt-2 text-white px-3 py-1 hover:text-rose-500 transition:color"
             >
-              <IoHeart size = "25"/>
+              <IoHeart size="25" />
             </button>
           </div>
         </div>
       </div>
+      {renderDropdown()}
     </Box>
   );  
 };

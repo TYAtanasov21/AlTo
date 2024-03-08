@@ -21,6 +21,7 @@ export default function AppLayout() {
   const { search, setSearch }: SearchState = useSearchState()
   const {filter, setFilter} : FilterState = useFilterState(); 
   const [song, setSong] = useState<Song>();
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
 useEffect(() => {
   const setUserAsync = async () => {
@@ -118,14 +119,30 @@ useEffect(()=>{
   const addSongToPlaylist = async () =>{
     const response = await axios.post("http://localhost:5000/playlist/addSong", {song_id: 12, playlist_id: 1});
   };
-  return (
-    <div className = "flex-1 h-screen">
-      <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
-    <div className = "flex h-screen m-2">
-      <div className = "flex-1">
-        <PlayList userId = {user?.id}/>
+
+  const handleAddButtonClick = () => {
+    setShowDropdown(!showDropdown);
+    if (showDropdown) {
+      return (
+        <div className="dropdown-container">
+          {/* Add dropdown content here */}
+          <button onClick={addSongToPlaylist}>Add to Playlist</button>
+          {/* Add more dropdown options as needed */}
         </div>
-        <div className="flex-1 bg-black scrollable-content">
+      );
+    }
+    return null;
+  };
+
+
+  return (
+    <div>
+      <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
+    <div className = "flex flex-row h-screen m-2">
+      <div className = "basis-1/5">
+        <PlayList userId = {user?.id}/>
+      </div>
+      <div className="bg-black scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2 ml-3">Our library</h1>
         {songs.rows.length>0 ? (
           <div className="container p-4 w-100vh">
@@ -143,6 +160,7 @@ useEffect(()=>{
                       class_year={song.class_year}
                       onPlayButtonClick={handlePlayButtonClick}
                       onLikeButtonClick={handleLikeButtonClick}
+                      onPlayListClick={handleAddButtonClick}
                     />
                   </div>
                 );
@@ -152,7 +170,7 @@ useEffect(()=>{
         ) : (
           <div className="items-center justify-center place-self-center">
           <h1 className="text-rose-800 text-xl font-semibold">No found songs</h1>
-        </div>
+      </div>
         )}
         {search === '' && likedSongs.rows.length>0 ? (
       <div className=" bg-black scrollable-content">
@@ -172,6 +190,7 @@ useEffect(()=>{
                       class_year={song.class_year}
                       onPlayButtonClick={handlePlayButtonClick}
                       onLikeButtonClick={handleLikeButtonClick}
+                      onPlayListClick={handleAddButtonClick}
                     />
                   </div>
                 );
