@@ -44,7 +44,7 @@ useEffect(() => {
 
 useEffect(()=>{
   fetchLikedSongs();
-});
+}, [user?.id]);
 
 
   useEffect(() => {
