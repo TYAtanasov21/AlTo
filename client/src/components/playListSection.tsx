@@ -4,7 +4,7 @@ import axios from "axios";
 import PlayListComponent from "./playListComponent";
 
 interface Playlist {
-  userId: string;
+  userId: number | string;
 }
 
 const PlayList: React.FC<Playlist> = ({ userId }) => {
@@ -39,7 +39,6 @@ const PlayList: React.FC<Playlist> = ({ userId }) => {
       console.error("Error fetching playlists:", error);
     }
   };
-  console.log(playlists);
   return (
     <div className="p-3 h-full rounded-lg bg-neutral-900">
       <div className="flex flex-row justify-between">
@@ -75,6 +74,14 @@ const PlayList: React.FC<Playlist> = ({ userId }) => {
           </form>
         </div>
       )}
+      <div className = "flex flex-col">
+      <div className = "bg-neutral-500 p-6 justify-start ml-0 mr-auto rounded-md">
+      <PlayListComponent name = "playlist 1" userID = {userId}/>
+      </div> 
+      <PlayListComponent name = "component 2" userID = {userId}/>
+      <PlayListComponent name = "component 3" userID = {userId}/>
+      <PlayListComponent name = "component 4" userID = {userId}/>
+      </div>
     </div>
   );
 };
