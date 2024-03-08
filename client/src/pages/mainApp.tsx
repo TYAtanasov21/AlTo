@@ -119,7 +119,7 @@ useEffect(()=>{
     const response = await axios.post("http://localhost:5000/playlist/addSong", {song_id: 12, playlist_id: 1});
   };
   return (
-    <div className = "flex-1 h-screen overflow-hidden">
+    <div className = "flex-1 h-screen">
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
     <div className = "flex h-screen m-2">
       <div className = "flex-1">

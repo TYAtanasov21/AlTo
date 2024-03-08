@@ -57,11 +57,26 @@ router.post('/addSong', async (req,res) =>{
 
 });
 
+router.post('/getPlaylistNameByID', async (req, res) => {
+  const client = await pool.connect();
+  try {
+    const playlist_id = req.body.playlist_id
+    const result = await client.query("SELECT * FROM playlists WHERE user_id = $1", [user_id]);
+      const data = result.rows;
+      res.status(200).json({ success: true, message: 'Playlists retrieved', playlists: data });
+  } catch (error) {
+      console.error("Error retrieving playlists:", error);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+  } finally {
+      client.release();
+  }
+});
+
 router.post('/getPlaylists', async (req, res) => {
     const client = await pool.connect();
     try {
         const user_id = req.body.user_id;
-        const result = await client.query("SELECT playlist_id FROM playlists WHERE user_id = $1", [user_id]);
+        const result = await client.query("SELECT * FROM playlists WHERE user_id = $1", [user_id]);
         const data = result.rows;
         res.status(200).json({ success: true, message: 'Playlists retrieved', playlists: data });
     } catch (error) {
