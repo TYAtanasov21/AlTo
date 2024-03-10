@@ -3,16 +3,23 @@ import { GoPlus } from "react-icons/go";
 import axios from "axios";
 import PlayListComponent from "./playListComponent";
 import { Playlist, usePlaylistsState, PlaylistsState} from "./playlistState";
+import { FaTrashAlt } from "react-icons/fa";
 
 
 const PlayList: React.FC<Playlist> = ({user_id}) => {
   const [addPlaylist, setAddPlaylist] = useState<boolean>(false);
   const [playlistName, setPlaylistName] = useState<string>("");
   const {playlists, setPlaylists} :  PlaylistsState = usePlaylistsState();
+  const [removePlaylist, setRemovePlaylist] = useState<boolean>(false);
 
   const handleAddPlaylist = () => {
     setAddPlaylist(!addPlaylist);
+    console.log(removePlaylist);
   };
+  
+  const handleRemovePlaylist = () => {
+    setRemovePlaylist(!removePlaylist);
+  }
 
   const handlePlaylistNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlaylistName(event.target.value);
@@ -51,6 +58,11 @@ const PlayList: React.FC<Playlist> = ({user_id}) => {
     <div className="p-3 h-full rounded-lg bg-neutral-900">
       <div className="flex flex-row justify-between">
         <p className="text-xl text-white font-bold">Playlists</p>
+        <div className="text-white bold hover:text-zinc-600 transition:color border-zinc-700">
+          <button onClick={handleRemovePlaylist}>
+            <FaTrashAlt size="27" />
+          </button>
+        </div>
         <div className="text-white bold hover:text-zinc-600 transition:color border-zinc-700">
           <button onClick={handleAddPlaylist}>
             <GoPlus size="35" />

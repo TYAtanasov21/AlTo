@@ -18,7 +18,7 @@
 <h2>📃Documents</h2>
 <p align= "left">
 <ul>
-<li><a href = "https://codingburgas-my.sharepoint.com/:w:/r/personal/tyatanasov21_codingburgas_bg/Documents/%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F%E2%80%93%D0%9D%D0%9E%D0%98%D0%A2.docx?d=w406be594a43349508ae80868a8f9c7d3&csf=1&web=1&e=QIgaTb">Documentation</a></li>
+<li><a href = "https://codingburgas-my.sharepoint.com/:w:/g/personal/tyatanasov21_codingburgas_bg/EbuU6SmsDfVPj1YvGwDX0nUBkVd3BLrVEzfJHZEDUFqm0g?e=AUr3WR">Documentation</a></li>
 <li>
 <a href = "https://codingburgas-my.sharepoint.com/:p:/r/personal/tyatanasov21_codingburgas_bg/Documents/%D0%BF%D1%80%D0%B5%D0%B7%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F-%D0%9D%D0%9E%D0%98%D0%A2.pptx?d=we5237ca702ab4132b7c730e99878b117&csf=1&web=1&e=Z1V9f2">Presentation<a></li>
 </ul>
@@ -48,6 +48,7 @@ AlTo> npm start
     <a href = "https://git-scm.com/"><img src = "https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" alt = "Git logo" width = 48px></a>
     <a href="https://azure.microsoft.com/en-us"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1200px-Microsoft_Azure.svg.png" alt="Azure logo" width="50px" style = "margin-left: 5px"/></a>
     <a href="https://www.postgresql.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/640px-Postgresql_elephant.svg.png" alt="Postgre SQL logo" width="50px" style = "margin-left: 5px"/></a>
+    <a href="https://vercel.com/"><img src="https://static.wikia.nocookie.net/logopedia/images/a/a7/Vercel_favicon.svg/revision/latest?cb=20221026155821" alt="Vercel logo" width="50px" style = "margin-left: 5px"/></a>
     </p>
 <h3>Programming & markup languages & third party libraries & frameworks:</h3>
 <p align = "left">
@@ -60,11 +61,14 @@ AlTo> npm start
     <a href="https://tailwindcss.com/"><img src="https://adware-technologies.s3.amazonaws.com/uploads/technology/thumbnail/31/tailwind.png" alt="Tailwind logo" width="50px" style = "margin-left: 3px"/></a>
     <a href="https://www.postman.com/"><img src="https://static-00.iconduck.com/assets.00/postman-icon-497x512-beb7sy75.png" alt="Postman logo" width="50px" style = "margin-left: 3px"/></a>
     <a href="https://expressjs.com/"><img src="https://ajeetchaulagain.com/static/7cb4af597964b0911fe71cb2f8148d64/87351/express-js.png" alt="Express logo" width="50px" style = "margin-left: 3px"/></a>
+    <a href="https://ui.shadcn.com/"><img src="https://ui.shadcn.com/apple-touch-icon.png" alt="shad/cn logo" width="50px" style = "margin-left: 3px"/></a>
+    <a href="https://ui.aceternity.com/"><img src="https://pbs.twimg.com/profile_images/1748413098740920320/2RGyMp9c_400x400.png" alt="Aceternity logo" width="50px" style = "margin-left: 3px"/></a>
 
 </p>
 <h3>Softwares used for visual elements:</h3>
     <a href = "https://www.adobe.com/products/illustrator.html"><img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/1200px-Adobe_Illustrator_CC_icon.svg.png" alt = "Adobe Illustrator logo" width = 50px /></a>
     <a href = "https://www.figma.com/"><img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/1667px-Figma-logo.svg.png" alt = "Figma logo" width = 32px style = "margin-left: 5px"/></a>
+    <a href = "https://www.lucidchart.com/"><img src = "https://play-lh.googleusercontent.com/o4vT3StM8rw3Hn15GMtLjuTA6VUWt6jxDvV4d5ahKj9E9nGaLut06tM83NESuTBr-t0" alt = "Lucid logo" height = "50px" style = "margin-left: 5px"/></a>
 <h3>Used program for creating the presentation and documentation:</h3>
 <p align="left">
    <a href="https://www.microsoft.com/en-ww/microsoft-365/powerpoint"><img src="https://img.icons8.com/color/344/ms-powerpoint.png" alt="MS PowerPoint logo" width=48px /></a>

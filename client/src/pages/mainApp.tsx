@@ -11,6 +11,7 @@ import { useLocation } from "react-router-dom";
 import { User } from "../components/user";
 import PlayList from "../components/playListSection";
 import { Playlist, usePlaylistsState, PlaylistsState} from "../components/playlistState";
+import PlayListComponent from "../components/playListComponent";
 
 
 
@@ -218,7 +219,7 @@ useEffect(()=>{
         </div>
       </div>
     ) : null}
-      <div className=" bg-black scrollable-content">
+      {/* <div className=" bg-black scrollable-content">
         <h1 className="text-xl text-rose-500 font-bold pt-2 ml-2">Playlist name</h1>
         <div className="container p-4 w-100vh items-center">
           <div className="song-container-wrapper mb-10">
@@ -243,7 +244,7 @@ useEffect(()=>{
             })}
           </div>
         </div>
-      </div>
+      </div> */}
         </div>
       </div>
         <div className="fixed bottom-0 w-full">
