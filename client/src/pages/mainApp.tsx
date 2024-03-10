@@ -146,11 +146,8 @@ useEffect(()=>{
 
   const handleAddButtonClick = () => {
     if (filter !== 0) {
-      // Show the form for the GoPlus button
       setShowDropdown(true);
     } else {
-      // Toggle the showDropdown state
-
       setShowDropdown(!showDropdown);
     }
   };
@@ -162,7 +159,7 @@ useEffect(()=>{
       <div className = "basis-1/5">
         <PlayList user_id = {user?.id}/>
       </div>
-      <div className="bg-black scrollable-content">
+      <div className="scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2 ml-3">Our library</h1>
         {songs.rows.length>0 ? (
           <div className="container p-4 w-100vh">
@@ -221,6 +218,32 @@ useEffect(()=>{
         </div>
       </div>
     ) : null}
+      <div className=" bg-black scrollable-content">
+        <h1 className="text-xl text-rose-500 font-bold pt-2 ml-2">Playlist name</h1>
+        <div className="container p-4 w-100vh items-center">
+          <div className="song-container-wrapper mb-10">
+          { likedSongs.rows && likedSongs.rows.map((song, index) => {
+                return (
+                  <div className="song-container" key={index}>
+                    <SongContainer
+                      title={song.title}
+                      author={song.author}
+                      duration={song.duration}
+                      photo_url={song.photo_url}
+                      song_url={song.song_url}
+                      id = {song.id}
+                      playlistsProp={playlists}
+                      class_year={song.class_year}
+                      onPlayButtonClick={handlePlayButtonClick}
+                      onLikeButtonClick={handleLikeButtonClick}
+                      onPlayListClick={handleAddButtonClick}
+                    />
+                  </div>
+                );
+            })}
+          </div>
+        </div>
+      </div>
         </div>
       </div>
         <div className="fixed bottom-0 w-full">

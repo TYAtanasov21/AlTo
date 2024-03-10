@@ -117,7 +117,7 @@ const SongContainer: React.FC<SongContainerProps> = ({
     <Box isSongContainer>
       <div className="flex-auto">
         <div className="flex flex-col">
-          <img src={photo_url} alt={`${title} cover`} className="w-full h-40 object-cover rounded-md mb-2" />
+          <img src={photo_url} alt={`${title} cover`} className="w-full h-40 object-cover rounded-md mb-1" />
         </div>
         <div className="text-white text-left">
           <h3 className="text-lg font-semibold">{title}</h3>
@@ -145,8 +145,10 @@ const SongContainer: React.FC<SongContainerProps> = ({
           </div>
         </div>
       </div>
+      <div className="mt-2 ">
       <div className={`dropdown ${showDropdown ? 'visible' : 'hidden'}`}>
         {renderDropdown()}
+      </div>
       </div>
     </Box>
   );  
