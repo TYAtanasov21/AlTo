@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
 import { cn } from "../lib/utils";
-import Footer from "../components/footer";
 
 import "../css/register.css"
 
@@ -92,7 +91,7 @@ export default function Register() {
       <form className="my-8" onSubmit={handleSubmit}>
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
           <LabelInputContainer>
-            <Label htmlFor="lastname" className = "text-neutral-200">Username</Label>
+            <Label htmlFor="username" className = "text-neutral-200">Username</Label>
             <Input 
             id="username" 
             placeholder="Georgi_24" 
