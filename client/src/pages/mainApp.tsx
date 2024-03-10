@@ -21,7 +21,7 @@ export default function AppLayout() {
   const { search, setSearch }: SearchState = useSearchState()
   const {filter, setFilter} : FilterState = useFilterState(); 
   const [song, setSong] = useState<Song>();
-  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+  const [showDropdown, setShowDropdown] = useState<boolean>(true);
 
 useEffect(() => {
   const setUserAsync = async () => {
@@ -121,19 +121,14 @@ useEffect(()=>{
   };
 
   const handleAddButtonClick = () => {
-    setShowDropdown(!showDropdown);
-    if (showDropdown) {
-      return (
-        <div className="dropdown-container">
-          {/* Add dropdown content here */}
-          <button onClick={addSongToPlaylist}>Add to Playlist</button>
-          {/* Add more dropdown options as needed */}
-        </div>
-      );
+    if (filter !== 0) {
+      // Show the form for the GoPlus button
+      setShowDropdown(true);
+    } else {
+      // Toggle the showDropdown state
+      setShowDropdown(!showDropdown);
     }
-    return null;
   };
-
 
   return (
     <div>

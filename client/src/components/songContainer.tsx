@@ -78,16 +78,40 @@ const SongContainer: React.FC<SongContainerProps> = ({
   };
 
   const renderDropdown = () => {
-    if (showDropdown) {
-      return (
-        <div className="dropdown-container">
-          {/* Add dropdown content here */}
-          <button onClick={handlePlaylistClick}>Add to Playlist</button>
-          {/* Add more dropdown options as needed */}
-        </div>
-      );
-    }
-    return null;
+    return (
+      <form>
+            <label htmlFor="filter" className="text-white items-center">
+              <select
+                name="class"
+                id="filter"
+                className="text-center w-full ml-2 px-3 py-2 rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white appearance-none"
+                // value={filter}
+                // onChange={(event) => {
+                //   const inputValue = event.target.value;
+                //   setFilter(parseInt(inputValue));
+
+                //   if (parseInt(inputValue, 10) === 0) {
+                //     onFilterSubmit(0);
+                //   } else {
+                //     onFilterSubmit(parseInt(inputValue, 10));
+                //   }
+                // }}
+              >
+                <option value="0">Pick a playlist</option>
+                <option value="1">1 Клас</option>
+                <option value="2">2 Клас</option>
+                <option value="3">3 Клас</option>
+                <option value="4">4 Клас</option>
+                <option value="5">5 Клас</option>
+                <option value="6">6 Клас</option>
+                <option value="7">7 Клас</option>
+                <option value="8">8 Клас</option>
+                <option value="9">9 Клас</option>
+                <option value="10">10 Клас</option>                
+              </select>
+            </label>
+          </form>
+    );
   };
 
   return (
@@ -122,7 +146,9 @@ const SongContainer: React.FC<SongContainerProps> = ({
           </div>
         </div>
       </div>
-      {renderDropdown()}
+      <div className={`dropdown ${showDropdown ? 'visible' : 'hidden'}`}>
+        {renderDropdown()}
+      </div>
     </Box>
   );  
 };
