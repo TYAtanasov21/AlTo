@@ -2,17 +2,13 @@ import React, { useState, useEffect } from "react";
 import { GoPlus } from "react-icons/go";
 import axios from "axios";
 import PlayListComponent from "./playListComponent";
+import { Playlist, usePlaylistsState, PlaylistsState} from "./playlistState";
 
-interface Playlist {
-  userId: number | string;
-  playlistId?: number | string;
-  playlist_name?: string;
-}
 
-const PlayList: React.FC<Playlist> = ({userId}) => {
+const PlayList: React.FC<Playlist> = ({user_id}) => {
   const [addPlaylist, setAddPlaylist] = useState<boolean>(false);
   const [playlistName, setPlaylistName] = useState<string>("");
-  const [playlists, setPlaylists] = useState<Playlist[]>([]);
+  const {playlists, setPlaylists} :  PlaylistsState = usePlaylistsState();
 
   const handleAddPlaylist = () => {
     setAddPlaylist(!addPlaylist);
@@ -25,7 +21,7 @@ const PlayList: React.FC<Playlist> = ({userId}) => {
   const handleAddPlaylistSubmit = async () => {
     try {
       await axios.post("http://localhost:5000/playlist/createPlaylist", {
-        user_id: userId,
+        user_id: user_id,
         playlist_name: playlistName,
       });
 
@@ -36,9 +32,13 @@ const PlayList: React.FC<Playlist> = ({userId}) => {
     }
   };
 
+  useEffect(()=>{
+    getPlaylists();
+  }, [user_id]);
+
   const getPlaylists = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/playlist/getPlaylists", { user_id: userId });
+      const response = await axios.post("http://localhost:5000/playlist/getPlaylists", { user_id: user_id });
       const playlistsData: Playlist[] = response.data.playlists || [];
       setPlaylists(playlistsData);
     } catch (error) {
@@ -46,9 +46,6 @@ const PlayList: React.FC<Playlist> = ({userId}) => {
     }
   };
 
-  useEffect(() => {
-    getPlaylists();
-  });
 
   return (
     <div className="p-3 h-full rounded-lg bg-neutral-900">

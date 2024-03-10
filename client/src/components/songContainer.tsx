@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "./box";
 import { Song } from "./songState";
 import { IoHeartOutline } from "react-icons/io5";
 import { IoHeart } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
+import { Playlist, usePlaylistsState, PlaylistsState} from "./playlistState";
+import axios from "axios";
 
 interface SongContainerProps {
   title: string;
@@ -13,6 +15,7 @@ interface SongContainerProps {
   song_url: string;
   class_year: number;
   id: number;
+  playlistsProp: Playlist[],
   onPlayButtonClick: (song: Song) => void;
   onLikeButtonClick: (song: Song) => void;
   onPlayListClick: (song: Song) => void;
@@ -26,6 +29,7 @@ const SongContainer: React.FC<SongContainerProps> = ({
   song_url,
   class_year,
   id,
+  playlistsProp,
   onPlayButtonClick,
   onLikeButtonClick,
   onPlayListClick
@@ -44,6 +48,7 @@ const SongContainer: React.FC<SongContainerProps> = ({
     };
     onPlayButtonClick(song);
   };
+
 
   const handleLikeButtonClick = () => {
     const song: Song = {
@@ -68,7 +73,7 @@ const SongContainer: React.FC<SongContainerProps> = ({
       class_year,
       id,
     };
-    onPlayListClick(song);
+    onPlayListClick(song); 
   };
 
   const formatTime = (time: number) => {
@@ -76,43 +81,37 @@ const SongContainer: React.FC<SongContainerProps> = ({
     const seconds = Math.floor(time % 60);
     return `${String(minutes).padStart(2, '0')} : ${String(seconds).padStart(2, '0')}`;
   };
+  
+  const addSongToPlaylist = async (song_id, playlist_id) =>{
+    const response = await axios.post("http://localhost:5000/playlist/addSong", {song_id:  song_id , playlist_id: playlist_id});
+  };
+
 
   const renderDropdown = () => {
     return (
-      <form>
-            <label htmlFor="filter" className="text-white items-center">
-              <select
-                name="class"
-                id="filter"
-                className="text-center w-full ml-2 px-3 py-2 rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white appearance-none"
-                // value={filter}
-                // onChange={(event) => {
-                //   const inputValue = event.target.value;
-                //   setFilter(parseInt(inputValue));
-
-                //   if (parseInt(inputValue, 10) === 0) {
-                //     onFilterSubmit(0);
-                //   } else {
-                //     onFilterSubmit(parseInt(inputValue, 10));
-                //   }
-                // }}
-              >
-                <option value="0">Pick a playlist</option>
-                <option value="1">1 Клас</option>
-                <option value="2">2 Клас</option>
-                <option value="3">3 Клас</option>
-                <option value="4">4 Клас</option>
-                <option value="5">5 Клас</option>
-                <option value="6">6 Клас</option>
-                <option value="7">7 Клас</option>
-                <option value="8">8 Клас</option>
-                <option value="9">9 Клас</option>
-                <option value="10">10 Клас</option>                
-              </select>
-            </label>
-          </form>
-    );
-  };
+            <form>
+              <label htmlFor="filter" className="text-white items-center">
+                <select
+                  name="class"
+                  id="playlistSelection"
+                  className="text-center w-full ml-2 px-3 py-2 rounded-md focus:outline-none focus:border-neutral-600 bg-neutral-800 text-white appearance-none"
+                  onChange={(event) => {
+                    const selectedplaylist_id = parseInt(event.target.value);
+                    console.log(playlistsProp[0].playlist_id); 
+                    addSongToPlaylist(id, selectedplaylist_id); 
+                  }}
+                >
+                  <option value="0">Pick a playlist</option>
+                  {playlistsProp.map((playlist) => (
+                    <option key={playlist.playlist_id} value={playlist.playlist_id}>
+                      {playlist.playlist_name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </form>
+              );
+            };
 
   return (
     <Box isSongContainer>

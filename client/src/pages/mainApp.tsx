@@ -10,6 +10,7 @@ import { FilterState, useFilterState } from "../components/filterState";
 import { useLocation } from "react-router-dom";
 import { User } from "../components/user";
 import PlayList from "../components/playListSection";
+import { Playlist, usePlaylistsState, PlaylistsState} from "../components/playlistState";
 
 
 
@@ -22,6 +23,9 @@ export default function AppLayout() {
   const {filter, setFilter} : FilterState = useFilterState(); 
   const [song, setSong] = useState<Song>();
   const [showDropdown, setShowDropdown] = useState<boolean>(true);
+  const {playlists, setPlaylists} : PlaylistsState = usePlaylistsState();
+
+
 
 useEffect(() => {
   const setUserAsync = async () => {
@@ -40,11 +44,26 @@ useEffect(() => {
 
 
 
+
   setUserAsync();
 }, []);
 
+
+
+const getPlaylists = async () => {
+  try {
+    const response = await axios.post("http://localhost:5000/playlist/getPlaylists", { user_id: user.id });
+    const playlistsData: Playlist[] = response.data.playlists || [];
+    setPlaylists(playlistsData);
+  } catch (error) {
+    console.error("Error fetching playlists:", error);
+  }
+};
+
+
 useEffect(()=>{
   fetchLikedSongs();
+  getPlaylists();
 }, [user?.id]);
 
 
@@ -116,8 +135,13 @@ useEffect(()=>{
   };
 
 
-  const addSongToPlaylist = async () =>{
-    const response = await axios.post("http://localhost:5000/playlist/addSong", {song_id: 12, playlist_id: 1});
+  useEffect(()=>{
+    console.log(playlists);
+  });
+
+
+  const addSongToPlaylist = async (song_id, playlist_id) =>{
+    const response = await axios.post("http://localhost:5000/playlist/addSong", {song_id:  song_id , playlist_id: playlist_id});
   };
 
   const handleAddButtonClick = () => {
@@ -126,6 +150,7 @@ useEffect(()=>{
       setShowDropdown(true);
     } else {
       // Toggle the showDropdown state
+
       setShowDropdown(!showDropdown);
     }
   };
@@ -135,7 +160,7 @@ useEffect(()=>{
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
     <div className = "flex flex-row h-screen m-2">
       <div className = "basis-1/5">
-        <PlayList userId = {user?.id}/>
+        <PlayList user_id = {user?.id}/>
       </div>
       <div className="bg-black scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2 ml-3">Our library</h1>
@@ -153,6 +178,7 @@ useEffect(()=>{
                       song_url={song.song_url}
                       id = {song.id}
                       class_year={song.class_year}
+                      playlistsProp={playlists}
                       onPlayButtonClick={handlePlayButtonClick}
                       onLikeButtonClick={handleLikeButtonClick}
                       onPlayListClick={handleAddButtonClick}
@@ -182,6 +208,7 @@ useEffect(()=>{
                       photo_url={song.photo_url}
                       song_url={song.song_url}
                       id = {song.id}
+                      playlistsProp={playlists}
                       class_year={song.class_year}
                       onPlayButtonClick={handlePlayButtonClick}
                       onLikeButtonClick={handleLikeButtonClick}
