@@ -142,8 +142,8 @@ useEffect(()=>{
     const response = await axios.post("https://alto-server.vercel.app/playlist/addSong", {song_id:  song_id , playlist_id: playlist_id});
   };
 
-  const handleAddButtonClick = () => {
-    getPlaylists();
+  const handleAddButtonClick = async (song: Song) => {
+    await getPlaylists();
     if (filter !== 0) {
       setShowDropdown(true);
     } else {

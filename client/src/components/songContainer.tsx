@@ -131,7 +131,7 @@ const SongContainer: React.FC<SongContainerProps> = ({
               Play
             </button>
             <button
-              onClick={() => setShowDropdown(!showDropdown)}
+              onClick={() => {handlePlaylistClick(); setShowDropdown(!showDropdown);}}
               className="mt-2 text-white px-3 py-1 hover:text-neutral-700 transition:color"
             >
               <GoPlus size='30' />
