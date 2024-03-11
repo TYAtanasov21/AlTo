@@ -17,8 +17,7 @@ const PlayListComponent: React.FC<PlayListComponent> = ({
     onPlaylistDelete,
     removePlaylist
 }) => {
-    const [toggleDeletePlaylist, setToggleDeletePlaylist] = useState<boolean>(removePlaylist);
-    
+   
     useEffect(()=>{
         console.log(removePlaylist);
     });
@@ -28,7 +27,7 @@ const PlayListComponent: React.FC<PlayListComponent> = ({
         <div className= "flex flex-row text-white bg-neutral-700 p-2 m-1 ml-0 mr-auto rounded-md w-full justify-between">
             <h1 className = "text-lg font-bold">{name}</h1>
             <div className = "hover:text-zinc-800 transition:color border-zinc-800">
-            {!toggleDeletePlaylist ? (
+            {!removePlaylist ? (
             <button onClick={()=>{onPlaylistPlay(playlist_id)}}><FaPlay size = "28"/></button>
             ) : (
             <button onClick={()=>{onPlaylistDelete(playlist_id)}}><FaTrashAlt size = "28"/></button>
