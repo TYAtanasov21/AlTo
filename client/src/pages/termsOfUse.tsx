@@ -5,8 +5,8 @@ function TermsOfUse() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-neutral-600 to-zinc-700 text-white">
-      <div className="max-w-2xl mx-auto p-6 bg-zinc-300 rounded-md shadow-md text-neutral-900 mb-8">
+    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-neutral-800 to-zinc-900 text-white">
+      <div className="max-w-2xl mx-auto p-6 bg-neutral-900 rounded-md shadow-md text-neutral-300 mb-8">
         <h2 className="text-3xl font-semibold mb-4">Terms of Use</h2>
         <p className="mb-4">
         Welcome to AlTo Music. By using this website, you agree to comply with and be bound by the following terms and conditions of use.
@@ -39,7 +39,7 @@ function TermsOfUse() {
             navigate('/');
           }}
           type="button"
-          className="bg-neutral-800 hover:bg-neutral-700 text-white font-bold py-2 px-3 rounded mb-3 mt-2 transition-colors"
+          className="bg-neutral-700 hover:bg-neutral-600 text-white font-bold py-2 px-3 rounded mb-3 mt-2 transition-colors"
         >
           Back
         </button>
