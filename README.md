@@ -63,6 +63,8 @@ AlTo> npm start
     <a href="https://expressjs.com/"><img src="https://ajeetchaulagain.com/static/7cb4af597964b0911fe71cb2f8148d64/87351/express-js.png" alt="Express logo" width="50px" style = "margin-left: 3px"/></a>
     <a href="https://ui.shadcn.com/"><img src="https://ui.shadcn.com/apple-touch-icon.png" alt="shad/cn logo" width="50px" style = "margin-left: 3px"/></a>
     <a href="https://ui.aceternity.com/"><img src="https://pbs.twimg.com/profile_images/1748413098740920320/2RGyMp9c_400x400.png" alt="Aceternity logo" width="50px" style = "margin-left: 3px"/></a>
+    <a href="https://webpack.js.org/"><img src="https://cdn.icon-icons.com/icons2/2415/PNG/512/webpack_plain_logo_icon_146297.png" alt="Aceternity logo" width="50px" style = "margin-left: 3px"/></a>
+
 
 </p>
 <h3>Softwares used for visual elements:</h3>
