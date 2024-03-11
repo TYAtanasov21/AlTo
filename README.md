@@ -18,9 +18,9 @@
 <h2>📃Documents</h2>
 <p align= "left">
 <ul>
-<li><a href = "https://codingburgas-my.sharepoint.com/:w:/g/personal/tyatanasov21_codingburgas_bg/EbuU6SmsDfVPj1YvGwDX0nUBkVd3BLrVEzfJHZEDUFqm0g?e=AUr3WR">Documentation</a></li>
+<li><a href = "https://codingburgas-my.sharepoint.com/:w:/g/personal/tyatanasov21_codingburgas_bg/EbuU6SmsDfVPj1YvGwDX0nUBkVd3BLrVEzfJHZEDUFqm0g?e=EZENp1">Documentation</a></li>
 <li>
-<a href = "https://codingburgas-my.sharepoint.com/:p:/r/personal/tyatanasov21_codingburgas_bg/Documents/%D0%BF%D1%80%D0%B5%D0%B7%D0%B5%D0%BD%D1%82%D0%B0%D1%86%D0%B8%D1%8F-%D0%9D%D0%9E%D0%98%D0%A2.pptx?d=we5237ca702ab4132b7c730e99878b117&csf=1&web=1&e=Z1V9f2">Presentation<a></li>
+<a href = "https://codingburgas-my.sharepoint.com/:p:/g/personal/tyatanasov21_codingburgas_bg/EcAbvNpJpTtKpYkF874TR2IBIIIDI8GDG62MyqzknG4CXw?e=qjfety">Presentation<a></li>
 </ul>
 </p>
 
