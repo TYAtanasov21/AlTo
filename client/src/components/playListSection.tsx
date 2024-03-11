@@ -5,8 +5,13 @@ import PlayListComponent from "./playListComponent";
 import { Playlist, usePlaylistsState, PlaylistsState} from "./playlistState";
 import { FaTrashAlt } from "react-icons/fa";
 
+interface playlistProps {
+  user_id: number | string;
+  onPlaylistPlay: (playlist_id: number) => void;
+};
 
-const PlayList: React.FC<Playlist> = ({user_id}) => {
+
+const PlayList: React.FC<playlistProps> = ({user_id, onPlaylistPlay}) => {
   const [addPlaylist, setAddPlaylist] = useState<boolean>(false);
   const [playlistName, setPlaylistName] = useState<string>("");
   const {playlists, setPlaylists} :  PlaylistsState = usePlaylistsState();
@@ -96,7 +101,7 @@ const PlayList: React.FC<Playlist> = ({user_id}) => {
       )}
       <div>
         {playlists.map((playlist) => (
-            <PlayListComponent name={playlist.playlist_name}/>
+            <PlayListComponent name={playlist.playlist_name} onPlaylistPlay={onPlaylistPlay} playlist_id={playlist.playlist_id as number}/>
         ))}
         </div>
     </div>

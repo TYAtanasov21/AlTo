@@ -136,10 +136,6 @@ useEffect(()=>{
   };
 
 
-  useEffect(()=>{
-    console.log(playlists);
-  });
-
 
   const addSongToPlaylist = async (song_id, playlist_id) =>{
     const response = await axios.post("http://localhost:5000/playlist/addSong", {song_id:  song_id , playlist_id: playlist_id});
@@ -153,12 +149,22 @@ useEffect(()=>{
     }
   };
 
+  const [currPlaylist, setCurrPlaylist] = useState<Playlist>();
+
+  const onPlaylistPlay = async (playlist_id: number) => {
+    if(playlist_id){
+      const response = await axios.post("http://localhost:5000/playlist/getPlaylistByID", {playlist_id: playlist_id})
+      setCurrPlaylist(response.data);
+      console.log(currPlaylist);
+    }
+  }
+
   return (
     <div>
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
     <div className = "flex flex-row h-screen m-2">
       <div className = "basis-1/5">
-        <PlayList user_id = {user?.id}/>
+        <PlayList user_id = {user?.id} onPlaylistPlay = {onPlaylistPlay}/>
       </div>
       <div className="scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2 ml-3">Our library</h1>
@@ -219,6 +225,39 @@ useEffect(()=>{
         </div>
       </div>
     ) : null}
+
+        {(currPlaylist !== undefined) ? (
+          
+          <div className=" bg-black scrollable-content">
+          <h1 className="text-xl text-white font-bold pt-2 ml-2">Liked Songs</h1>
+          <div className="container p-4 w-100vh items-center">
+            <div className="song-container-wrapper">
+            { likedSongs.rows && likedSongs.rows.map((song, index) => {
+                  return (
+                    <div className="song-container" key={index}>
+                      <SongContainer
+                        title={song.title}
+                        author={song.author}
+                        duration={song.duration}
+                        photo_url={song.photo_url}
+                        song_url={song.song_url}
+                        id = {song.id}
+                        playlistsProp={playlists}
+                        class_year={song.class_year}
+                        onPlayButtonClick={handlePlayButtonClick}
+                        onLikeButtonClick={handleLikeButtonClick}
+                        onPlayListClick={handleAddButtonClick}
+                      />
+                    </div>
+                  );
+              })}
+            </div>
+          </div>
+        </div>
+
+        ) : (null)
+        } 
+
       {/* <div className=" bg-black scrollable-content">
         <h1 className="text-xl text-rose-500 font-bold pt-2 ml-2">Playlist name</h1>
         <div className="container p-4 w-100vh items-center">
