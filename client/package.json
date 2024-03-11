@@ -23,9 +23,7 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
-    "start": "webpack serve --mode development",
-    "build": "webpack --mode production"
-
+    "start": "react-scripts start"
   },
   "keywords": [],
   "author": "",
