@@ -11,7 +11,7 @@
 <h2>📷Screenshots</h2>
 <p align = "center">
 <img src = "./client/src/assets/screen-shot-landingpage.png" alt = "Screen shot 1"></img>
-<img src = "./client/src/assets/sign-In.png" alt = "Screen shot 2"></img>
+<img src = "./client/src/assets/register.png" alt = "Screen shot 2"></img>
 <img src = "./client/src/assets/main-page.png" alt = "Screen shot 1"></img>
 </p>
 <hr>
