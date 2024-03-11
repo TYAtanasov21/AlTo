@@ -8,10 +8,12 @@ import { FaTrashAlt } from "react-icons/fa";
 interface playlistProps {
   user_id: number | string;
   onPlaylistPlay: (playlist_id: number) => void;
+  onPlaylistDelete: (playlist_id: number) => void;
+
 };
 
 
-const PlayList: React.FC<playlistProps> = ({user_id, onPlaylistPlay}) => {
+const PlayList: React.FC<playlistProps> = ({user_id, onPlaylistPlay, onPlaylistDelete}) => {
   const [addPlaylist, setAddPlaylist] = useState<boolean>(false);
   const [playlistName, setPlaylistName] = useState<string>("");
   const {playlists, setPlaylists} :  PlaylistsState = usePlaylistsState();
@@ -101,7 +103,13 @@ const PlayList: React.FC<playlistProps> = ({user_id, onPlaylistPlay}) => {
       )}
       <div>
         {playlists.map((playlist) => (
-            <PlayListComponent name={playlist.playlist_name} onPlaylistPlay={onPlaylistPlay} playlist_id={playlist.playlist_id as number}/>
+            <PlayListComponent 
+            name={playlist.playlist_name} 
+            onPlaylistPlay={onPlaylistPlay}
+            playlist_id={playlist.playlist_id as number}
+            onPlaylistDelete={onPlaylistDelete}
+            removePlaylist={removePlaylist}
+            />
         ))}
         </div>
     </div>

@@ -169,13 +169,24 @@ useEffect(()=>{
     }
   };
 
+  const onPlaylistDelete = async (playlist_id: number) => {
+    try
+    {
+      await axios.post("http://localhost:5000/playlist/deletePlaylist", {playlist_id: playlist_id});
+      console.log("Deleted");
+    } 
+    catch (error) {
+      console.log("Error while deleting playlist: ", error);
+    }
+  };
+
 
   return (
     <div>
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
     <div className = "flex flex-row h-screen m-2">
       <div className = "basis-1/5">
-        <PlayList user_id = {user?.id} onPlaylistPlay = {onPlaylistPlay}/>
+        <PlayList user_id = {user?.id} onPlaylistPlay = {onPlaylistPlay} onPlaylistDelete={onPlaylistDelete}/>
       </div>
       <div className="scrollable-content">
         <h1 className="text-xl text-white font-bold pt-2 ml-3">Our library</h1>

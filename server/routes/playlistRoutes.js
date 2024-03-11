@@ -105,14 +105,14 @@ router.post('/getSongsFromPlaylist', async (req, res)=>{
   }
 });
 
-router.delete('/deletePlaylist', async (req, res)=>{
+router.post('/deletePlaylist', async (req, res)=>{
 
   const client = await pool.connect();
   console.log("Connected to the pg database");
   try {
     const query1 =  "DELETE FROM playlist_songs WHERE playlist_songs.playlist_id = $1;";
     const query2 = "DELETE FROM playlists WHERE playlist_id = $1;"
-    const request = req.query;
+    const request = req.body;
     await client.query(query1, [request.playlist_id]);
     await client.query(query2, [request.playlist_id]);
 
