@@ -99,6 +99,7 @@ const SongContainer: React.FC<SongContainerProps> = ({
                     const selectedplaylist_id = parseInt(event.target.value);
                     console.log(playlistsProp[0].playlist_id); 
                     addSongToPlaylist(id, selectedplaylist_id); 
+                    handlePlaylistClick();
                   }}
                 >
                   <option value="0">Pick a playlist</option>

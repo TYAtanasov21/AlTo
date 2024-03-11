@@ -211,7 +211,7 @@ useEffect(()=>{
                   </div>
                 ))
               ) : (
-                <p className="text-white">There are no songs in this playlist.</p>
+                <p className="text-rose-800 text-xl font-semibold">There are no songs in this playlist.</p>
               )}
             </div>
           </div>
