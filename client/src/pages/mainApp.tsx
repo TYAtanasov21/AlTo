@@ -143,6 +143,7 @@ useEffect(()=>{
   };
 
   const handleAddButtonClick = () => {
+    getPlaylists();
     if (filter !== 0) {
       setShowDropdown(true);
     } else {
