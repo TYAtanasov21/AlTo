@@ -105,4 +105,32 @@ router.post('/getSongsFromPlaylist', async (req, res)=>{
   }
 });
 
+router.delete('/deletePlaylist', async (req, res)=>{
+
+  const client = await pool.connect();
+  console.log("Connected to the pg database");
+  try {
+    const query1 =  "DELETE FROM playlist_songs WHERE playlist_songs.playlist_id = $1;";
+    const query2 = "DELETE FROM playlists WHERE playlist_id = $1;"
+    const request = req.query;
+    await client.query(query1, [request.playlist_id]);
+    await client.query(query2, [request.playlist_id]);
+
+    console.log(`Playlist with id ${request.playlist_id} has been deleted`);
+    res.status(200).json({message: "Playlist deleted successfully"});
+  }
+   catch (error) {
+  console.error("Error deleting playlist:", error);
+  res.status(500).send("Internal Server Error");
+  } finally {
+    client.release();
+  }
+});
+
 export default router;
+
+
+//DELETE FROM playlist_songs 
+//WHERE playlist_songs.playlist_id = 1;
+//DELETE FROM playlists
+//WHERE playlist_id = 24;
