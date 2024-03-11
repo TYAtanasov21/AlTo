@@ -150,14 +150,25 @@ useEffect(()=>{
   };
 
   const [currPlaylist, setCurrPlaylist] = useState<Playlist>();
-
+  const [currPlaylistSongs, setCurrPlaylistSongs] = useState<{ rows: Song[] }>({ rows: [] });
   const onPlaylistPlay = async (playlist_id: number) => {
-    if(playlist_id){
-      const response = await axios.post("http://localhost:5000/playlist/getPlaylistByID", {playlist_id: playlist_id})
-      setCurrPlaylist(response.data);
-      console.log(currPlaylist);
+    try {
+      if (playlist_id) {
+        // Fetch playlist
+        const playlistResponse = await axios.post("http://localhost:5000/playlist/getPlaylistByID", { playlist_id: playlist_id });
+        setCurrPlaylist(playlistResponse.data.playlist);
+        console.log(currPlaylist);
+  
+        // Fetch songs
+        const songsResponse = await axios.post("http://localhost:5000/playlist/getSongsFromPlaylist", { playlist_id: playlist_id });
+        setCurrPlaylistSongs({ rows: songsResponse.data.songs });
+        console.log(currPlaylistSongs.rows);
+      }
+    } catch (error) {
+      console.error("Error fetching playlist or songs:", error);
     }
-  }
+  };
+
 
   return (
     <div>
@@ -229,10 +240,10 @@ useEffect(()=>{
         {(currPlaylist !== undefined) ? (
           
           <div className=" bg-black scrollable-content">
-          <h1 className="text-xl text-white font-bold pt-2 ml-2">Liked Songs</h1>
+          <h1 className="text-xl text-white font-bold pt-2 ml-2">{currPlaylist.playlist_name}</h1>
           <div className="container p-4 w-100vh items-center">
             <div className="song-container-wrapper">
-            { likedSongs.rows && likedSongs.rows.map((song, index) => {
+            { currPlaylistSongs.rows && currPlaylistSongs.rows.map((song, index) => {
                   return (
                     <div className="song-container" key={index}>
                       <SongContainer

@@ -93,9 +93,9 @@ router.post('/getSongsFromPlaylist', async (req, res)=>{
   console.log("Connected to the pg database");
   try {
     const query = "SELECT * FROM songs INNER JOIN playlist_songs ON songs.id = playlist_songs.song_id WHERE playlist_songs.playlist_id = $1;";
-    const request = req.query;
+    const request = req.body;
     const response = await client.query(query, [request.playlist_id]);
-    console.log("Song retrieved from database");
+    console.log("Songs retrieved from database");
     res.status(200).json({message: "Songs retrieved successfully", songs: response.rows});
   } catch (error) {
     console.error("Error retrieving songs from database:", error);
