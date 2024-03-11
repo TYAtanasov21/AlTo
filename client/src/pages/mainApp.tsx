@@ -65,6 +65,7 @@ const getPlaylists = async () => {
 useEffect(()=>{
   fetchLikedSongs();
   getPlaylists();
+  
 }, [user?.id]);
 
 
@@ -149,6 +150,8 @@ useEffect(()=>{
     }
   };
 
+
+
   const [currPlaylist, setCurrPlaylist] = useState<Playlist>();
   const [currPlaylistSongs, setCurrPlaylistSongs] = useState<{ rows: Song[] }>({ rows: [] });
   const onPlaylistPlay = async (playlist_id: number) => {
@@ -169,26 +172,50 @@ useEffect(()=>{
     }
   };
 
-  const onPlaylistDelete = async (playlist_id: number) => {
-    try
-    {
-      await axios.post("http://localhost:5000/playlist/deletePlaylist", {playlist_id: playlist_id});
-      console.log("Deleted");
-    } 
-    catch (error) {
-      console.log("Error while deleting playlist: ", error);
-    }
+  const onPlaylistsChange = async () =>{
+    await getPlaylists();
   };
-
 
   return (
     <div>
       <TopBar children onSearchSubmit={handleSearchSubmit} onFilterSubmit={handleFilterSubmit}/>
     <div className = "flex flex-row h-screen m-2">
       <div className = "basis-1/5">
-        <PlayList user_id = {user?.id} onPlaylistPlay = {onPlaylistPlay} onPlaylistDelete={onPlaylistDelete}/>
+        <PlayList user_id = {user?.id} onPlaylistPlay = {onPlaylistPlay} onPlaylistsChange = {onPlaylistsChange}/>
       </div>
+      
       <div className="scrollable-content">
+      {(currPlaylist !== undefined) ? (
+          
+          <div className=" bg-black scrollable-content">
+          <h1 className="text-xl text-white font-bold pt-2 ml-2">{currPlaylist.playlist_name}</h1>
+          <div className="container p-4 w-100vh items-center">
+            <div className="song-container-wrapper">
+            { currPlaylistSongs.rows && currPlaylistSongs.rows.map((song, index) => {
+                  return (
+                    <div className="song-container" key={index}>
+                      <SongContainer
+                        title={song.title}
+                        author={song.author}
+                        duration={song.duration}
+                        photo_url={song.photo_url}
+                        song_url={song.song_url}
+                        id = {song.id}
+                        playlistsProp={playlists}
+                        class_year={song.class_year}
+                        onPlayButtonClick={handlePlayButtonClick}
+                        onLikeButtonClick={handleLikeButtonClick}
+                        onPlayListClick={handleAddButtonClick}
+                      />
+                    </div>
+                  );
+              })}
+            </div>
+          </div>
+        </div>
+
+        ) : (null)
+        } 
         <h1 className="text-xl text-white font-bold pt-2 ml-3">Our library</h1>
         {songs.rows.length>0 ? (
           <div className="container p-4 w-100vh">
@@ -248,37 +275,6 @@ useEffect(()=>{
       </div>
     ) : null}
 
-        {(currPlaylist !== undefined) ? (
-          
-          <div className=" bg-black scrollable-content">
-          <h1 className="text-xl text-white font-bold pt-2 ml-2">{currPlaylist.playlist_name}</h1>
-          <div className="container p-4 w-100vh items-center">
-            <div className="song-container-wrapper">
-            { currPlaylistSongs.rows && currPlaylistSongs.rows.map((song, index) => {
-                  return (
-                    <div className="song-container" key={index}>
-                      <SongContainer
-                        title={song.title}
-                        author={song.author}
-                        duration={song.duration}
-                        photo_url={song.photo_url}
-                        song_url={song.song_url}
-                        id = {song.id}
-                        playlistsProp={playlists}
-                        class_year={song.class_year}
-                        onPlayButtonClick={handlePlayButtonClick}
-                        onLikeButtonClick={handleLikeButtonClick}
-                        onPlayListClick={handleAddButtonClick}
-                      />
-                    </div>
-                  );
-              })}
-            </div>
-          </div>
-        </div>
-
-        ) : (null)
-        } 
 
       {/* <div className=" bg-black scrollable-content">
         <h1 className="text-xl text-rose-500 font-bold pt-2 ml-2">Playlist name</h1>

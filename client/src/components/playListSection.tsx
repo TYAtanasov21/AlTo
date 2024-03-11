@@ -8,25 +8,27 @@ import { FaTrashAlt } from "react-icons/fa";
 interface playlistProps {
   user_id: number | string;
   onPlaylistPlay: (playlist_id: number) => void;
-  onPlaylistDelete: (playlist_id: number) => void;
+  onPlaylistsChange: () => void;
 
 };
 
 
-const PlayList: React.FC<playlistProps> = ({user_id, onPlaylistPlay, onPlaylistDelete}) => {
+const PlayList: React.FC<playlistProps> = ({user_id, onPlaylistPlay, onPlaylistsChange}) => {
   const [addPlaylist, setAddPlaylist] = useState<boolean>(false);
   const [playlistName, setPlaylistName] = useState<string>("");
   const {playlists, setPlaylists} :  PlaylistsState = usePlaylistsState();
   const [removePlaylist, setRemovePlaylist] = useState<boolean>(false);
-
+  const [remove, setRemove] = useState<boolean>(false);
   const handleAddPlaylist = () => {
     setAddPlaylist(!addPlaylist);
+    onPlaylistsChange();
     console.log(removePlaylist);
   };
   
   const handleRemovePlaylist = () => {
     setRemovePlaylist(!removePlaylist);
   }
+
 
   const handlePlaylistNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPlaylistName(event.target.value);
@@ -38,7 +40,7 @@ const PlayList: React.FC<playlistProps> = ({user_id, onPlaylistPlay, onPlaylistD
         user_id: user_id,
         playlist_name: playlistName,
       });
-
+      setRemovePlaylist(false);
       setAddPlaylist(false);
       await getPlaylists();
     } catch (error) {
@@ -49,6 +51,18 @@ const PlayList: React.FC<playlistProps> = ({user_id, onPlaylistPlay, onPlaylistD
   useEffect(()=>{
     getPlaylists();
   }, [user_id]);
+
+  const onPlaylistDelete = async (playlist_id: number) => {
+    try {
+      await axios.post("http://localhost:5000/playlist/deletePlaylist", {
+        playlist_id: playlist_id,
+      });
+  
+      await getPlaylists();
+    } catch (error) {
+      console.error("Error deleting playlist:", error);
+    }
+  };
 
   const getPlaylists = async () => {
     try {
@@ -107,8 +121,9 @@ const PlayList: React.FC<playlistProps> = ({user_id, onPlaylistPlay, onPlaylistD
             name={playlist.playlist_name} 
             onPlaylistPlay={onPlaylistPlay}
             playlist_id={playlist.playlist_id as number}
-            onPlaylistDelete={onPlaylistDelete}
             removePlaylist={removePlaylist}
+            onPlaylistDelete={onPlaylistDelete}
+            onPlaylistsChange = {onPlaylistsChange}
             />
         ))}
         </div>
