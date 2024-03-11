@@ -8,7 +8,7 @@ interface PlayListComponent{
     name: string;
     onPlaylistPlay : (playlist_id: number) => void;
     onPlaylistDelete : (playlist_id: number) => void;
-    onPlaylistsChange : () => void;
+    onPlaylistsChange : (playlist_id: number) => void;
     removePlaylist : boolean;
 };
 
@@ -26,12 +26,12 @@ const PlayListComponent: React.FC<PlayListComponent> = ({
     });
 
     const deletePlaylist = (playlist_id: number) =>{
-        onPlaylistsChange();
+        onPlaylistsChange(playlist_id);
         onPlaylistDelete(playlist_id);
     }
 
     const playPlaylist = (playlist_id: number) =>{
-        onPlaylistsChange();
+        onPlaylistsChange(playlist_id);
         onPlaylistPlay(playlist_id);
     }
 

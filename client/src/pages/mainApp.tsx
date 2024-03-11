@@ -173,8 +173,9 @@ useEffect(()=>{
     }
   };
 
-  const onPlaylistsChange = async () =>{
+  const onPlaylistsChange = async (playlist_id: number) =>{
     await getPlaylists();
+    onPlaylistPlay(playlist_id);
   };
 
   return (

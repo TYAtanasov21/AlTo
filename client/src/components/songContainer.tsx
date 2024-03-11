@@ -6,6 +6,7 @@ import { IoHeart } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
 import { Playlist, usePlaylistsState, PlaylistsState} from "./playlistState";
 import axios from "axios";
+import { MdOutlinePlaylistPlay } from "react-icons/md";
 
 interface SongContainerProps {
   title: string;
