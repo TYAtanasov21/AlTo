@@ -36,7 +36,7 @@ const PlayList: React.FC<playlistProps> = ({user_id, onPlaylistPlay, onPlaylists
 
   const handleAddPlaylistSubmit = async () => {
     try {
-      await axios.post("http://localhost:5000/playlist/createPlaylist", {
+      await axios.post("https://alto-server.vercel.app/playlist/createPlaylist", {
         user_id: user_id,
         playlist_name: playlistName,
       });
@@ -54,7 +54,7 @@ const PlayList: React.FC<playlistProps> = ({user_id, onPlaylistPlay, onPlaylists
 
   const onPlaylistDelete = async (playlist_id: number) => {
     try {
-      await axios.post("http://localhost:5000/playlist/deletePlaylist", {
+      await axios.post("https://alto-server.vercel.app/playlist/deletePlaylist", {
         playlist_id: playlist_id,
       });
   
@@ -66,7 +66,7 @@ const PlayList: React.FC<playlistProps> = ({user_id, onPlaylistPlay, onPlaylists
 
   const getPlaylists = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/playlist/getPlaylists", { user_id: user_id });
+      const response = await axios.post("https://alto-server.vercel.app/playlist/getPlaylists", { user_id: user_id });
       const playlistsData: Playlist[] = response.data.playlists || [];
       setPlaylists(playlistsData);
     } catch (error) {

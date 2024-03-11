@@ -83,7 +83,7 @@ const SongContainer: React.FC<SongContainerProps> = ({
   };
   
   const addSongToPlaylist = async (song_id, playlist_id) =>{
-    const response = await axios.post("http://localhost:5000/playlist/addSong", {song_id:  song_id , playlist_id: playlist_id});
+    const response = await axios.post("https://alto-server.vercel.app/playlist/addSong", {song_id:  song_id , playlist_id: playlist_id});
   };
 
 

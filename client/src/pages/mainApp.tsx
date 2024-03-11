@@ -53,7 +53,7 @@ useEffect(() => {
 
 const getPlaylists = async () => {
   try {
-    const response = await axios.post("http://localhost:5000/playlist/getPlaylists", { user_id: user.id });
+    const response = await axios.post("https://alto-server.vercel.app/playlist/getPlaylists", { user_id: user.id });
     const playlistsData: Playlist[] = response.data.playlists || [];
     setPlaylists(playlistsData);
   } catch (error) {
@@ -139,7 +139,7 @@ useEffect(()=>{
 
 
   const addSongToPlaylist = async (song_id, playlist_id) =>{
-    const response = await axios.post("http://localhost:5000/playlist/addSong", {song_id:  song_id , playlist_id: playlist_id});
+    const response = await axios.post("https://alto-server.vercel.app/playlist/addSong", {song_id:  song_id , playlist_id: playlist_id});
   };
 
   const handleAddButtonClick = () => {
@@ -159,12 +159,12 @@ useEffect(()=>{
     try {
       if (playlist_id) {
         // Fetch playlist
-        const playlistResponse = await axios.post("http://localhost:5000/playlist/getPlaylistByID", { playlist_id: playlist_id });
+        const playlistResponse = await axios.post("https://alto-server.vercel.app/playlist/getPlaylistByID", { playlist_id: playlist_id });
         setCurrPlaylist(playlistResponse.data.playlist);
         console.log(currPlaylist);
   
         // Fetch songs
-        const songsResponse = await axios.post("http://localhost:5000/playlist/getSongsFromPlaylist", { playlist_id: playlist_id });
+        const songsResponse = await axios.post("https://alto-server.vercel.app/playlist/getSongsFromPlaylist", { playlist_id: playlist_id });
         setCurrPlaylistSongs({ rows: songsResponse.data.songs });
         console.log(currPlaylistSongs.rows);
       }
