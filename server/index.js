@@ -30,11 +30,6 @@ app.use('/song', songRoutes);
 app.use('/user', userRoutes);
 app.use('/playlist', playlistRoutes);
 
-
-// app.get('/', (req, res) => {
-//   res.sendFile("C:/Users/alexk/Documents/AlTo/server/addSongs.html");
-// });
-
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

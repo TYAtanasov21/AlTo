@@ -1,7 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaP, FaPlay } from "react-icons/fa6";
-import axios from "axios";
 
 interface PlayListComponent{
     playlist_id: number;

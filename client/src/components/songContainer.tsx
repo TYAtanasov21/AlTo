@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Box from "./box";
 import { Song } from "./songState";
-import { IoHeartOutline } from "react-icons/io5";
 import { IoHeart } from "react-icons/io5";
 import { GoPlus } from "react-icons/go";
-import { Playlist, usePlaylistsState, PlaylistsState} from "./playlistState";
+import { Playlist} from "./playlistState";
 import axios from "axios";
-import { MdOutlinePlaylistPlay } from "react-icons/md";
 
 interface SongContainerProps {
   title: string;

@@ -1,4 +1,4 @@
-import React, { useMemo, FormEvent, useState } from "react";
+import React, { useMemo, FormEvent} from "react";
 import { HiHome } from "react-icons/hi";
 import Box from "./box";
 import { useSearchState } from "./searchState";

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { IoPlayBack, IoPlayForward } from "react-icons/io5";
 import '../css/footerControl.css';
-import { Song, useSongsState } from "./songState";
+import {Song} from "./songState";
 import MuteButton from "./volumeMute";
 
 interface FooterProps {

@@ -1,5 +1,4 @@
 import { useState, Dispatch, SetStateAction } from "react";
-import axios from "axios";
 export interface Playlist {
     user_id: number | string;
     playlist_id?: number | string;

@@ -128,9 +128,3 @@ router.post('/deletePlaylist', async (req, res)=>{
 });
 
 export default router;
-
-
-//DELETE FROM playlist_songs 
-//WHERE playlist_songs.playlist_id = 1;
-//DELETE FROM playlists
-//WHERE playlist_id = 24;
